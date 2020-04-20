@@ -19,3 +19,4 @@ Route::get('/', function () {
 
 
 Route::resource('/periodos', 'PeriodoController');
+Route::resource('/estudiantes', 'EstudianteController');

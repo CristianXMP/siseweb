@@ -1,0 +1,79 @@
+.contentBody {
+    margin-top: 30px;
+}
+
+.header-container{
+    display: flex;
+    justify-content: space-between !important;
+    margin-bottom: 40px !important;
+}
+
+label{
+    width: 9rem !important;
+    font-size: 12.5px;
+    /* color: #170C84 !important; */
+    font-weight: bold;
+}
+
+.header-container h1{
+    font-size: 30px;
+    color: #170C84 !important;
+}
+
+.header-container h1 i{
+    margin-right: 20px;
+}
+
+.btn-main{
+    color: #fff;
+    background-color: #170C84 !important;
+    border-color: #170C84 !important;
+    margin-right: 30px;
+}
+.btn-main:hover{
+    color: #fff;
+    background-color: #170C84;
+    border-color: #170C84;
+    margin-right: 30px;
+}
+.btn-main:focus{
+    color: #fff !important;
+    background-color: #170C84 !important;
+    border-color: #170C84 !important;
+    margin-right: 30px !important;
+}
+
+.btn-main:active{
+    color: #fff !important;
+    background-color: #170C84 !important;
+    border-color: #170C84 !important;
+    margin-right: 30px !important;
+}
+
+.table thead th{
+    background-color: #EFEFEF !important;
+    padding: 17px 8px;
+    color: #170C84 !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6 !important;
+}
+
+.table tr:last-child {
+    border-bottom: 1px solid #C8C8C8 !important;
+}
+
+.contentBody table tbody tr .btn-table{
+    color: #fff;
+    background-color: #170C84;
+    border-color: #170C84;
+}
+
+.form-control {
+    height: 32px !important;
+}
+.form-control:focus{
+    border: 1px solid #170C84 !important;
+    box-shadow: none;
+}
