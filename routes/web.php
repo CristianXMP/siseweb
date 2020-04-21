@@ -25,7 +25,7 @@ Route::get('/pruebas', function(){
         'nombre' => 'atlantico'
 
     ]);*/
-    
+
 
     /*$departament = App\Departament::findOrFail(2);
     return $departament->Pais;*/
@@ -34,7 +34,7 @@ Route::get('/pruebas', function(){
 
 Route::resource('/periodos', 'PeriodoController');
 Route::resource('/estudiantes', 'EstudianteController');
-Route::resource('/paises', 'PaisController');
+Route::resource('/paises', 'CountryController');
 Route::resource('/departamentos', 'DepartamentoController');
 Route::resource('/municipios', 'MunicipioController');
 Route::resource('/tiposdocumentos', 'TipoDocumentoController');
