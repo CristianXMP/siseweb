@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    {{-- <link rel="stylesheet" href="{{ asset('datatables/dataTables.bootstrap4.css') }}"> --}}
     
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     @yield('style')
@@ -76,11 +77,13 @@
             </div>
             
             
-            <div class="col-md-8 col-12 col-lg-9 contentBody">
+            <div class="col-md-8 col-12 col-lg-9">
+                <div class="shadow p-3 mb-5 bg-white rounded contentBody">
 
+                    {{-- Aqui va el contenido  --}}
+                  @yield('content')
 
-              {{-- Aqui va el contenido  --}}
-            @yield('content')
+                </div>
 
             </div>
 
@@ -95,8 +98,11 @@
 
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="{{ asset('datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('datatables/dataTables.buttons.min.js') }}"></script>
   <script src="{{ asset('js/main.js') }}"></script>
 
   @yield('script')

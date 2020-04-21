@@ -13,12 +13,15 @@
             </h1>
         </div>
         <div>
-            <a class=" btn btn-main" href="{{ route('tiposdocumentos.create') }}">Nuevo</a>
+            <a class=" btn btn-main" href="{{ route('tiposdocumentos.create') }}">
+                <i class="fa fa-plus mr-1"></i>
+                Nuevo
+            </a>
         </div>
     </div>
 
     <div class="table-responsive">
-        <table class="table table-stripe ">
+        <table class="table table-stripe " id="tablaTipoDocuemnto">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -34,24 +37,15 @@
                     <td>T.I</td>
                     <td>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-table dropdown-toggle btn-primary" data-toggle="dropdown" aria-expanded="false" id="dropdownTiposDocumento">
-                                <span class="caret"></span>
-                            </button>
-
-                            <div class="dropdown-menu" aria-labelledby="dropdownTiposDocumento">
-                                <a class="dropdown-item" href="{{ route('tiposdocumentos.edit', 1) }}">
-                                    <i class="fa fa-external-link-alt"></i>
-                                    Editar
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fa fa-external-link-alt"></i>
-                                    Eliminar
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fa fa-external-link-alt"></i>
-                                    Ver
-                                </a>
-                              </div>
+                            <a href="" style="color: #00723d" id="editTipoDoc">
+                                <i class="fa fa-pencil-alt mr-2"></i>
+                            </a>
+                            <a href="" style="color: #00723d" id="verTipoDoc">
+                                 <i class="fa fa-eye mr-2"></i>    
+                             </a>
+                             <a href="" style="color: #00723d" id="borrarTipoDoc">
+                                 <i class="fa fa-trash"></i>
+                             </a>
                         </div>
                     </td>
                 </tr>
@@ -62,15 +56,15 @@
                     <td>C.C</td>
                     <td>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-table dropdown-toggle btn-primary" data-toggle="dropdown" aria-expanded="false" id="dropdownTiposDocumento">
-                                <span class="caret"></span>
-                            </button>
-
-                            <div class="dropdown-menu" aria-labelledby="dropdownTiposDocumento">
-                                <a class="dropdown-item" href="{{ route('tiposdocumentos.edit', 1) }}">Editar</a>
-                                <a class="dropdown-item" href="#">Eliminar</a>
-                                <a class="dropdown-item" href="#">Ver</a>
-                              </div>
+                            <a href="" style="color: #00723d" id="editTipoDoc">
+                                <i class="fa fa-pencil-alt mr-2"></i>
+                            </a>
+                            <a href="" style="color: #00723d" id="verTipoDoc">
+                                 <i class="fa fa-eye mr-2"></i>    
+                             </a>
+                             <a href="" style="color: #00723d" id="borrarTipoDoc">
+                                 <i class="fa fa-trash"></i>
+                             </a>
                         </div>
                     </td>
                 </tr>
@@ -80,3 +74,6 @@
     </div>
 @endsection
 
+@section('script')
+    <script src="{{ asset('js/typeDocument.js') }}"></script>
+@endsection

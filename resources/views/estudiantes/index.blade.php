@@ -13,12 +13,14 @@
             </h1>
         </div>
         <div>
-            <a class=" btn btn-main" href="{{ route('estudiantes.create') }}">Nuevo</a>
+            <a class=" btn btn-main" href="{{ route('estudiantes.create') }}">
+                <i class="fa fa-plus mr-1"></i>
+            Nuevo</a>
         </div>
     </div>
 
     <div class="table-responsive">
-        <table class="table table-stripe ">
+        <table class="table table-stripe " id="tablaEstudiante">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -83,3 +85,6 @@
     </div>
 @endsection
 
+@section('script')
+    <script src="{{ asset('js/student.js') }}"></script>
+@endsection

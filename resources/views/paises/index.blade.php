@@ -13,12 +13,15 @@
             </h1>
         </div>
         <div>
-            <a class=" btn btn-main" href="{{ route('paises.create') }}">Nuevo</a>
+            <a class=" btn btn-main" href="{{ route('paises.create') }}">
+                <i class="fa fa-plus mr-1"></i>
+                Nuevo
+            </a>
         </div>
     </div>
 
     <div class="table-responsive">
-        <table class="table table-stripe ">
+        <table class="table table-stripe " id="tablaPais">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -34,24 +37,15 @@
                     <td>Col</td>
                     <td>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-table dropdown-toggle btn-primary" data-toggle="dropdown" aria-expanded="false" id="dropdownEstudiantes">
-                                <span class="caret"></span>
-                            </button>
-
-                            <div class="dropdown-menu" aria-labelledby="dropdownEstudiantes">
-                                <a class="dropdown-item" href="{{ route('paises.edit', 1) }}">
-                                    <i class="fa fa-external-link-alt"></i>
-                                    Editar
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fa fa-external-link-alt"></i>
-                                    Eliminar
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fa fa-external-link-alt"></i>
-                                    Ver
-                                </a>
-                              </div>
+                           <a href="" style="color: #00723d" id="editPais">
+                               <i class="fa fa-pencil-alt mr-2"></i>
+                           </a>
+                           <a href="" style="color: #00723d" id="verPais">
+                                <i class="fa fa-eye mr-2"></i>    
+                            </a>
+                            <a href="" style="color: #00723d" id="borrarPais">
+                                <i class="fa fa-trash"></i>
+                            </a>
                         </div>
                     </td>
                 </tr>
@@ -62,15 +56,15 @@
                     <td>Ven</td>
                     <td>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-table dropdown-toggle btn-primary" data-toggle="dropdown" aria-expanded="false" id="dropdownEstudiantes">
-                                <span class="caret"></span>
-                            </button>
-
-                            <div class="dropdown-menu" aria-labelledby="dropdownEstudiantes">
-                                <a class="dropdown-item" href="{{ route('estudiantes.edit', 1) }}">Editar</a>
-                                <a class="dropdown-item" href="#">Eliminar</a>
-                                <a class="dropdown-item" href="#">Ver</a>
-                              </div>
+                            <a href="" style="color: #00723d" id="editPais">
+                                <i class="fa fa-pencil-alt mr-2"></i>
+                            </a>
+                            <a href="" style="color: #00723d" id="verPais">
+                                 <i class="fa fa-eye mr-2"></i>    
+                             </a>
+                             <a href="" style="color: #00723d" id="borrarPais">
+                                 <i class="fa fa-trash"></i>
+                             </a>
                         </div>
                     </td>
                 </tr>
@@ -80,3 +74,6 @@
     </div>
 @endsection
 
+@section('script')
+    <script src="{{ asset('js/country.js') }}"></script>
+@endsection

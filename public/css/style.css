@@ -53,11 +53,12 @@ button{
 .header-mobile .navbar-collapse h2{
     font-size: 15px;
     padding: 5px 15px;
-    color: #170C84 !important;
+    color: #00723d !important;
     font-weight: bold !important;
 }
 #divNavigationView{
     padding: 15px;
+    border-radius: 1rem;
 }
 .navWeb{
     border: 1px solid #C8C8C8;
@@ -67,7 +68,7 @@ button{
 }
 
 .navWeb .container-menu .dropdown-menu a:hover{
-    background-color: #170C84 !important;
+    background-color: #00723d !important;
     color: #FFF !important;
 }
 
@@ -90,8 +91,8 @@ button{
 }
 
 .dropdown .dropdown-button:hover{
-    background: #170C84;
-    border: 1px solid #170C84;
+    background: #00723d;
+    border: 1px solid #00723d;
     border-radius: 5px;
     box-sizing: border-box;
     padding: 7px 5px;

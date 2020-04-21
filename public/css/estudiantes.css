@@ -17,7 +17,7 @@ label{
 
 .header-container h1{
     font-size: 30px;
-    color: #170C84 !important;
+    color: #00723d !important;
     font-weight: bold;
 }
 
@@ -27,41 +27,44 @@ label{
 
 .btn-main{
     color: #fff;
-    background-color: #170C84 !important;
-    border-color: #170C84 !important;
+    background-color: #00723d !important;
+    border-color: #00723d !important;
     margin-right: 30px;
+    border-radius: 3rem;
+    padding: 8px 23px;
+
 }
 .btn-main:hover{
     color: #fff;
-    background-color: #170C84;
-    border-color: #170C84;
+    background-color: #00723d;
+    border-color: #00723d;
     margin-right: 30px;
 }
 .btn-main:focus{
     color: #fff !important;
-    background-color: #170C84 !important;
-    border-color: #170C84 !important;
+    background-color: #00723d !important;
+    border-color: #00723d !important;
     margin-right: 30px !important;
 }
 
 .btn-main:active{
     color: #fff !important;
-    background-color: #170C84 !important;
-    border-color: #170C84 !important;
+    background-color: #00723d !important;
+    border-color: #00723d !important;
     margin-right: 30px !important;
 }
 
 .table thead th{
     background-color: #EFEFEF !important;
     padding: 17px 8px;
-    color: #170C84 !important;
+    color: #00723d !important;
     font-size: 16px !important;
     font-weight: bold !important;
     vertical-align: bottom;
     border-bottom: 2px solid #dee2e6 !important;
 }
 .table tbody td .dropdown-menu a:hover{
-    background-color: #170C84 !important;
+    background-color: #00723d !important;
     color: #FFF !important;
     width: 9rem !important;
     margin: 0 10px !important;
@@ -74,14 +77,21 @@ label{
 
 .contentBody table tbody tr .btn-table{
     color: #fff;
-    background-color: #170C84;
-    border-color: #170C84;
+    background-color: #00723d;
+    border-color: #00723d;
 }
 
 .form-control {
     height: 32px !important;
 }
 .form-control:focus{
-    border: 1px solid #170C84 !important;
+    border: 1px solid #00723d !important;
     box-shadow: none;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #00723d !important;
+    border-color: #00723d !important;
 }

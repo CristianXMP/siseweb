@@ -13,12 +13,15 @@
             </h1>
         </div>
         <div>
-            <a class=" btn btn-main" href="{{ route('departamentos.create') }}">Nuevo</a>
+            <a class=" btn btn-main" href="{{ route('departamentos.create') }}">
+                <i class="fa fa-plus mr-1"></i>
+                Nuevo
+            </a>
         </div>
     </div>
 
     <div class="table-responsive">
-        <table class="table table-stripe ">
+        <table class="table table-stripe" id="tablaDepartamento">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -36,24 +39,17 @@
                     <td>Colombia</td>
                     <td>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-table dropdown-toggle btn-primary" data-toggle="dropdown" aria-expanded="false" id="dropdownDepartamentos">
-                                <span class="caret"></span>
-                            </button>
-
-                            <div class="dropdown-menu" aria-labelledby="dropdownDepartamentos">
-                                <a class="dropdown-item" href="{{ route('departamentos.edit', 1) }}">
-                                    <i class="fa fa-external-link-alt"></i>
-                                    Editar
+                            <div class="btn-group">
+                                <a href="" style="color: #00723d" id="editDepar">
+                                    <i class="fa fa-pencil-alt mr-2"></i>
                                 </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fa fa-external-link-alt"></i>
-                                    Eliminar
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fa fa-external-link-alt"></i>
-                                    Ver
-                                </a>
-                              </div>
+                                <a href="" style="color: #00723d" id="verDepar">
+                                     <i class="fa fa-eye mr-2"></i>    
+                                 </a>
+                                 <a href="" style="color: #00723d" id="borrarDepar">
+                                     <i class="fa fa-trash"></i>
+                                 </a>
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -65,15 +61,15 @@
                     <td>Colombia</td>
                     <td>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-table dropdown-toggle btn-primary" data-toggle="dropdown" aria-expanded="false" id="dropdownDepartamentos">
-                                <span class="caret"></span>
-                            </button>
-
-                            <div class="dropdown-menu" aria-labelledby="dropdownDepartamentos">
-                                <a class="dropdown-item" href="{{ route('departamentos.edit', 1) }}">Editar</a>
-                                <a class="dropdown-item" href="#">Eliminar</a>
-                                <a class="dropdown-item" href="#">Ver</a>
-                              </div>
+                            <a href="" style="color: #00723d" id="editDepar">
+                                <i class="fa fa-pencil-alt mr-2"></i>
+                            </a>
+                            <a href="" style="color: #00723d" id="verDepar">
+                                 <i class="fa fa-eye mr-2"></i>    
+                             </a>
+                             <a href="" style="color: #00723d" id="borrarDepar">
+                                 <i class="fa fa-trash"></i>
+                             </a>
                         </div>
                     </td>
                 </tr>
@@ -81,5 +77,10 @@
             </tbody>
         </table>
     </div>
+@endsection
+
+
+@section('script')
+    <script src="{{ asset('js/department.js') }}"></script>
 @endsection
 
