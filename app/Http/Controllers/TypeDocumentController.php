@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class EstudianteController extends Controller
+class TypeDocumentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class EstudianteController extends Controller
      */
     public function index()
     {
-        return view('estudiantes.index');
+        return view('tipos_documentos.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class EstudianteController extends Controller
      */
     public function create()
     {
-        return view('estudiantes.create');
+        return view('tipos_documentos.create');
     }
 
     /**
@@ -56,7 +56,7 @@ class EstudianteController extends Controller
      */
     public function edit($id)
     {
-        return view('estudiantes.edit');
+        return view('tipos_documentos.edit');
     }
 
     /**

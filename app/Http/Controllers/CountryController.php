@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\country;
 use Illuminate\Http\Request;
 
 class CountryController extends Controller
@@ -14,7 +13,7 @@ class CountryController extends Controller
      */
     public function index()
     {
-        //
+        return view('paises.index');
     }
 
     /**
@@ -24,7 +23,7 @@ class CountryController extends Controller
      */
     public function create()
     {
-        //
+        return view('paises.create');
     }
 
     /**
@@ -41,10 +40,10 @@ class CountryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\country  $country
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(country $country)
+    public function show($id)
     {
         //
     }
@@ -52,22 +51,22 @@ class CountryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\country  $country
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(country $country)
+    public function edit($id)
     {
-        //
+        return view('paises.edit');
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\country  $country
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, country $country)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +74,10 @@ class CountryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\country  $country
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(country $country)
+    public function destroy($id)
     {
         //
     }

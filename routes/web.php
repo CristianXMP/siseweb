@@ -33,8 +33,8 @@ Route::get('/pruebas', function(){
 
 
 Route::resource('/periodos', 'PeriodoController');
-Route::resource('/estudiantes', 'EstudianteController');
-Route::resource('/paises', 'PaisController');
-Route::resource('/departamentos', 'DepartamentoController');
-Route::resource('/municipios', 'MunicipioController');
-Route::resource('/tiposdocumentos', 'TipoDocumentoController');
+Route::resource('/estudiantes', 'StudentController');
+Route::resource('/paises', 'CountryController');
+Route::resource('/departamentos', 'DepartamentController');
+Route::resource('/municipios', 'MunicipalityController');
+Route::resource('/tiposdocumentos', 'TypeDocumentController');

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class TipoDocumentoController extends Controller
+class MunicipalityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class TipoDocumentoController extends Controller
      */
     public function index()
     {
-        return view('tipos_documentos.index');
+        return view('municipios.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class TipoDocumentoController extends Controller
      */
     public function create()
     {
-        return view('tipos_documentos.create');
+        return view('municipios.create');
     }
 
     /**
@@ -56,7 +56,7 @@ class TipoDocumentoController extends Controller
      */
     public function edit($id)
     {
-        return view('tipos_documentos.edit');
+        return view('municipios.edit');
     }
 
     /**
