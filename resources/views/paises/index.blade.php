@@ -6,6 +6,18 @@
 
 @section('content')
     <div class="header-container">
+
+        @if (session()->get('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+
+      @endif
+      @if (session()->get('danger'))
+      <div class="alert alert-success">
+          {{ session()->get('danger') }}
+      </div>
+      @endif
         <div class="title">
             <h1>
                 <i class="far fa-file-alt"></i>
@@ -31,10 +43,11 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($country as $item)
                 <tr>
-                    <td>1</td>
-                    <td>Colombia</td>
-                    <td>Col</td>
+                    <td>{{$item->id}}</td>
+                    <td>{{$item->nombre}}</td>
+                    <td>{{$item->abreviatura}}</td>
                     <td>
                         <div class="btn-group">
                            <a href="" style="color: #00723d" id="editPais">
@@ -47,28 +60,11 @@
                                 <i class="fa fa-trash"></i>
                             </a>
                         </div>
-                    </td>
+                    </td>                
                 </tr>
 
-                <tr>
-                    <td>1</td>
-                    <td>Venezuela</td>
-                    <td>Ven</td>
-                    <td>
-                        <div class="btn-group">
-                            <a href="" style="color: #00723d" id="editPais">
-                                <i class="fa fa-pencil-alt mr-2"></i>
-                            </a>
-                            <a href="" style="color: #00723d" id="verPais">
-                                 <i class="fa fa-eye mr-2"></i>    
-                             </a>
-                             <a href="" style="color: #00723d" id="borrarPais">
-                                 <i class="fa fa-trash"></i>
-                             </a>
-                        </div>
-                    </td>
-                </tr>
-                
+                @endforeach
+
             </tbody>
         </table>
     </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+USE App\Country;
 
 class CountryController extends Controller
 {
@@ -13,7 +14,9 @@ class CountryController extends Controller
      */
     public function index()
     {
-        return view('paises.index');
+        //
+        $country = Country::all();
+        return view('paises.index', compact('country'));
     }
 
     /**
@@ -23,6 +26,7 @@ class CountryController extends Controller
      */
     public function create()
     {
+        //
         return view('paises.create');
     }
 
@@ -35,6 +39,27 @@ class CountryController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'nombre'=> 'required',
+            'abreviatura' => 'required'
+        ]);
+        $country = new Country([
+
+            'nombre'=> $request->get('nombre'),
+            'abreviatura' => $request->get('abreviatura')
+        ]);
+
+        if (Country::where('nombre', $request->get('nombre'))->exists()) {
+            return redirect('/paises')->with('danger', 'Este Pais ya esta en los registros');
+         }else{
+            $country->save();
+            return redirect('/paises')->with('success', 'Pais Guardado');
+         }
+
+
+        //
+
+      //
     }
 
     /**
