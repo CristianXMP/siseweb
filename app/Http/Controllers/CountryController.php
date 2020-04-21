@@ -15,6 +15,8 @@ class CountryController extends Controller
     public function index()
     {
         //
+        $country = country::all();
+        return view('paises.index', compact('country'));
     }
 
     /**
@@ -25,6 +27,7 @@ class CountryController extends Controller
     public function create()
     {
         //
+        return view('paises.create');
     }
 
     /**
@@ -36,6 +39,27 @@ class CountryController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'nombre'=> 'required',
+            'abreviatura' => 'required'
+        ]);
+        $country = new country([
+
+            'nombre'=> $request->get('nombre'),
+            'abreviatura' => $request->get('abreviatura')
+        ]);
+
+        if (country::where('nombre', $request->get('nombre'))->exists()) {
+            return redirect('/paises')->with('danger', 'Este Pais ya esta en los registros');
+         }else{
+            $country->save();
+            return redirect('/paises')->with('success', 'Pais Guardado');
+         }
+
+
+        //
+
+      //
     }
 
     /**
