@@ -9,11 +9,11 @@
         <div class="title">
             <h1>
                 <i class="far fa-file-alt"></i>
-                Lista de Estudiantes
+                Lista de Departamentos
             </h1>
         </div>
         <div>
-            <a class=" btn btn-main" href="{{ route('estudiantes.create') }}">Nuevo</a>
+            <a class=" btn btn-main" href="{{ route('departamentos.create') }}">Nuevo</a>
         </div>
     </div>
 
@@ -23,35 +23,35 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
-                    <th>Documento</th>
-                    <th>Curso</th>
+                    <th>Abreviatura</th>
+                    <th>Pais</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>1</td>
-                    <td>Diego Andres</td>
-                    <td>100187947</td>
-                    <td>1 - 4</td>
+                    <td>Atlantico</td>
+                    <td>Atl</td>
+                    <td>Colombia</td>
                     <td>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-table dropdown-toggle btn-primary" data-toggle="dropdown" aria-expanded="false" id="dropdownEstudiantes">
+                            <button type="button" class="btn btn-table dropdown-toggle btn-primary" data-toggle="dropdown" aria-expanded="false" id="dropdownDepartamentos">
                                 <span class="caret"></span>
                             </button>
 
-                            <div class="dropdown-menu" aria-labelledby="dropdownEstudiantes">
-                                <a class="dropdown-item" href="{{ route('estudiantes.edit', 1) }}">
+                            <div class="dropdown-menu" aria-labelledby="dropdownDepartamentos">
+                                <a class="dropdown-item" href="{{ route('departamentos.edit', 1) }}">
                                     <i class="fa fa-external-link-alt"></i>
                                     Editar
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fa fa-external-link-alt"></i>
-                                    Ver
+                                    Eliminar
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fa fa-external-link-alt"></i>
-                                    Eliminar
+                                    Ver
                                 </a>
                               </div>
                         </div>
@@ -60,17 +60,17 @@
 
                 <tr>
                     <td>1</td>
-                    <td>Diego Andres</td>
-                    <td>100187947</td>
-                    <td>1 - 4</td>
+                    <td>Cordoba</td>
+                    <td>Cor</td>
+                    <td>Colombia</td>
                     <td>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-table dropdown-toggle btn-primary" data-toggle="dropdown" aria-expanded="false" id="dropdownEstudiantes">
+                            <button type="button" class="btn btn-table dropdown-toggle btn-primary" data-toggle="dropdown" aria-expanded="false" id="dropdownDepartamentos">
                                 <span class="caret"></span>
                             </button>
 
-                            <div class="dropdown-menu" aria-labelledby="dropdownEstudiantes">
-                                <a class="dropdown-item" href="{{ route('estudiantes.edit', 1) }}">Editar</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownDepartamentos">
+                                <a class="dropdown-item" href="{{ route('departamentos.edit', 1) }}">Editar</a>
                                 <a class="dropdown-item" href="#">Eliminar</a>
                                 <a class="dropdown-item" href="#">Ver</a>
                               </div>

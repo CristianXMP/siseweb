@@ -66,6 +66,12 @@ button{
     padding: 20px 15px;
 }
 
+.navWeb .container-menu .dropdown-menu a:hover{
+    background-color: #170C84 !important;
+    color: #FFF !important;
+}
+
+
 .contNav{
     background-color: #F0F0F0;
 }
@@ -75,7 +81,7 @@ button{
     padding: 7px 5px;
     border: none;
     text-align: left;
-    font-size: 15px !important;
+    font-size: 13px !important;
     width: 100%;
     border-radius: 5px;
     margin-bottom: 5px;
@@ -91,17 +97,24 @@ button{
     padding: 7px 5px;
     font-family: 'Noto Sans', sans-serif;
     color: white;
-    font-size: 14px;
     outline: none;
     /* height: 37px; */
     cursor: pointer;
 }
 .dropdown .dropdown-button i {
-
+    
     margin-right: 15px;
-    font-size: 18px;
+    /* font-size: 18px; */
     width: 25px;
     text-align: center;
+}
+.navWeb .container-menu .pull-left{
+    margin-left: 4rem !important;
+    margin-right: 0 !important;
+}
+
+.navWeb .container-menu .dropdown-menu a i{
+    margin-right: 5px;
 }
 
 .contentBody{

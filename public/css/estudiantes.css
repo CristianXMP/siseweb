@@ -18,6 +18,7 @@ label{
 .header-container h1{
     font-size: 30px;
     color: #170C84 !important;
+    font-weight: bold;
 }
 
 .header-container h1 i{
@@ -58,6 +59,13 @@ label{
     font-weight: bold !important;
     vertical-align: bottom;
     border-bottom: 2px solid #dee2e6 !important;
+}
+.table tbody td .dropdown-menu a:hover{
+    background-color: #170C84 !important;
+    color: #FFF !important;
+    width: 9rem !important;
+    margin: 0 10px !important;
+    border-radius: 5px !important;
 }
 
 .table tr:last-child {

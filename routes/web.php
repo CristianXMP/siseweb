@@ -34,3 +34,7 @@ Route::get('/pruebas', function(){
 
 Route::resource('/periodos', 'PeriodoController');
 Route::resource('/estudiantes', 'EstudianteController');
+Route::resource('/paises', 'PaisController');
+Route::resource('/departamentos', 'DepartamentoController');
+Route::resource('/municipios', 'MunicipioController');
+Route::resource('/tiposdocumentos', 'TipoDocumentoController');
