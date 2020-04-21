@@ -17,6 +17,20 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+Route::get('/pruebas', function(){
+    $departament = App\Departament::findOrFail(1);
+
+    return $departament->cities;
+    /* ()->create([
+        'nombre' => 'atlantico'
+
+    ]);*/
+    
+
+    /*$departament = App\Departament::findOrFail(2);
+    return $departament->Pais;*/
+});
+
 
 Route::resource('/periodos', 'PeriodoController');
 Route::resource('/estudiantes', 'EstudianteController');
