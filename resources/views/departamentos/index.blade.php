@@ -21,59 +21,40 @@
     </div>
 
     <div class="table-responsive">
-        <table class="table table-stripe" id="tablaDepartamento">
+        <table class="table table-striped table-bordered text-center" style="width:100%" id="tablaDepartamento">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Abreviatura</th>
-                    <th>Pais</th>
-                    <th>Acciones</th>
+                    <th width="10px">ID</th>
+                    <th width="10px" >Nombre</th>
+                    <th width="10px">Abreviatura</th>
+                    <th width="10px">Pais</th>
+                    <th width="5px">Acciones</th>
+
                 </tr>
             </thead>
             <tbody>
+                @foreach ($departament as $item)
                 <tr>
-                    <td>1</td>
-                    <td>Atlantico</td>
-                    <td>Atl</td>
-                    <td>Colombia</td>
-                    <td>
-                        <div class="btn-group">
-                            <div class="btn-group">
-                                <a href="" style="color: #00723d" id="editDepar">
-                                    <i class="fa fa-pencil-alt mr-2"></i>
-                                </a>
-                                <a href="" style="color: #00723d" id="verDepar">
-                                     <i class="fa fa-eye mr-2"></i>    
-                                 </a>
-                                 <a href="" style="color: #00723d" id="borrarDepar">
-                                     <i class="fa fa-trash"></i>
-                                 </a>
-                            </div>
-                        </div>
-                    </td>
+                    <td>{{$item->id}}</td>
+                    <td>{{$item->nombre}}</td>
+                    <td>{{$item->abreviatura}}</td>
+                    <td>{{$item->pais}}</td>
+                   <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <form  action="{{ route('paises.destroy', $item->id)}}" method="post">
+                        <a href="{{route('paises.edit', $item->id)}}" class="btn  btn btn-primary rounded" data-toggle="tooltip" data-placement="top" title="Editar" href="{{ route('paises.edit', $item->id)}}"><i class="fas fa-pen-alt"></i></a>
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"  class=" btn  btn-danger rounded" data-toggle="tooltip" data-placement="top" title="Eliminar" type="submit"><i class="fas fa-trash"></i></button>
+                          </form>
+
+                      </div>
+
+                   </td>
                 </tr>
 
-                <tr>
-                    <td>1</td>
-                    <td>Cordoba</td>
-                    <td>Cor</td>
-                    <td>Colombia</td>
-                    <td>
-                        <div class="btn-group">
-                            <a href="" style="color: #00723d" id="editDepar">
-                                <i class="fa fa-pencil-alt mr-2"></i>
-                            </a>
-                            <a href="" style="color: #00723d" id="verDepar">
-                                 <i class="fa fa-eye mr-2"></i>    
-                             </a>
-                             <a href="" style="color: #00723d" id="borrarDepar">
-                                 <i class="fa fa-trash"></i>
-                             </a>
-                        </div>
-                    </td>
-                </tr>
-                
+                @endforeach
+
             </tbody>
         </table>
     </div>

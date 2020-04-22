@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Departament;
 class DepartamentController extends Controller
 {
     /**
@@ -13,7 +13,9 @@ class DepartamentController extends Controller
      */
     public function index()
     {
-        return view('departamentos.index');
+        $departament = Departament::all();
+        
+        return view('departamentos.index' , compact('departament'));
     }
 
     /**
@@ -23,6 +25,7 @@ class DepartamentController extends Controller
      */
     public function create()
     {
+
         return view('departamentos.create');
     }
 

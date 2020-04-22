@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     {{-- <link rel="stylesheet" href="{{ asset('datatables/dataTables.bootstrap4.css') }}"> --}}
-    
+
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     @yield('style')
 </head>
@@ -21,7 +21,7 @@
                 <div class="d-none d-md-block">
                     <div class="row" id="logo-principal">
                         <div class="col-12 col-md-4">
-                            <h1 class="navbar-brand">Open soft</h1>                            
+                            <h1 class="navbar-brand">Open soft</h1>
                         </div>
                         <div class="col-12 col-md-8 info-user">
                             <h2>Diego Andres Rambao Jimenez</h2>
@@ -49,7 +49,7 @@
                                     <div class="row">
                                       {{-- Component navbar --}}
                                       @component('components/navbar')
-                                
+
                                       @endcomponent
                                     </div>
                                 </div>
@@ -69,14 +69,14 @@
                         <div class="contNav" id="divNavigationView">
                           {{-- Component navbar --}}
                             @component('components/navbar')
-                                
+
                             @endcomponent
                         </div>
                     </div>
                 </div>
             </div>
-            
-            
+
+
             <div class="col-md-8 col-12 col-lg-9">
                 <div class="shadow p-3 mb-5 bg-white rounded contentBody">
 
@@ -104,7 +104,13 @@
     <script src="{{ asset('datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('datatables/dataTables.buttons.min.js') }}"></script>
   <script src="{{ asset('js/main.js') }}"></script>
-
+<script>
+      <script>
+           $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
+    </script>
+</script>
   @yield('script')
 </body>
 </html>

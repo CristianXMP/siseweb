@@ -41,7 +41,7 @@ class CountryController extends Controller
         //
         $request->validate([
             'nombre'=> 'required',
-            'abreviatura' => 'required'
+            'abreviatura' => 'required|min:3|max:3'
         ]);
         $country = new Country([
 
@@ -81,7 +81,9 @@ class CountryController extends Controller
      */
     public function edit($id)
     {
-        return view('paises.edit');
+
+        $country = Country::find($id);
+        return view('paises.edit', compact('country'));
     }
 
     /**
@@ -94,6 +96,17 @@ class CountryController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'nombre' =>'required',
+            'abreviatura' => 'required|min:3|max:3'
+        ]);
+        $country = Country::find($id);
+        $country->nombre = $request->get('nombre');
+        $country->abreviatura = $request->get('abreviatura');
+        $country->save();
+
+       return redirect('/paises')->with('success', 'Datos Actualizados');
+
     }
 
     /**
@@ -105,5 +118,11 @@ class CountryController extends Controller
     public function destroy($id)
     {
         //
+
+        $country = Country::find($id);
+        $country->delete();
+
+        return redirect('/paises')->with('success', 'Dato eliminado');
+
     }
 }

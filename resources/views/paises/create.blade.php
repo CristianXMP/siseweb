@@ -15,6 +15,15 @@
 
 
     </div>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+    </div><br />
+@endif
 
 <form action="{{route('paises.store')}}" method="POST" class="row col-lg-12" style="border-radius: 1rem;background-color: white;box-shadow: 0 0 2px 1px #c3c3c3; margin-left: 3px; padding: 25px 15px;">
     @csrf

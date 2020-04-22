@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Departament extends Model
 {
     protected $fillable=[
-        'nombre','countries_id'
+        'nombre','abreviatura','countries_id'
     ];
 
     public function Pais(){

@@ -1,0 +1,18 @@
+<?php
+
+use Illuminate\Database\Seeder;
+use App\City;
+class SeederTableCity extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        //
+        factory(City::class, 30)->create();
+
+    }
+}

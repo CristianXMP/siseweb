@@ -8,7 +8,7 @@ class City extends Model
 {
     //
     protected $fillable=[
-        'nombre'
+        'nombre','abreviatura','departament_id'
     ];
 
     public function Departament(){
