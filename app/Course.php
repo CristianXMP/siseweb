@@ -11,10 +11,10 @@ class Course extends Model
     ];
 
     public function students(){
-        return $this->hasMany('App\Student' , 'course_id');
+        return $this->hasMany(Student::class);
     }
 
     public function teachers(){
-        return $this->hasMany('App\Teacher' , 'course_id');
+        return $this->hasMany(Teacher::class);
     }
 }

@@ -18,8 +18,8 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/pruebas', function(){
-    $departament = App\Departament::findOrFail(1);
-    return $departament->cities;
+    $curso = App\Student::findOrFail(2);
+    return $curso->course;
 
 
    /* $pais = App\country::findOrFail(11);

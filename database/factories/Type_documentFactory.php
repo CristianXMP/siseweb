@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Type_document::class, function (Faker $faker) {
     return [
-        'nombre' => $faker->sentence(2),
+        'nombre' => '1193574481',
         'abreviatura' => 'c.c'
     ];
 });

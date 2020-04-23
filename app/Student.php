@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
 
 class Student extends Model
 {
@@ -25,6 +26,6 @@ class Student extends Model
     }
 
     public function course(){
-        return $this->belongsTo('App\Course' , 'couser_id');
+        return $this->belongsTo(Course::class);
     }
 }

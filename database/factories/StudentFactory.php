@@ -13,10 +13,10 @@ $factory->define(Student::class, function (Faker $faker) {
         'second_name' => $faker->lastName(),
         'last_name' => $faker->lastName(),
         'city_id' => random_int(1,5),
-        'type_document_id' => random_int(1,5),
+        'document_type_id' => random_int(1,5),
         'number_document' => $faker->phoneNumber,
         'expedition_date' => $faker->date(),
         'birth_date' => $faker->date(),
-        'couse_id'=> random_int(1,5)
+        'course_id'=> random_int(1,5)
     ];
 });
