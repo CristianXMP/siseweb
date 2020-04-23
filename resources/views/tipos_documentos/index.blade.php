@@ -41,7 +41,7 @@
                                 <i class="fa fa-pencil-alt mr-2"></i>
                             </a>
                             <a href="" style="color: #00723d" id="verTipoDoc">
-                                 <i class="fa fa-eye mr-2"></i>    
+                                 <i class="fa fa-eye mr-2"></i>
                              </a>
                              <a href="" style="color: #00723d" id="borrarTipoDoc">
                                  <i class="fa fa-trash"></i>
@@ -60,7 +60,7 @@
                                 <i class="fa fa-pencil-alt mr-2"></i>
                             </a>
                             <a href="" style="color: #00723d" id="verTipoDoc">
-                                 <i class="fa fa-eye mr-2"></i>    
+                                 <i class="fa fa-eye mr-2"></i>
                              </a>
                              <a href="" style="color: #00723d" id="borrarTipoDoc">
                                  <i class="fa fa-trash"></i>
@@ -68,7 +68,7 @@
                         </div>
                     </td>
                 </tr>
-                
+
             </tbody>
         </table>
     </div>

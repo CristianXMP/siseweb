@@ -1,8 +1,9 @@
 <?php
 
+use App\Teacher;
 use Illuminate\Database\Seeder;
-use App\City;
-class SeederTableCity extends Seeder
+
+class SeederTableTeacher extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,7 +13,6 @@ class SeederTableCity extends Seeder
     public function run()
     {
         //
-        factory(City::class, 5)->create();
-
+        factory(Teacher::class, 5)->create();
     }
 }

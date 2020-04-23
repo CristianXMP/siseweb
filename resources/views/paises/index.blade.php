@@ -13,11 +13,7 @@
         </div>
 
       @endif
-      @if (session()->get('danger'))
-      <div class="alert alert-success">
-          {{ session()->get('danger') }}
-      </div>
-      @endif
+
         <div class="title">
             <h1>
                 <i class="far fa-file-alt"></i>
@@ -33,13 +29,13 @@
     </div>
 
     <div class="table-responsive">
-        <table class="table table-striped table-bordered text-center" style="width:100%" id="tablaPais">
+        <table class="table table-striped"  id="tablaPais">
             <thead>
                 <tr>
-                    <th width="10px">ID</th>
-                    <th width="10px" >Nombre</th>
-                    <th width="10px">Abreviatura</th>
-                    <th width="5px">Acciones</th>
+                    <th width="8px">ID</th>
+                    <th width="8px" >Nombre</th>
+                    <th width="3px">Abreviatura</th>
+                    <th width="8px">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -49,15 +45,17 @@
                     <td>{{$item->nombre}}</td>
                     <td>{{$item->abreviatura}}</td>
                    <td>
-                    <div class="btn-group" role="group" aria-label="Basic example">
+                    <div class="btn-group" style="color: #00723d">
                         <form  action="{{ route('paises.destroy', $item->id)}}" method="post">
-                        <a href="{{route('paises.edit', $item->id)}}" class="btn  btn btn-primary rounded" data-toggle="tooltip" data-placement="top" title="Editar" href="{{ route('paises.edit', $item->id)}}"><i class="fas fa-pen-alt"></i></a>
+                        <a href="{{route('paises.edit', $item->id)}}" class="btn btn-transparent" style="color: #00723d" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
                             @csrf
                             @method('DELETE')
-                            <button type="submit"  class=" btn  btn-danger rounded" data-toggle="tooltip" data-placement="top" title="Eliminar" type="submit"><i class="fas fa-trash"></i></button>
+                            <button type="submit" class="btn btn-transparent" style="color: #00723d" id="borrarTipoDoc" ><i class="fas fa-trash"></i></button>
                           </form>
 
                       </div>
+
+
 
                    </td>
                 </tr>

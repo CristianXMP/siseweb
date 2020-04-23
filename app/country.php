@@ -11,6 +11,8 @@ class country extends Model
     ];
 
     public function departaments(){
-        return $this->hasMany(Departament::class , 'countries_id');
+        return $this->hasMany('App\Departament' , 'countries_id');
     }
+
+
 }

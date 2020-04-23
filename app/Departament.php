@@ -11,10 +11,10 @@ class Departament extends Model
     ];
 
     public function Pais(){
-        return $this->belongsTo(country::class, 'id');
+        return $this->belongsTo('App\country', 'countries_id');
     }
 
     public function cities(){
-        return $this->hasMany(City::class, 'departament_id');
+        return $this->hasMany('App\City', 'departament_id');
     }
 }

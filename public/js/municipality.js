@@ -1,4 +1,8 @@
 $('#tablaMunicipio').DataTable({
+
+    "paging":   false,
+    "info":     false,
+    "searching": false,
     
     "language" : {
         "sEmptyTable": "No hay datos en la tabla",

@@ -1,5 +1,9 @@
 $('#tablaPais').DataTable({
-    
+
+    "paging":   false,
+    "info":     false,
+    "searching": false,
+
     "language" : {
         "sEmptyTable": "No hay datos en la tabla",
         "sInfo": "_START_ a _END_ de _TOTAL_ entradas",

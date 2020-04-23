@@ -12,6 +12,14 @@ class City extends Model
     ];
 
     public function Departament(){
-        return $this->belongsTo(country::class, 'id');
+        return $this->belongsTo('App\departament', 'departament_id');
+    }
+
+    public function Student(){
+        return $this->hasMany('App\Student', 'city_id');
+    }
+
+    public function Teacher(){
+        return $this->hasMany('App\Teacher', 'city_id');
     }
 }

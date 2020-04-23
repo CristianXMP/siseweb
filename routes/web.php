@@ -19,13 +19,24 @@ Route::get('/', function () {
 
 Route::get('/pruebas', function(){
     $departament = App\Departament::findOrFail(1);
+    return $departament->cities;
+
+
+   /* $pais = App\country::findOrFail(11);
+    return $pais->departaments;
+
+    $deparpais = App\Departament::findOrFail(1);
+
+    return $deparpais->pais;
+
+   $departament = App\Departament::findOrFail(1);
 
     return $departament->cities;
-    /* ()->create([
+     ()->create([
         'nombre' => 'atlantico'
 
     ]);*/
-    
+
 
     /*$departament = App\Departament::findOrFail(2);
     return $departament->Pais;*/

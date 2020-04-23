@@ -12,6 +12,6 @@ $factory->define(City::class, function (Faker $faker) {
         //
         'nombre'=> $faker->city(),
         'abreviatura' => $faker->countryISOAlpha3(),
-        'departament_id' =>$faker->randomDigit()
+        'departament_id' => random_int(1,5)
     ];
 });

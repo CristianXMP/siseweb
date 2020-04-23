@@ -20,7 +20,7 @@ class CreateDepartamentsTable extends Migration
             $table->unsignedInteger('countries_id');
             $table->timestamps();
 
-            $table->foreign('countries_id')->references('id')->on('countries');
+            $table->foreign('countries_id')->references('id')->on('countries')->onDelete('cascade')->onDelete('cascade');
         });
     }
 

@@ -20,7 +20,8 @@ class CreateCitiesTable extends Migration
             $table->unsignedInteger('departament_id');
             $table->timestamps();
 
-            $table->foreign('departament_id')->references('id')->on('departaments');
+            $table->foreign('departament_id')->references('id')->on('departaments')->onDelete('cascade')->onUpdate('cascade');
+            
         });
     }
 

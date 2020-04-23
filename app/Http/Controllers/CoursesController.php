@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Type_document;
+use App\courses;
 use Illuminate\Http\Request;
 
-class TypeDocumentController extends Controller
+class CoursesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class TypeDocumentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Type_document  $type_document
+     * @param  \App\courses  $courses
      * @return \Illuminate\Http\Response
      */
-    public function show(Type_document $type_document)
+    public function show(courses $courses)
     {
         //
     }
@@ -52,10 +52,10 @@ class TypeDocumentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Type_document  $type_document
+     * @param  \App\courses  $courses
      * @return \Illuminate\Http\Response
      */
-    public function edit(Type_document $type_document)
+    public function edit(courses $courses)
     {
         //
     }
@@ -64,10 +64,10 @@ class TypeDocumentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Type_document  $type_document
+     * @param  \App\courses  $courses
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Type_document $type_document)
+    public function update(Request $request, courses $courses)
     {
         //
     }
@@ -75,10 +75,10 @@ class TypeDocumentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Type_document  $type_document
+     * @param  \App\courses  $courses
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Type_document $type_document)
+    public function destroy(courses $courses)
     {
         //
     }

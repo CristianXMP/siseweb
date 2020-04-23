@@ -50,7 +50,7 @@ class CountryController extends Controller
         ]);
 
         if (Country::where('nombre', $request->get('nombre'))->exists()) {
-            return redirect('/paises')->with('danger', 'Este Pais ya esta en los registros');
+            return redirect('/paises/create')->with('danger', 'El pais '.$request->get('nombre'). ' ya existe en los registors');
          }else{
             $country->save();
             return redirect('/paises')->with('success', 'Pais Guardado');
@@ -99,6 +99,7 @@ class CountryController extends Controller
         $request->validate([
             'nombre' =>'required',
             'abreviatura' => 'required|min:3|max:3'
+
         ]);
         $country = Country::find($id);
         $country->nombre = $request->get('nombre');

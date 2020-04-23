@@ -5,6 +5,12 @@
 @endsection
 
 @section('content')
+        @if (session()->get('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+
+        @endif
     <div class="header-container">
         <div class="title">
             <h1>
@@ -20,58 +26,44 @@
         </div>
     </div>
 
+
     <div class="table-responsive">
-        <table class="table table-stripe " id="tablaMunicipio">
+        <table class="table table-striped table-bordered text-center" style="width:100%" id="tablaMunicipio">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Abreviatura</th>
-                    <th>Departamento</th>
-                    <th>Acciones</th>
+                    <th width="10px">ID</th>
+                    <th width="10px" >Nombre</th>
+                    <th width="10px">Abreviatura</th>
+                    <th width="10px">Departamento</th>
+                    <th width="5px">Acciones</th>
+
                 </tr>
             </thead>
             <tbody>
+                @foreach ($cities as $item)
                 <tr>
-                    <td>1</td>
-                    <td>Malambo</td>
-                    <td>Mal</td>
-                    <td>Atlantico</td>
-                    <td>
-                        <div class="btn-group">
-                            <a href="" style="color: #00723d" id="editMuni">
-                                <i class="fa fa-pencil-alt mr-2"></i>
-                            </a>
-                            <a href="" style="color: #00723d" id="verMuni">
-                                 <i class="fa fa-eye mr-2"></i>    
-                             </a>
-                             <a href="" style="color: #00723d" id="borrarMuni">
-                                 <i class="fa fa-trash"></i>
-                             </a>
-                        </div>
-                    </td>
+                    <td>{{$item->id}}</td>
+                    <td>{{$item->nombre}}</td>
+                    <td>{{$item->abreviatura}}</td>
+                    <td>{{$item->departament->nombre}}</td>
+                   <td>
+                      <div class="btn-group" style="color: #00723d">
+                        <form  action="{{ route('municipios.destroy', $item->id)}}" method="post">
+                        <a href="{{route('municipios.edit', $item->id)}}" class="btn btn-transparent" style="color: #00723d" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-transparent" style="color: #00723d" id="borrarTipoDoc" ><i class="fas fa-trash"></i></button>
+                          </form>
+
+                      </div>
+
+
+
+                   </td>
                 </tr>
 
-                <tr>
-                    <td>1</td>
-                    <td>Soledad</td>
-                    <td>Sol</td>
-                    <td>Atlantico</td>
-                    <td>
-                        <div class="btn-group">
-                            <a href="" style="color: #00723d" id="editMuni">
-                                <i class="fa fa-pencil-alt mr-2"></i>
-                            </a>
-                            <a href="" style="color: #00723d" id="verMuni">
-                                 <i class="fa fa-eye mr-2"></i>    
-                             </a>
-                             <a href="" style="color: #00723d" id="borrarMuni">
-                                 <i class="fa fa-trash"></i>
-                             </a>
-                        </div>
-                    </td>
-                </tr>
-                
+                @endforeach
+
             </tbody>
         </table>
     </div>

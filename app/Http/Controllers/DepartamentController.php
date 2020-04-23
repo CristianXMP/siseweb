@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\country;
 use Illuminate\Http\Request;
 use App\Departament;
 class DepartamentController extends Controller
@@ -14,7 +15,7 @@ class DepartamentController extends Controller
     public function index()
     {
         $departament = Departament::all();
-        
+
         return view('departamentos.index' , compact('departament'));
     }
 
@@ -25,8 +26,8 @@ class DepartamentController extends Controller
      */
     public function create()
     {
-
-        return view('departamentos.create');
+        $countries = country::all();
+        return view('departamentos.create', compact('countries'));
     }
 
     /**
@@ -38,6 +39,26 @@ class DepartamentController extends Controller
     public function store(Request $request)
     {
         //
+
+        $request->validate([
+            'nombre'=> 'required',
+            'abreviatura' => 'required|min:3|max:3',
+            'pais' => 'required'
+        ]);
+
+      $departament = new Departament([
+          'nombre' => $request->get('nombre'),
+          'abreviatura' => $request->get('abreviatura'),
+          'countries_id' => $request->get(('pais'))
+      ]);
+
+            if (Departament::where('nombre', $request->get('nombre'))->exists()) {
+                return redirect('/departamentos/create')->with('danger', 'Este Departamento '.$request->get('nombre'). ' ya esta en los registros');
+            }else{
+                $departament->save();
+                return redirect('/departamentos')->with('success', 'Departamento Guardado');
+            }
+
     }
 
     /**
@@ -59,7 +80,9 @@ class DepartamentController extends Controller
      */
     public function edit($id)
     {
-        return view('departamentos.edit');
+        $departament = Departament::findOrfail($id);
+        $pais = country::all();
+        return view('departamentos.edit', compact('departament','pais'));
     }
 
     /**
@@ -71,7 +94,23 @@ class DepartamentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nombre'=> 'required',
+            'abreviatura' => 'required|min:3|max:3',
+            'pais' => 'required'
+        ]);
+
+        $departament = Departament::find($id);
+        $departament->nombre = $request->get('nombre');
+        $departament->abreviatura = $request->get('abreviatura');
+        $departament->countries_id = $request->get('pais');
+        $departament->save();
+
+       return redirect('/departamentos')->with('success', 'Datos Actualizados');
+
+
+
+
     }
 
     /**
@@ -83,5 +122,10 @@ class DepartamentController extends Controller
     public function destroy($id)
     {
         //
+
+        $departament = Departament::find($id);
+        $departament->delete();
+
+        return redirect('/departamentos')->with('success', 'Dato eliminado');
     }
 }

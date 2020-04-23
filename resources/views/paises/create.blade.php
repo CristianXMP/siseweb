@@ -5,6 +5,12 @@
 @endsection
 
 @section('content')
+
+@if (session()->get('danger'))
+<div class="alert alert-success">
+    {{ session()->get('danger') }}
+</div>
+@endif
     <div class="header-container">
         <div class="title">
             <h1>
