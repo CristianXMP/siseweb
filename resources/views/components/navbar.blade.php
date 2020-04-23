@@ -9,7 +9,9 @@
             </div>
 
             <div class="dropdown">
-                <button class="dropdown-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="dropdown-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                onclick="location.href='{{ route('profesores.index') }}'"
+                >
                     <i class="far fa-user"></i>
                     Profesores
                 </button>
@@ -60,7 +62,8 @@
             </div>
 
             <div class="dropdown">
-                <button class="dropdown-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="dropdown-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                onclick="location.href='{{ route('cursos.index') }}'">
                     <i class="far fa-user"></i>
                   Cursos
                 </button>

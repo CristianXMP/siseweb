@@ -32,7 +32,7 @@
     </div>
 
     <div class="table-responsive">
-        <table class="table table-striped " id="tablaDepartamento">
+        <table class="table" id="tablaDepartamento">
             <thead>
                 <tr>
                     <th width="10px">ID</th>

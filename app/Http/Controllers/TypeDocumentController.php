@@ -14,7 +14,7 @@ class TypeDocumentController extends Controller
      */
     public function index()
     {
-        //
+        return view('tipos_documentos.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class TypeDocumentController extends Controller
      */
     public function create()
     {
-        //
+        return view('tipos_documentos.create');
     }
 
     /**
@@ -57,7 +57,7 @@ class TypeDocumentController extends Controller
      */
     public function edit(Type_document $type_document)
     {
-        //
+        return view('tipos_documentos.edit');
     }
 
     /**

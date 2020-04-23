@@ -49,3 +49,5 @@ Route::resource('/paises', 'CountryController');
 Route::resource('/departamentos', 'DepartamentController');
 Route::resource('/municipios', 'MunicipalityController');
 Route::resource('/tiposdocumentos', 'TypeDocumentController');
+Route::resource('/profesores', 'TeacherController');
+Route::resource('/cursos', 'CourseController');
