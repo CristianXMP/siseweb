@@ -14,7 +14,7 @@ $factory->define(Student::class, function (Faker $faker) {
         'last_name' => $faker->lastName(),
         'city_id' => random_int(1,5),
         'document_type_id' => random_int(1,5),
-        'number_document' => $faker->phoneNumber,
+        'number_document' => '1234567890',
         'expedition_date' => $faker->date(),
         'birth_date' => $faker->date(),
         'course_id'=> random_int(1,5)

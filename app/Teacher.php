@@ -9,16 +9,22 @@ class Teacher extends Model
 
     protected $fillable =[
         'first_name','second_name',
-        'last_name','city_id','prosseion',
-        'document_type_id','number_document',
-        'expedition_date', 'birth_date','couser_id'
+        'last_name','city_id','profession',
+        'type_document_id','number_document',
+        'expedition_date', 'birth_date'
     ];
 
-    public function course(){
-        return $this->belongsTo('App\Course' , 'couser_id');
+    public function city(){
+        return $this->belongsTo(City::class);
     }
 
-    public function city(){
-        return $this->belongsTo('App\City', 'city_id');
-    }
+   public function courses(){
+
+    return $this->hasMany(Course::class);
+
+   }
+
+   public function type_document(){
+       return$this->belongsTo(Type_document::class);
+   }
 }

@@ -41,8 +41,9 @@
                 </tr>
             </thead>
             <tbody>
+                @forelse ($teachers as $item)
                 <tr>
-                    <td>1</td>
+                <td>{{}}</td>
                     <td>Cuarto A</td>
                     <td>4 - A</td>
                     <td>Mañana</td>
@@ -61,6 +62,10 @@
                       </div>
                    </td>
                 </tr>
+                @empty
+
+                @endforelse
+
 
 
             </tbody>

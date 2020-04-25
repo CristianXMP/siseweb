@@ -7,7 +7,6 @@ use App\Course;
 use App\Student;
 use App\Type_document;
 use Illuminate\Http\Request;
-use App\Http\Requests\StudentRequest;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 class StudentController extends Controller
@@ -23,7 +22,7 @@ class StudentController extends Controller
         //Alert::success('Success Title', 'Success Message');
 
         $students = Student::all();
-        
+
 
         return view('students.index', compact('students'));
 

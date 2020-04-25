@@ -32,17 +32,25 @@
                 </tr>
             </thead>
             <tbody>
+                @forelse ($teachers as $item)
                 <tr>
-                    <td>1</td>
-                    <td>Pepito Andrés</td>
-                    <td>Perez Castro</td>
-                    <td>11222112</td>
-                    <td>Fisico cuantico</td>
+
+
+                <td>{{$item->id}}</td>
+                <td>{{$item->first_name}} {{$item->second_name}}</td>
+                <td>{{$item->last_name}}</td>
+                <td>{{$item->number_document}}</td>
+                <td>{{$item->profession}}</td>
+
+
                     <td>
+
+
                             <div class="btn-group" style="color: #00723d">
-                              <form  action="{{route('profesores.destroy', 1)}}" method="post">
-                              <a href="{{route('profesores.edit', 1)}}" class="btn btn-transparent" style="color: #00723d;padding: 2px;" id="editTipoDo" ><i class="fa fa-pencil-alt"></i></a>
-                              <a href="{{route('profesores.show', 1)}}" class="btn btn-transparent" style="color: #00723d;padding: 2px;" id="editTipoDo" ><i class="fas fa-eye"></i></a>
+
+                              <form  action="{{route('profesores.destroy', $item->id)}}" method="post">
+                              <a href="{{route('profesores.edit', $item->id)}}" class="btn btn-transparent" style="color: #00723d;padding: 2px;" id="editTipoDo" ><i class="fa fa-pencil-alt"></i></a>
+                              <a href="{{route('profesores.show', $item->id)}}" class="btn btn-transparent" style="color: #00723d;padding: 2px;" id="editTipoDo" ><i class="fas fa-eye"></i></a>
 
                                   @csrf
                                   @method('DELETE')
@@ -50,8 +58,16 @@
                                 </form>
 
                             </div>
+
+
                     </td>
+
+
                 </tr>
+                @empty
+
+                @endforelse
+
 
             </tbody>
         </table>
