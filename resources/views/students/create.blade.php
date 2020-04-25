@@ -71,7 +71,7 @@
                             @forelse ($type_document as $item)
                         <option value="{{$item->id}}">{{$item->abreviatura}} - {{$item->nombre}}</option>
                             @empty
-                            <option value="">Example 2</option>
+                            <option value="" selected disabled>No hay datos</option>
                             @endforelse
 
 

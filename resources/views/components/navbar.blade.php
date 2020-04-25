@@ -70,9 +70,11 @@
             </div>
 
             <div class="dropdown">
-                <button class="dropdown-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="dropdown-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                onclick="location.href='{{ route('asignaciones.index') }}'"
+                >
                     <i class="far fa-user"></i>
-                  Banco de preguntas
+                  Asignacion academica
                 </button>
             </div>
         </div>

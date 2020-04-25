@@ -51,3 +51,4 @@ Route::resource('/municipios', 'MunicipalityController');
 Route::resource('/tiposdocumentos', 'TypeDocumentController');
 Route::resource('/profesores', 'TeacherController');
 Route::resource('/cursos', 'CourseController');
+Route::resource('/asignaciones', 'AcademicAssignmentController');
