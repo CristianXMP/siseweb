@@ -23,11 +23,11 @@
         <table class="table table-stripe " id="tablaEstudiante">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Apellidos</th>
-                    <th>Curso</th>
-                    <th>Acciones</th>
+                    <th width="10px">ID</th>
+                    <th width="10px">Nombres</th>
+                    <th width="10px">Apellidos</th>
+                    <th width="10px">Curso</th>
+                    <th width="10px">Acciones</th>
                 </tr>
             </thead>
             <tbody>

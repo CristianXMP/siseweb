@@ -8,13 +8,13 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     {{-- <link rel="stylesheet" href="{{ asset('datatables/dataTables.bootstrap4.css') }}"> --}}
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     @yield('style')
 </head>
 <body>
 
-
+    @include('sweetalert::alert')
     <div class="container-fluid">
         <div class="row">
             <header class="col-12 headLogin">

@@ -11,7 +11,7 @@ class Student extends Model
         'first_name','second_name',
         'last_name','city_id',
         'document_type_id','number_document',
-        'expedition_date', 'birth_date','couser_id'
+        'expedition_date', 'birth_date','course_id'
     ];
 
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\City;
 use App\Departament;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class MunicipalityController extends Controller
@@ -40,13 +42,16 @@ class MunicipalityController extends Controller
     {
         //
 
-        $request->validate([
 
+        $validator = Validator::make($request->all(), [
             'nombre' => 'required',
             'abreviatura' => 'required|min:3|max:3',
             'departamento' => 'required'
-
         ]);
+
+        if ($validator->fails()) {
+            return back()->withToastError( $validator->messages()->all()[0])->withInput();
+        }
 
         $citystore = new City([
             'nombre' => $request->get('nombre'),
@@ -56,10 +61,10 @@ class MunicipalityController extends Controller
 
         if (City::where('nombre', $request->get('nombre'))->exists()) {
 
-            return redirect('/municipios/create')->with('danger', 'la ciudad '.$request->get('nombre'). ' ya esta en los registros');
+            return back()->withToastError($request->get('nombre').' ya esta en los registros!');
         }else{
             $citystore->save();
-            return redirect('/municipios')->with('success', 'Ciudad registrada con exito');
+            return redirect('/municipios')->withToastSuccess('Registro exitoso!');
 
         }
     }
@@ -101,11 +106,15 @@ class MunicipalityController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $request->validate([
-            'nombre'=> 'required',
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required',
             'abreviatura' => 'required|min:3|max:3',
             'departamento' => 'required'
         ]);
+
+        if ($validator->fails()) {
+            return back()->withToastError( $validator->messages()->all()[0])->withInput();
+        }
 
         $cityUpdate = city::find($id);
         $cityUpdate->nombre = $request->get('nombre');
@@ -113,22 +122,9 @@ class MunicipalityController extends Controller
         $cityUpdate->departament_id = $request->get('departamento');
         $cityUpdate->save();
 
-        return redirect('/municipios')->with('success','Municipio Actualizado');
+        return redirect('/municipios')->withToastSuccess('Registro Actualizado Correcatamente!');
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-        $municipio = City::find($id);
-        $municipio->delete();
-
-        return redirect('/municipios')->with('success', 'Dato eliminado');
-    }
+  
 }

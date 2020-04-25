@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\City;
+use App\Course;
 use App\Student;
 use App\Type_document;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\StudentRequest;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 class StudentController extends Controller
 {
     /**
@@ -16,10 +20,13 @@ class StudentController extends Controller
     public function index()
     {
         //
+        //Alert::success('Success Title', 'Success Message');
 
         $students = Student::all();
+        
 
         return view('students.index', compact('students'));
+
 
     }
 
@@ -32,7 +39,9 @@ class StudentController extends Controller
     {
         //
         $type_document = Type_document::all();
-        return view('students.create', compact('type_document'));
+        $city = City::all();
+        $course = Course::all();
+        return view('students.create', compact('type_document', 'city', 'course'));
     }
 
     /**
@@ -41,9 +50,47 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(request $request)
     {
         //
+        $validator = Validator::make($request->all(), [
+            'primer_nombre' => 'required',
+            'segundo_nombre' => 'required',
+            'apellidos' => 'required',
+            'municipio' => 'required',
+            'tipo_de_documento' => 'required',
+            'numero_de_documento' => 'required|min:10|max:10',
+            'fecha_de_expedicion' => 'required',
+            'fecha_de_nacimiento' => 'required',
+            'curso' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withToastError( $validator->messages()->all()[0])->withInput();
+        }
+
+        $student = new Student([
+            'first_name'       => $request->get('primer_nombre'),
+            'second_name'      => $request->get('segundo_nombre'),
+            'last_name'        => $request->get('apellidos'),
+            'city_id'          => $request->get('municipio'),
+            'document_type_id' => $request->get('tipo_de_documento'),
+            'number_document'  => $request->get('numero_de_documento'),
+            'expedition_date'  => $request->get('fecha_de_expedicion'),
+            'birth_date'       => $request->get('fecha_de_nacimiento'),
+            'course_id'        => $request->get('curso'),
+        ]);
+
+        if (Student::where('number_document', $request->get('numero_de_documento'))->exists()) {
+
+            return back()->withToastError('El Estudiante '.$request->get('primer_nombre').' Ya Esta En Los Registros!');
+        }else{
+            $student->save();
+
+            return redirect('/estudiantes')->withToastSuccess('Registro exitoso!');
+
+        }
+
     }
 
     /**
@@ -55,6 +102,9 @@ class StudentController extends Controller
     public function show($id)
     {
         //
+        $student  = Student::find($id);
+
+        return view('students.show', compact('student'));
 
     }
 
@@ -67,6 +117,12 @@ class StudentController extends Controller
     public function edit($id)
     {
         //
+        $student = Student::find($id);
+        $type_document = Type_document::all();
+        $city = City::all();
+        $course = Course::all();
+
+        return view('students.edit', compact('student','type_document','city','course'));
     }
 
     /**
@@ -79,6 +135,37 @@ class StudentController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validator = Validator::make($request->all(), [
+            'primer_nombre' => 'required',
+            'segundo_nombre' => 'required',
+            'apellidos' => 'required',
+            'municipio' => 'required',
+            'tipo_de_documento' => 'required',
+            'numero_de_documento' => 'required|min:10|max:10',
+            'fecha_de_expedicion' => 'required',
+            'fecha_de_nacimiento' => 'required',
+            'curso' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withToastError( $validator->messages()->all()[0])->withInput();
+        }
+
+        $studentUpdate = Student::find($id);
+           $studentUpdate->first_name= $request->get('primer_nombre');
+           $studentUpdate->second_name      =  $request->get('segundo_nombre');
+           $studentUpdate->last_name      =  $request->get('apellidos');
+           $studentUpdate->city_id          =  $request->get('municipio');
+           $studentUpdate->document_type_id =  $request->get('tipo_de_documento');
+           $studentUpdate->number_document  =  $request->get('numero_de_documento');
+           $studentUpdate->expedition_date  =  $request->get('fecha_de_expedicion');
+           $studentUpdate->birth_date      =  $request->get('fecha_de_nacimiento');
+           $studentUpdate->course_id       =  $request->get('curso');
+           $studentUpdate->save();
+
+           return redirect('/estudiantes')->withToastSuccess('Registro Actualizado Correcatamente!');
+
+
     }
 
     /**
@@ -90,5 +177,9 @@ class StudentController extends Controller
     public function destroy($id)
     {
         //
+        $student = Student::find($id);
+        $student->delete();
+
+            return redirect('/estudiantes')->withToastSuccess('Registro Eliminado Correcatamente!');
     }
 }

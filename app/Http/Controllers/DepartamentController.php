@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\country;
 use Illuminate\Http\Request;
 use App\Departament;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 class DepartamentController extends Controller
 {
     /**
@@ -15,6 +17,7 @@ class DepartamentController extends Controller
     public function index()
     {
         $departament = Departament::all();
+
 
         return view('departamentos.index' , compact('departament'));
     }
@@ -40,23 +43,39 @@ class DepartamentController extends Controller
     {
         //
 
-        $request->validate([
+
+        $validator = Validator::make($request->all(), [
             'nombre'=> 'required',
             'abreviatura' => 'required|min:3|max:3',
             'pais' => 'required'
         ]);
 
+        if ($validator->fails()) {
+            return redirect('/departamentos/create')->withToastError( $validator->messages()->all()[0])->withInput();
+        }
+
       $departament = new Departament([
           'nombre' => $request->get('nombre'),
           'abreviatura' => $request->get('abreviatura'),
-          'countries_id' => $request->get(('pais'))
+          'countries_id' => $request->get('pais')
       ]);
 
             if (Departament::where('nombre', $request->get('nombre'))->exists()) {
-                return redirect('/departamentos/create')->with('danger', 'Este Departamento '.$request->get('nombre'). ' ya esta en los registros');
+
+
+
+               return back()->withToastError($request->get('nombre').' ya esta en los registros!');
+
+
+
             }else{
                 $departament->save();
-                return redirect('/departamentos')->with('success', 'Departamento Guardado');
+
+
+
+                return redirect('/departamentos')->withToastSuccess('Registro exitoso!');
+
+
             }
 
     }
@@ -94,7 +113,7 @@ class DepartamentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'nombre'=> 'required',
             'abreviatura' => 'required|min:3|max:3',
             'pais' => 'required'
@@ -106,26 +125,12 @@ class DepartamentController extends Controller
         $departament->countries_id = $request->get('pais');
         $departament->save();
 
-       return redirect('/departamentos')->with('success', 'Datos Actualizados');
+        return redirect('/departamentos')->withToastSuccess('Registro Actualizado Correctamente!');
 
 
 
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-
-        $departament = Departament::find($id);
-        $departament->delete();
-
-        return redirect('/departamentos')->with('success', 'Dato eliminado');
-    }
+  
 }

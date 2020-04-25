@@ -48,12 +48,8 @@
                     <td>{{$item->departament->nombre}}</td>
                    <td>
                       <div class="btn-group" style="color: #00723d">
-                        <form  action="{{ route('municipios.destroy', $item->id)}}" method="post">
                         <a href="{{route('municipios.edit', $item->id)}}" class="btn btn-transparent" style="color: #00723d" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-transparent" style="color: #00723d" id="borrarTipoDoc" ><i class="fas fa-trash"></i></button>
-                          </form>
+
 
                       </div>
 

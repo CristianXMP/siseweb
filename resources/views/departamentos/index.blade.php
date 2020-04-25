@@ -7,9 +7,11 @@
 @section('content')
     <div class="header-container">
         @if (session()->get('success'))
-        <div class="alert alert-success">
-            {{ session()->get('success') }}
-        </div>
+        <script>
+            swal('Exito','El registro se agrego', 'success');
+        </script>
+
+
 
       @endif
       @if (session()->get('danger'))
@@ -52,13 +54,7 @@
                     <td>{{$item->pais->nombre}}</td>
                    <td>
                       <div class="btn-group" style="color: #00723d">
-                        <form  action="{{ route('departamentos.destroy', $item->id)}}" method="post">
                         <a href="{{route('departamentos.edit', $item->id)}}" class="btn btn-transparent" style="color: #00723d" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-transparent" style="color: #00723d" id="borrarTipoDoc" ><i class="fas fa-trash"></i></button>
-                          </form>
-
                       </div>
 
                    </td>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 USE App\Country;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 class CountryController extends Controller
 {
@@ -16,6 +18,7 @@ class CountryController extends Controller
     {
         //
         $country = Country::all();
+
         return view('paises.index', compact('country'));
     }
 
@@ -39,10 +42,14 @@ class CountryController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
+
+        $validator = Validator::make($request->all(), [
             'nombre'=> 'required',
             'abreviatura' => 'required|min:3|max:3'
         ]);
+        if ($validator->fails()) {
+            return back()->withToastError( $validator->messages()->all()[0])->withInput();
+        }
         $country = new Country([
 
             'nombre'=> $request->get('nombre'),
@@ -50,10 +57,10 @@ class CountryController extends Controller
         ]);
 
         if (Country::where('nombre', $request->get('nombre'))->exists()) {
-            return redirect('/paises/create')->with('danger', 'El pais '.$request->get('nombre'). ' ya existe en los registors');
-         }else{
+            return back()->withToastError($request->get('nombre').' ya esta en los registros!');
+        }else{
             $country->save();
-            return redirect('/paises')->with('success', 'Pais Guardado');
+            return redirect('/paises')->withToastSuccess('Registro exitoso!');
          }
 
 
@@ -96,34 +103,23 @@ class CountryController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $request->validate([
-            'nombre' =>'required',
+        $validator = Validator::make($request->all(), [
+            'nombre'=> 'required',
             'abreviatura' => 'required|min:3|max:3'
-
         ]);
+
+        if ($validator->fails()) {
+            return back()->withToastError( $validator->messages()->all()[0])->withInput();
+        }
+
         $country = Country::find($id);
         $country->nombre = $request->get('nombre');
         $country->abreviatura = $request->get('abreviatura');
         $country->save();
 
-       return redirect('/paises')->with('success', 'Datos Actualizados');
+      return redirect('/paises')->withToastSuccess('Registro Actualizado Exitosamente!');
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-
-        $country = Country::find($id);
-        $country->delete();
-
-        return redirect('/paises')->with('success', 'Dato eliminado');
-
-    }
+  
 }
