@@ -78,7 +78,7 @@ class MunicipalityController extends Controller
     public function show($id)
     {
         //
-
+        return redirect('/municipios');
 
 
     }
@@ -126,5 +126,5 @@ class MunicipalityController extends Controller
 
     }
 
-  
+
 }

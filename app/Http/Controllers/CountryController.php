@@ -78,6 +78,7 @@ class CountryController extends Controller
     public function show($id)
     {
         //
+        return redirect('/paises');
     }
 
     /**
@@ -121,5 +122,5 @@ class CountryController extends Controller
 
     }
 
-  
+
 }

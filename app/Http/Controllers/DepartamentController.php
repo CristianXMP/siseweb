@@ -89,6 +89,7 @@ class DepartamentController extends Controller
     public function show($id)
     {
         //
+        return redirect('/departamentos');
     }
 
     /**
@@ -132,5 +133,5 @@ class DepartamentController extends Controller
 
     }
 
-  
+
 }

@@ -25,6 +25,11 @@ class Teacher extends Model
    }
 
    public function type_document(){
-       return$this->belongsTo(Type_document::class);
+       return $this->belongsTo(Type_document::class);
    }
+
+  
+
+
 }
+

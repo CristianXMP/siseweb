@@ -32,8 +32,7 @@
             <thead>
                 <tr>
                     <th width="10px">ID</th>
-                    <th width="10px" >Nombre</th>
-                    <th width="10px">Abreviatura</th>
+                    <th width="10px" >Curso</th>
                     <th width="10px">Jornada</th>
                     <th width="10px">Director de grupo</th>
                     <th width="5px">Acciones</th>
@@ -41,23 +40,18 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($teachers as $item)
+                @forelse ($courses as $item)
                 <tr>
-                <td>{{}}</td>
-                    <td>Cuarto A</td>
-                    <td>4 - A</td>
-                    <td>Mañana</td>
-                    <td>Diego Rambao</td>
+                <td>{{$item->id}}</td>
+                <td>{{$item->course}} - °{{$item->variation}}</td>
+                <td>{{$item->working_day}}</td>
+                <td>{{$item->teacher->first_name}} {{$item->teacher->last_name}}</td>
                    <td>
                       <div class="btn-group" style="color: #00723d">
-                        <form  action="{{ route('cursos.destroy', 1)}}" method="post">
-                        <a href="{{route('cursos.edit', 1)}}" class="btn btn-transparent" style="color: #00723d;padding: 2px;" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
 
-                        <a href="{{route('cursos.show', 1)}}" class="btn btn-transparent" style="color: #00723d;padding: 2px;" id="editTipoDo" ><i class="fas fa-eye"></i></a>
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-transparent" style="color: #00723d" id="borrarTipoDoc" ><i class="fas fa-trash"></i></button>
-                          </form>
+                        <a href="{{route('cursos.edit', $item->id)}}" class="btn btn-transparent" style="color: #00723d;padding: 2px;" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
+
+
 
                       </div>
                    </td>
