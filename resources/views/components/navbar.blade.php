@@ -2,9 +2,11 @@
     <nav class="navWeb">
         <div class="container-menu">
             <div class="dropdown">
-                <button class="dropdown-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="dropdown-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                onclick="location.href='{{ route('periodos.index') }}'"
+                >
                     <i class="far fa-user"></i>
-                    Perfil
+                    Periodos
                 </button>
             </div>
 
@@ -55,7 +57,9 @@
             </div>
 
             <div class="dropdown">
-                <button class="dropdown-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="dropdown-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                onclick="location.href='{{ route('materias.index') }}'"
+                >
                     <i class="far fa-user"></i>
                   Materias
                 </button>

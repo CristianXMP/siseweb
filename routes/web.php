@@ -52,3 +52,4 @@ Route::resource('/tiposdocumentos', 'TypeDocumentController');
 Route::resource('/profesores', 'TeacherController');
 Route::resource('/cursos', 'CourseController');
 Route::resource('/asignaciones', 'AcademicAssignmentController');
+Route::resource('/materias', 'SubjectController');

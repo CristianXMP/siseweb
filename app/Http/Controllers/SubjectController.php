@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\periodo;
+
 use Illuminate\Http\Request;
 
-class PeriodoController extends Controller
+class SubjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,7 @@ class PeriodoController extends Controller
      */
     public function index()
     {
-        $periodos = periodo::all();
-       return view('periods.index', compact('periodos'));
+        return view('subjects.index');
     }
 
     /**
@@ -24,7 +23,7 @@ class PeriodoController extends Controller
      */
     public function create()
     {
-        return view('periods.create');
+        return view('subjects.create');
     }
 
     /**
@@ -36,22 +35,6 @@ class PeriodoController extends Controller
     public function store(Request $request)
     {
         //
-
-        $request->validate([
-            'nombre' => 'required',
-            'fecha_inicio' => 'required',
-            'fecha_final' => 'required'
-        ]);
-
-        $perdiodo = new periodo([
-            'nombre' => $request->get('nombre'),
-            'fecha_inicial' => $request->get('fecha_inicio'),
-            'fecha_final' => $request->get('fecha_final')
-        ]);
-        $perdiodo->save();
-
-        return redirect('/periodos')->with('success','El periodo se agrego');
-
     }
 
     /**
@@ -73,12 +56,7 @@ class PeriodoController extends Controller
      */
     public function edit($id)
     {
-        //
-       $periodo = periodo::find($id);
-
-       return view('periods.edit', compact('periodo'));
-      
-
+        return view('subjects.edit');
     }
 
     /**
@@ -91,20 +69,6 @@ class PeriodoController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $request->validate([
-            'nombre' => 'required',
-            'fecha_inicio' => 'required',
-            'fecha_final' => 'required'
-        ]);
-
-
-        $periodo = periodo::find($id);
-        $periodo->nombre = $request->get('nombre');
-        $periodo->fecha_inicial = $request->get('fecha_inicio');
-        $periodo->fecha_final = $request->get('fecha_final');
-        $periodo->save();
-
-        return redirect('/periodos')->with('success','El periodo se Actualizo');
     }
 
     /**
@@ -115,9 +79,6 @@ class PeriodoController extends Controller
      */
     public function destroy($id)
     {
-        $periodo = periodo::find($id);
-        $periodo->delete();
-
-        return redirect('/periodos')->with('success', 'Periodo eliminado');
+        //
     }
 }
