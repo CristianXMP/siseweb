@@ -20,6 +20,10 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+Route::get('/login', function(){
+    return view('auth.login');
+});
+
 Route::get('/pruebas', function(){
 
     $asig = Teacher::findOrFail(2);
