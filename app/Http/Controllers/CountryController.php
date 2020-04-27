@@ -45,7 +45,7 @@ class CountryController extends Controller
 
         $validator = Validator::make($request->all(), [
             'nombre' => 'required',
-            'abreviatura' => 'required|min:3|max:3'
+            'abreviatura' => 'nullable|min:3|max:3'
         ]);
         if ($validator->fails()) {
             return back()->withToastError($validator->messages()->all()[0])->withInput();
@@ -106,7 +106,7 @@ class CountryController extends Controller
         //
         $validator = Validator::make($request->all(), [
             'nombre' => 'required',
-            'abreviatura' => 'required|min:3|max:3'
+            'abreviatura' => 'nullable|min:3|max:3'
         ]);
 
         if ($validator->fails()) {

@@ -47,7 +47,7 @@ class DepartamentController extends Controller
 
         $validator = Validator::make($request->all(), [
             'nombre' => 'required',
-            'abreviatura' => 'required|min:3|max:3',
+            'abreviatura' => 'nullable|min:3|max:3',
             'pais' => 'required'
         ]);
 
@@ -111,9 +111,13 @@ class DepartamentController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nombre' => 'required',
-            'abreviatura' => 'required|min:3|max:3',
+            'abreviatura' => 'nullable|min:3|max:3',
             'pais' => 'required'
         ]);
+
+        if ($validator->fails()) {
+            return redirect('/departamentos/create')->withToastError($validator->messages()->all()[0])->withInput();
+        }
 
         $departament = Departament::find($id);
         $departament->nombre = $request->get('nombre');
