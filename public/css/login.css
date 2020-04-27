@@ -1,0 +1,97 @@
+body{
+    z-index: 1;
+    background: linear-gradient(rgba(23, 77, 52, 0.8) 0px, rgba(23, 77, 52, 0.38)), url(../img/fondo-login.jpg) ;
+    background-repeat: no-repeat;
+    height: 100vh;
+    /* height: auto !important; */
+    background-size: cover;
+}
+
+#box-login{
+    margin: 7% auto 7% 60%;
+    width: 400px;
+}
+#login-box-body{
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    color: #666;
+}
+#login-box-body .logo-login{
+    text-align: center;
+    padding: 0% 20% 0% 20%;
+}
+#login-box-body .logo-login img{
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+#login-box-body h2{
+    text-align: center;
+    font-size: 35px;
+    margin-bottom: 25px;
+    margin-top: 10px;
+}
+
+.style-input{
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #9e9b9b;
+    width: 100%;
+    margin: 0;
+    font-size: 15px;
+    margin-top: 10px;
+}
+.style-input:focus{
+    /* outline:none !important; */
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    border: solid 1px #00723d !important;
+    
+}
+
+.option-login{
+    text-align: center;
+}
+.option-login .btn-submit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    min-width: 160px;
+    background-color: #34A54E;
+    border-radius: 5px;
+    font-size: 17px;
+    width: 100%;
+    color: #fff;
+    border: none;
+    margin-top: 20px;
+}
+.option-login a{
+    font-size: 17px;
+
+    display: inline-block;
+    margin-top: 15px;
+    
+}
+
+@media (max-width: 1000px) {
+ 
+    body{
+        height: 98vh;
+    }
+    #box-login{
+        margin: 7% auto !important;
+    }
+
+}
+
+@media (max-width: 768px){
+    #box-login{
+        width: auto;
+        margin-top: 20px;
+        margin: 7% 40px !important;
+    }   
+}
