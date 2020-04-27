@@ -6,19 +6,7 @@
 
 @section('content')
     <div class="header-container">
-        @if (session()->get('success'))
-        <script>
-            swal('Exito','El registro se agrego', 'success');
-        </script>
 
-
-
-      @endif
-      @if (session()->get('danger'))
-      <div class="alert alert-success">
-          {{ session()->get('danger') }}
-      </div>
-      @endif
         <div class="title">
             <h1>
                 <i class="far fa-file-alt"></i>
@@ -47,19 +35,28 @@
                 </tr>
             </thead>
             <tbody>
+                @forelse ($academicAssignment as $item)
                 <tr>
-                    <td>1</td>
-                    <td>Pepito Perez</td>
-                    <td> 11 - A</td>
-                    <td>Periodo 1</td>
-                    <td>Matematicas Avanzadas</td>
+                <td>{{$item->id}}</td>
+                <td>{{$item->teacher->first_name}}</td>
+                <td>{{$item->course->course}} - °{{$item->course->variation}}</td>
+                <td>{{$item->period->nombre}}</td>
+                <td>{{$item->subject->nombre}}</td>
                    <td>
                       <div class="btn-group" style="color: #00723d">
-                        <a href="{{route('asignaciones.edit', 1)}}" class="btn btn-transparent" style="color: #00723d" id="editTipoDo" ><i class="fa fa-pencil-alt"></i></a>
-                        <a href="" class="btn btn-transparent" style="color: #00723d" id="editTipoDo" ><i class="fas fa-trash"></i></a>
-                      </div>
+                        <form  action="{{route('asignaciones.destroy', $item->id)}}" method="post">
+                            <a href="{{route('asignaciones.edit', $item->id)}}" class="btn btn-transparent" style="color: #00723d" id="editTipoDo" ><i class="fa fa-pencil-alt"></i></a>
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-transparent" style="color: #00723d" id="borrarTipoDoc" ><i class="fas fa-trash"></i></button>
+                              </form>
+                    </div>
                    </td>
                 </tr>
+                @empty
+
+                @endforelse
+
 
 
             </tbody>

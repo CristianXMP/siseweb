@@ -1,5 +1,8 @@
 <?php
 
+use App\Academic_assignment;
+use App\Course;
+use App\Teacher;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,8 +21,9 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/pruebas', function(){
-    $curso = App\Student::findOrFail(2);
-    return $curso->course;
+
+    $asig = Teacher::findOrFail(2);
+    return $asig->Academic_assignments;
 
 
    /* $pais = App\country::findOrFail(11);

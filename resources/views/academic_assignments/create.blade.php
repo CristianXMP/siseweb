@@ -5,12 +5,8 @@
 @endsection
 
 @section('content')
-           
-            @if (session()->get('danger'))
-            <div class="alert alert-success">
-            {{ session()->get('danger') }}
-            </div>
-            @endif
+
+
 
     <div class="header-container">
         <div class="title">
@@ -22,15 +18,7 @@
 
 
     </div>
-            @if ($errors->any())
-            <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-            </div><br />
-        @endif
+
     <form action="{{route('asignaciones.store')}}" method="POST" class="row col-lg-12" style="border-radius: 1rem;background-color: white;box-shadow: 0 0 2px 1px #c3c3c3; margin-left: 3px; padding: 25px 15px;">
            @csrf
            <div class="col-md-12 col-lg-6 form-left">
@@ -39,6 +27,14 @@
                 <div class="col-sm-8 input-group ">
                     <select name="profesor" id="" class="form-control">
                         <option value="" selected disabled>Escoger un Profesor </option>
+
+                        @forelse ($teacher as $item)
+                    <option value="{{$item->id}}">{{$item->first_name}} - {{$item->last_name}} - ({{$item->profession}})</option>
+
+                        @empty
+                        <option value="" selected disabled>Escoger un Profesor </option>
+
+                        @endforelse
                     </select>
                 </div>
             </div>
@@ -49,8 +45,17 @@
                 <label for="col-sm-4 col-form-label">Curso:</label>
                 <div class="col-sm-8 input-group ">
                     <select name="curso" id="" class="form-control">
-                        <option value="" selected disabled>Escoger un Curso</option>
-        
+                        <option value="" selected disabled>Escoger un Curso </option>
+
+                        @forelse ($course as $item)
+
+                    <option value="{{$item->id}}">{{$item->course}} - ({{$item->variation}})</option>
+
+                        @empty
+                        <option value="" selected disabled>No Hay Datos </option>
+
+                        @endforelse
+
                     </select>
                 </div>
             </div>
@@ -62,6 +67,16 @@
                 <div class="col-sm-8 input-group ">
                     <select name="periodo" id="" class="form-control">
                         <option value="" selected disabled>Escoger un Periodo</option>
+
+                        @forelse ($period as $item)
+
+                    <option value="{{$item->id}}">{{$item->nombre}}</option>
+
+                        @empty
+                        <option value="" selected disabled>No Hay Datos </option>
+
+                        @endforelse
+
                     </select>
                 </div>
             </div>
@@ -73,6 +88,16 @@
                 <div class="col-sm-8 input-group ">
                     <select name="materia" id="" class="form-control">
                         <option value="" selected disabled>Escoger un Materia</option>
+
+                        @forelse ($subject as $item)
+
+                    <option value="{{$item->id}}">{{$item->nombre}} - ({{$item->abreviatura}})</option>
+
+                        @empty
+                        <option value="" selected disabled>No Hay Datos </option>
+
+                        @endforelse
+
                     </select>
                 </div>
             </div>

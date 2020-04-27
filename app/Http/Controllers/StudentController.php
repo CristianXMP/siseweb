@@ -9,6 +9,7 @@ use App\Type_document;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
+
 class StudentController extends Controller
 {
     /**
@@ -25,8 +26,6 @@ class StudentController extends Controller
 
 
         return view('students.index', compact('students'));
-
-
     }
 
     /**
@@ -65,7 +64,7 @@ class StudentController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return back()->withToastError( $validator->messages()->all()[0])->withInput();
+            return back()->withToastError($validator->messages()->all()[0])->withInput();
         }
 
         $student = new Student([
@@ -82,14 +81,12 @@ class StudentController extends Controller
 
         if (Student::where('number_document', $request->get('numero_de_documento'))->exists()) {
 
-            return back()->withToastError('El Estudiante '.$request->get('primer_nombre').' Ya Esta En Los Registros!');
-        }else{
+            return back()->withToastError('El Estudiante ' . $request->get('primer_nombre') . ' Ya Esta En Los Registros!');
+        } else {
             $student->save();
 
             return redirect('/estudiantes')->withToastSuccess('Registro exitoso!');
-
         }
-
     }
 
     /**
@@ -104,7 +101,6 @@ class StudentController extends Controller
         $student  = Student::find($id);
 
         return view('students.show', compact('student'));
-
     }
 
     /**
@@ -121,7 +117,7 @@ class StudentController extends Controller
         $city = City::all();
         $course = Course::all();
 
-        return view('students.edit', compact('student','type_document','city','course'));
+        return view('students.edit', compact('student', 'type_document', 'city', 'course'));
     }
 
     /**
@@ -147,24 +143,22 @@ class StudentController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return back()->withToastError( $validator->messages()->all()[0])->withInput();
+            return back()->withToastError($validator->messages()->all()[0])->withInput();
         }
 
         $studentUpdate = Student::find($id);
-           $studentUpdate->first_name= $request->get('primer_nombre');
-           $studentUpdate->second_name      =  $request->get('segundo_nombre');
-           $studentUpdate->last_name      =  $request->get('apellidos');
-           $studentUpdate->city_id          =  $request->get('municipio');
-           $studentUpdate->document_type_id =  $request->get('tipo_de_documento');
-           $studentUpdate->number_document  =  $request->get('numero_de_documento');
-           $studentUpdate->expedition_date  =  $request->get('fecha_de_expedicion');
-           $studentUpdate->birth_date      =  $request->get('fecha_de_nacimiento');
-           $studentUpdate->course_id       =  $request->get('curso');
-           $studentUpdate->save();
+        $studentUpdate->first_name = $request->get('primer_nombre');
+        $studentUpdate->second_name      =  $request->get('segundo_nombre');
+        $studentUpdate->last_name      =  $request->get('apellidos');
+        $studentUpdate->city_id          =  $request->get('municipio');
+        $studentUpdate->document_type_id =  $request->get('tipo_de_documento');
+        $studentUpdate->number_document  =  $request->get('numero_de_documento');
+        $studentUpdate->expedition_date  =  $request->get('fecha_de_expedicion');
+        $studentUpdate->birth_date      =  $request->get('fecha_de_nacimiento');
+        $studentUpdate->course_id       =  $request->get('curso');
+        $studentUpdate->save();
 
-           return redirect('/estudiantes')->withToastSuccess('Registro Actualizado Correcatamente!');
-
-
+        return redirect('/estudiantes')->withToastSuccess('Registro Actualizado Correcatamente!');
     }
 
     /**
@@ -179,6 +173,6 @@ class StudentController extends Controller
         $student = Student::find($id);
         $student->delete();
 
-            return redirect('/estudiantes')->withToastSuccess('Registro Eliminado Correcatamente!');
+        return redirect('/estudiantes')->withToastSuccess('Registro Eliminado Correcatamente!');
     }
 }

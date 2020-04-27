@@ -33,7 +33,7 @@ class TeacherController extends Controller
         //
         $type_document =  Type_document::all();
         $city = City::all();
-        return view('teachers.create', compact('type_document','city'));
+        return view('teachers.create', compact('type_document', 'city'));
     }
 
     /**
@@ -58,7 +58,7 @@ class TeacherController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return back()->withToastError( $validator->messages()->all()[0])->withInput();
+            return back()->withToastError($validator->messages()->all()[0])->withInput();
         }
 
         $TeacherStore = new Teacher([
@@ -75,12 +75,11 @@ class TeacherController extends Controller
 
         if (Teacher::where('number_document', $request->get('numero_de_documento'))->exists()) {
 
-            return back()->withToastError('El Estudiante '.$request->get('primer_nombre').' Ya Esta En Los Registros!');
-        }else{
+            return back()->withToastError('El Estudiante ' . $request->get('primer_nombre') . ' Ya Esta En Los Registros!');
+        } else {
             $TeacherStore->save();
 
             return redirect('/profesores')->withToastSuccess('Registro exitoso!');
-
         }
     }
 
@@ -109,8 +108,8 @@ class TeacherController extends Controller
         //
         $TeacherEdit = Teacher::find($id);
         $TeacherCity = City::all();
-        $TeacherTypeDocument =Type_document::all();
-        return view('teachers.edit', compact('TeacherEdit','TeacherCity','TeacherTypeDocument'));
+        $TeacherTypeDocument = Type_document::all();
+        return view('teachers.edit', compact('TeacherEdit', 'TeacherCity', 'TeacherTypeDocument'));
     }
 
     /**
@@ -136,24 +135,22 @@ class TeacherController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return back()->withToastError( $validator->messages()->all()[0])->withInput();
+            return back()->withToastError($validator->messages()->all()[0])->withInput();
         }
 
         $TeacherUpdate = Teacher::find($id);
-           $TeacherUpdate->first_name = $request->get('primer_nombre');
-           $TeacherUpdate->second_name      =  $request->get('segundo_nombre');
-           $TeacherUpdate->last_name      =  $request->get('apellidos');
-           $TeacherUpdate->city_id          =  $request->get('municipio');
-           $TeacherUpdate->type_document_id =  $request->get('tipo_de_documento');
-           $TeacherUpdate->profession       =  $request->get('profesion');
-           $TeacherUpdate->number_document  =  $request->get('numero_de_documento');
-           $TeacherUpdate->expedition_date  =  $request->get('fecha_de_expedicion');
-           $TeacherUpdate->birth_date      =  $request->get('fecha_de_nacimiento');
-           $TeacherUpdate->save();
+        $TeacherUpdate->first_name = $request->get('primer_nombre');
+        $TeacherUpdate->second_name      =  $request->get('segundo_nombre');
+        $TeacherUpdate->last_name      =  $request->get('apellidos');
+        $TeacherUpdate->city_id          =  $request->get('municipio');
+        $TeacherUpdate->type_document_id =  $request->get('tipo_de_documento');
+        $TeacherUpdate->profession       =  $request->get('profesion');
+        $TeacherUpdate->number_document  =  $request->get('numero_de_documento');
+        $TeacherUpdate->expedition_date  =  $request->get('fecha_de_expedicion');
+        $TeacherUpdate->birth_date      =  $request->get('fecha_de_nacimiento');
+        $TeacherUpdate->save();
 
-           return redirect('/profesores')->withToastSuccess('Registro Actualizado Correcatamente!');
-
-
+        return redirect('/profesores')->withToastSuccess('Registro Actualizado Correcatamente!');
     }
 
     /**
@@ -169,6 +166,5 @@ class TeacherController extends Controller
         $Teacher->delete();
 
         return redirect('/profesores')->withToastSuccess('Registro Eliminado Correcatamente!');
-
     }
 }

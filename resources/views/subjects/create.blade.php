@@ -20,7 +20,7 @@
                 <div class="form-group row" style="margin-top: 1rem;">
                     <label for="col-sm-4 col-form-label">Nombre:</label>
                     <div class="col-sm-8 input-group">
-                        <input type="text" class="form-control" name="name">
+                        <input type="text" class="form-control" name="nombre">
                     </div>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                 <div class="form-group row" style="margin-top: 1rem;">
                     <label for="col-sm-4 col-form-label">Abreviatura:</label>
                     <div class="col-sm-8 input-group ">
-                        <input type="text" class="form-control" name="abbreviation">
+                        <input type="text" class="form-control" name="abreviatura">
                     </div>
                 </div>
             </div>

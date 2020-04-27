@@ -6,23 +6,11 @@
 
 @section('content')
     <div class="header-container">
-        @if (session()->get('success'))
-        <script>
-            swal('Exito','El registro se agrego', 'success');
-        </script>
 
-
-
-      @endif
-      @if (session()->get('danger'))
-      <div class="alert alert-success">
-          {{ session()->get('danger') }}
-      </div>
-      @endif
         <div class="title">
             <h1>
                 <i class="far fa-file-alt"></i>
-                Lista de Materias 
+                Lista de Materias
             </h1>
         </div>
         <div>
@@ -45,16 +33,21 @@
                 </tr>
             </thead>
             <tbody>
+                @forelse ($subject as $item)
                 <tr>
-                    <td>1</td>
-                    <td>Matematicas Avanzadas</td>
-                    <td>MatA</td>
+                    <td>{{$item->id}}</td>
+                    <td>{{$item->nombre}}</td>
+                    <td>{{$item->abreviatura}}</td>
                    <td>
                       <div class="btn-group" style="color: #00723d">
-                        <a href="{{route('materias.edit', 1)}}" class="btn btn-transparent" style="color: #00723d" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
+                        <a href="{{route('materias.edit', $item->id)}}" class="btn btn-transparent" style="color: #00723d" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
                       </div>
                    </td>
                 </tr>
+                @empty
+
+                @endforelse
+
             </tbody>
         </table>
     </div>

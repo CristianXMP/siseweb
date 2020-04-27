@@ -50,7 +50,7 @@ class MunicipalityController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return back()->withToastError( $validator->messages()->all()[0])->withInput();
+            return back()->withToastError($validator->messages()->all()[0])->withInput();
         }
 
         $citystore = new City([
@@ -61,11 +61,10 @@ class MunicipalityController extends Controller
 
         if (City::where('nombre', $request->get('nombre'))->exists()) {
 
-            return back()->withToastError($request->get('nombre').' ya esta en los registros!');
-        }else{
+            return back()->withToastError($request->get('nombre') . ' ya esta en los registros!');
+        } else {
             $citystore->save();
             return redirect('/municipios')->withToastSuccess('Registro exitoso!');
-
         }
     }
 
@@ -79,8 +78,6 @@ class MunicipalityController extends Controller
     {
         //
         return redirect('/municipios');
-
-
     }
 
     /**
@@ -113,7 +110,7 @@ class MunicipalityController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return back()->withToastError( $validator->messages()->all()[0])->withInput();
+            return back()->withToastError($validator->messages()->all()[0])->withInput();
         }
 
         $cityUpdate = city::find($id);
@@ -123,8 +120,5 @@ class MunicipalityController extends Controller
         $cityUpdate->save();
 
         return redirect('/municipios')->withToastSuccess('Registro Actualizado Correcatamente!');
-
     }
-
-
 }

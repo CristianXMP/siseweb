@@ -33,18 +33,22 @@
                 </tr>
             </thead>
             <tbody>
+                @forelse ($periodos as $item)
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Periodo 1</td>
-                    <td>2002/02/02</td>
-                    <td>2002/02/02</td>
+                <th scope="row">{{$item->id}}</th>
+                <td>{{$item->nombre}}</td>
+                <td>{{$item->fecha_inicial}}</td>
+                <td>{{$item->fecha_final}}</td>
                    <td>
                     <div class="btn-group" style="color: #00723d">
-                        <a href="{{route('periodos.edit', 1)}}" class="btn btn-transparent" style="color: #00723d" id="editTipoDo" ><i class="fa fa-pencil-alt"></i></a>
-                        <a href="" class="btn btn-transparent" style="color: #00723d" id="editTipoDo" ><i class="fa fa-trash"></i></a>
+                        <a href="{{route('periodos.edit', $item->id)}}" class="btn btn-transparent" style="color: #00723d" id="editTipoDo" ><i class="fa fa-pencil-alt"></i></a>
                       </div>
                    </td>
                 </tr>
+                @empty
+
+                @endforelse
+
             </tbody>
         </table>
     </div>

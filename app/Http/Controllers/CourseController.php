@@ -53,7 +53,7 @@ class CourseController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return back()->withToastError( $validator->messages()->all()[0])->withInput();
+            return back()->withToastError($validator->messages()->all()[0])->withInput();
         }
 
         $CourseStore = new Course([
@@ -68,13 +68,11 @@ class CourseController extends Controller
         if (Course::where('course', $request->get('curso'))->exists() and Course::where('variation', $request->get('abreviatura'))->exists()) {
 
 
-            return back()->withToastError('El curso '.$request->get('curso').' °'.$request->get('abreviatura').' Ya Esta En Los Registros!');
-
-        }else{
+            return back()->withToastError('El curso ' . $request->get('curso') . ' °' . $request->get('abreviatura') . ' Ya Esta En Los Registros!');
+        } else {
             $CourseStore->save();
 
             return redirect('/cursos')->withToastSuccess('Registro exitoso!');
-
         }
     }
 
@@ -87,7 +85,7 @@ class CourseController extends Controller
     public function show($id)
     {
         //
-     return  redirect('/cursos');
+        return  redirect('/cursos');
     }
 
     /**
@@ -101,7 +99,7 @@ class CourseController extends Controller
         //
         $CourseEdit = Course::find($id);
         $Teacher = Teacher::all();
-        return view('courses.edit', compact('CourseEdit','Teacher'));
+        return view('courses.edit', compact('CourseEdit', 'Teacher'));
     }
 
     /**
@@ -124,7 +122,7 @@ class CourseController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return back()->withToastError( $validator->messages()->all()[0])->withInput();
+            return back()->withToastError($validator->messages()->all()[0])->withInput();
         }
 
         $CourseUpdate = Course::find($id);
@@ -137,10 +135,6 @@ class CourseController extends Controller
         $CourseUpdate->save();
 
         return redirect('/cursos')->withToastSuccess('Registro Actualizado Correcatamente!');
-
-
-
-
     }
 
     /**

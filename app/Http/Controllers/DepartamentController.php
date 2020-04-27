@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Departament;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
+
 class DepartamentController extends Controller
 {
     /**
@@ -19,7 +20,7 @@ class DepartamentController extends Controller
         $departament = Departament::all();
 
 
-        return view('departamentos.index' , compact('departament'));
+        return view('departamentos.index', compact('departament'));
     }
 
     /**
@@ -45,39 +46,33 @@ class DepartamentController extends Controller
 
 
         $validator = Validator::make($request->all(), [
-            'nombre'=> 'required',
+            'nombre' => 'required',
             'abreviatura' => 'required|min:3|max:3',
             'pais' => 'required'
         ]);
 
         if ($validator->fails()) {
-            return redirect('/departamentos/create')->withToastError( $validator->messages()->all()[0])->withInput();
+            return redirect('/departamentos/create')->withToastError($validator->messages()->all()[0])->withInput();
         }
 
-      $departament = new Departament([
-          'nombre' => $request->get('nombre'),
-          'abreviatura' => $request->get('abreviatura'),
-          'countries_id' => $request->get('pais')
-      ]);
+        $departament = new Departament([
+            'nombre' => $request->get('nombre'),
+            'abreviatura' => $request->get('abreviatura'),
+            'countries_id' => $request->get('pais')
+        ]);
 
-            if (Departament::where('nombre', $request->get('nombre'))->exists()) {
-
-
-
-               return back()->withToastError($request->get('nombre').' ya esta en los registros!');
+        if (Departament::where('nombre', $request->get('nombre'))->exists()) {
 
 
 
-            }else{
-                $departament->save();
+            return back()->withToastError($request->get('nombre') . ' ya esta en los registros!');
+        } else {
+            $departament->save();
 
 
 
-                return redirect('/departamentos')->withToastSuccess('Registro exitoso!');
-
-
-            }
-
+            return redirect('/departamentos')->withToastSuccess('Registro exitoso!');
+        }
     }
 
     /**
@@ -102,7 +97,7 @@ class DepartamentController extends Controller
     {
         $departament = Departament::findOrfail($id);
         $pais = country::all();
-        return view('departamentos.edit', compact('departament','pais'));
+        return view('departamentos.edit', compact('departament', 'pais'));
     }
 
     /**
@@ -115,7 +110,7 @@ class DepartamentController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'nombre'=> 'required',
+            'nombre' => 'required',
             'abreviatura' => 'required|min:3|max:3',
             'pais' => 'required'
         ]);
@@ -127,11 +122,5 @@ class DepartamentController extends Controller
         $departament->save();
 
         return redirect('/departamentos')->withToastSuccess('Registro Actualizado Correctamente!');
-
-
-
-
     }
-
-
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-USE App\Country;
+use App\Country;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
@@ -44,29 +44,29 @@ class CountryController extends Controller
         //
 
         $validator = Validator::make($request->all(), [
-            'nombre'=> 'required',
+            'nombre' => 'required',
             'abreviatura' => 'required|min:3|max:3'
         ]);
         if ($validator->fails()) {
-            return back()->withToastError( $validator->messages()->all()[0])->withInput();
+            return back()->withToastError($validator->messages()->all()[0])->withInput();
         }
         $country = new Country([
 
-            'nombre'=> $request->get('nombre'),
+            'nombre' => $request->get('nombre'),
             'abreviatura' => $request->get('abreviatura')
         ]);
 
         if (Country::where('nombre', $request->get('nombre'))->exists()) {
-            return back()->withToastError($request->get('nombre').' ya esta en los registros!');
-        }else{
+            return back()->withToastError($request->get('nombre') . ' ya esta en los registros!');
+        } else {
             $country->save();
             return redirect('/paises')->withToastSuccess('Registro exitoso!');
-         }
+        }
 
 
         //
 
-      //
+        //
     }
 
     /**
@@ -105,12 +105,12 @@ class CountryController extends Controller
     {
         //
         $validator = Validator::make($request->all(), [
-            'nombre'=> 'required',
+            'nombre' => 'required',
             'abreviatura' => 'required|min:3|max:3'
         ]);
 
         if ($validator->fails()) {
-            return back()->withToastError( $validator->messages()->all()[0])->withInput();
+            return back()->withToastError($validator->messages()->all()[0])->withInput();
         }
 
         $country = Country::find($id);
@@ -118,9 +118,6 @@ class CountryController extends Controller
         $country->abreviatura = $request->get('abreviatura');
         $country->save();
 
-      return redirect('/paises')->withToastSuccess('Registro Actualizado Exitosamente!');
-
+        return redirect('/paises')->withToastSuccess('Registro Actualizado Exitosamente!');
     }
-
-
 }
