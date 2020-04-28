@@ -23,8 +23,8 @@ class Teachers extends Migration
             $table->string('profession', 70);
             $table->unsignedInteger('type_document_id');
             $table->string('number_document', 60);
-            $table->date('expedition_date')->nullable();
-            $table->date('birth_date')->nullable();
+            $table->date('expedition_date');
+            $table->date('birth_date');
             $table->timestamps();
 
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade')->onUpdate('cascade');

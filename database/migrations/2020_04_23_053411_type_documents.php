@@ -17,7 +17,7 @@ class TypeDocuments extends Migration
         Schema::create('type_documents', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre', 70);
-            $table->char('abreviatura', 3)->nullable();
+            $table->char('abreviatura', 3);
             $table->timestamps();
         });
 

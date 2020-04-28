@@ -45,7 +45,7 @@ class MunicipalityController extends Controller
 
         $validator = Validator::make($request->all(), [
             'nombre' => 'required',
-            'abreviatura' => 'nullable|min:3|max:3',
+            'abreviatura' => 'required|min:3|max:3',
             'departamento' => 'required'
         ]);
 
