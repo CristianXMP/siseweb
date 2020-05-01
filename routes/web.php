@@ -24,6 +24,15 @@ Route::get('/login', function(){
     return view('auth.login');
 });
 
+
+Route::get('/educacion', function(){
+    return view('courses_home.dashboardCourses');    
+});
+
+Route::get('/educacion/curso/', function(){
+    return view('courses_home.course');
+});
+
 Route::get('/pruebas', function(){
 
     $asig = Teacher::findOrFail(2);

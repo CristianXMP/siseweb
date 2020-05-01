@@ -1,0 +1,117 @@
+:root{
+    --color-success: #1cc88a;
+    --color-primary: #2756e4;
+}
+body{
+    background-color: #FCFCFC !important;
+}
+
+.title-course{
+    width: 80%;
+    padding: 20px;
+    border-radius: 6px;
+    background-color: #FFF;
+    border: 1px solid #e4e4e4;
+    border-left: .35rem solid var(--color-success) !important;
+}
+.menu-coures{
+    width: 80%;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #FFF;
+    border: 1px solid #e4e4e4;
+    border-left: .35rem solid var(--color-primary) !important;
+}
+
+.menu-coures li{
+    list-style: none;
+    margin: 10px 0;
+}
+.menu-coures li a{
+    font-size: 16px;
+}
+
+.title-course h6{
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.title-course p{
+    margin-bottom: 0 !important;
+}
+
+.new-anun{
+    background-color: #fff;
+    width: 80%;
+    border: 1px solid #d2d2d2;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+.new-anun textarea{
+    height: 90px;
+    border-radius: 5px;
+    border: none;
+    background-color: #f8f9fc;
+    color: rgb(15, 15, 15) !important;
+}
+
+.new-anun .form-control:focus{
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    height: 90px !important;
+    border-radius: 5px !important;
+    border: none !important;
+    background-color: #f8f9fc !important;
+}
+
+.card-anun{
+    padding: 18px 18px;
+    background-color: #fff;
+    border-radius: 5px 25px;
+    border: 1px solid #d2d2d2;
+    width: 80%;
+    margin-bottom: 25px;
+}
+.card-hea-anu{
+    display: flex;
+    align-items: center;
+}
+.card-hea-anu img{
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+}
+.card-anun p{
+    margin-bottom: 0 !important;
+}
+.card-hea-anu .name-anun{
+    padding: 0 !important;
+    font-weight: bolder;
+    font-size: 15px;
+}
+.card-hea-anu .date-anun{
+    font-size: 11px;
+    font-weight: bold;
+    color: #717171;
+}
+.body-anu{
+    margin-left: 5px;
+    margin-top: 13px;
+    text-align: justify;
+    font-size: 13px;
+}
+.footer-anu{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 13px;
+    margin-left: 5px;
+}
+.footer-anu a{
+    font-size: 13px;
+    color: var(--color-primary);
+    font-weight: bold;
+}
