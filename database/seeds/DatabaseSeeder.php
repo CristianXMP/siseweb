@@ -22,6 +22,13 @@ class DatabaseSeeder extends Seeder
         $this->call(SeederPeriodTable::class);
         $this->call(SeederAcademicAssignmentTable::class);
 
+        User::create([
+            'name'=>'jose',
+            'email' =>'jose@gmail.com',
+            'password' => 
+        ]);
+
+
 
 
     }

@@ -33,7 +33,7 @@
                     <i class="fa fa-cogs"></i>
                   Ajustes
 
-                  <i class="fa fa-angle-right pull-left"></i> 
+                  <i class="fa fa-angle-right pull-left"></i>
                 </button>
 
                 <div class="dropdown-menu" aria-labelledby="subAjustes">
@@ -42,11 +42,11 @@
                         Paises
                     </a>
                     <a class="dropdown-item" href="{{ route('departamentos.index') }}">
-                        <i class="fa fa-map"></i> 
+                        <i class="fa fa-map"></i>
                         Departamentos
                     </a>
                     <a class="dropdown-item" href="{{ route('municipios.index') }}">
-                        <i class="fa fa-map-marker-alt"></i> 
+                        <i class="fa fa-map-marker-alt"></i>
                         Municipios
                     </a>
                     <a class="dropdown-item" href="{{ route('tiposdocumentos.index') }}">
@@ -79,6 +79,15 @@
                 >
                     <i class="far fa-user"></i>
                   Asignacion academica
+                </button>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropdown-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                onclick="location.href='{{ route('asignaciones.index') }}'"
+                >
+                    <i class="far fa-user"></i>
+                  Administrar Usuarios
                 </button>
             </div>
         </div>

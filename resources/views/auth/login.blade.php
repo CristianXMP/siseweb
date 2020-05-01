@@ -1,5 +1,5 @@
  <!DOCTYPE html>
- <html lang="en">
+ <html lang="es">
  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,10 +19,18 @@
                     </a>
                 </div>
                 <h2>Aula Virtual</h2>
-                <form action="">
+            <form action="{{Route('login')}}" method="POST">
+                @csrf
                     <div class="form-group">
-                        <input type="text" class="style-input" placeholder="Nombre de usuario" name="username" >
+                        <input id="email" type="email" placeholder="Correo Electronico" class="style-input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" >
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                     </div>
+
                     <div class="form-group">
                         <input type="password" class="style-input" placeholder="Contraseña" name="password" >
                     </div>
