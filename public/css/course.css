@@ -115,3 +115,38 @@ body{
     color: var(--color-primary);
     font-weight: bold;
 }
+
+
+@media screen and (max-width: 770px){
+    .title-course{
+        width: 100% !important;
+    }
+    .menu-coures{
+        width: 100% !important;
+        margin-top: 2rem !important;
+        margin-bottom: 2rem !important;
+        padding: 3px 5px;
+        text-align: center !important;
+    }
+    .menu-coures ul{
+        margin-bottom: 0 !important;
+        padding: 0 7px;
+        display: flex;
+        justify-content: space-between;
+        /* align-content: center; */
+        align-items: center;
+    }
+    .new-anun{
+        width: 100% !important;
+    }
+    .card-anun{
+        width: 100%;
+    }
+}
+
+
+@media screen and (max-width: 370px){
+    .menu-coures li a{
+        font-size: 14px !important;
+    }
+}
