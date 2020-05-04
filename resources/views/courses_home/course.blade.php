@@ -50,9 +50,6 @@
                         <a href="" class="">
                             10 Me gustas
                         </a>
-                        <a href="" style="margin-right:10rem">
-                            3 Comentarios
-                        </a>
                     </div>
                 </div>
 
@@ -72,9 +69,6 @@
                         <a href="" class="">
                             10 Me gustas
                         </a>
-                        <a href="" style="margin-right:10rem">
-                            3 Comentarios
-                        </a>
                     </div>
                 </div>
                 <div class="card-anun shadow-sm">
@@ -93,9 +87,6 @@
                         <a href="" class="">
                             10 Me gustas
                         </a>
-                        <a href="" style="margin-right:10rem">
-                            3 Comentarios
-                        </a>
                     </div>
                 </div>
                 <div class="card-anun shadow-sm">
@@ -113,9 +104,6 @@
                     <div class="footer-anu">
                         <a href="" class="">
                             10 Me gustas
-                        </a>
-                        <a href="" style="margin-right:10rem">
-                            3 Comentarios
                         </a>
                     </div>
                 </div>
