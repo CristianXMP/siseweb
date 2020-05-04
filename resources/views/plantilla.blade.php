@@ -26,10 +26,19 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-8 info-user">
-                            <h2>Diego Andres Rambao Jimenez</h2>
-                            <a href="" class="btn-logout">Salir
-                                <i class="fas fa-sign-out-alt"></i>
-                            </a>
+                            <h2>{{ Auth::user()->name }}</h2>
+
+
+                            <a class="btn-logout" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();">
+                            Salir
+                            <i class="fas fa-sign-out-alt"></i>
+                         </a>
+
+                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                             @csrf
+                         </form>
                         </div>
                     </div>
                 </div>
@@ -48,7 +57,7 @@
                                 </button>
 
                                 <div class="collapse navbar-collapse" id="navbarSupportedContent20">
-                                    <h2>DIEGO ANDRES RAMBAO JIMENEZ</h2>
+                                    <h2> {{ Auth::user()->name }}</h2>
 
                                     <div class="row">
                                       {{-- Component navbar --}}
@@ -95,7 +104,7 @@
 
         <footer>
             <div class="row justify-content-between">
-                <p>Todos los derechos reservados @</p>
+                <p>Todos los derechos reservados </p>
             </div>
         </footer>
     </div>

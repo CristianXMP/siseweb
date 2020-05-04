@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,9 +19,16 @@ class DatabaseSeeder extends Seeder
         $this->call(SeederTableTeacher::class);
         $this->call(SeederTableCourse::class);
         $this->call(SeederTableStudent::class);
-        $this->call(SeederSubjectTable::class);
-        $this->call(SeederPeriodTable::class);
-        $this->call(SeederAcademicAssignmentTable::class);
+        $this->call(SeederTableSubject::class);
+        $this->call(SeederTablePeriod::class);
+        $this->call(SeederTableAcademicAssignment::class);
+
+        User::create([
+            'name'=>'admin',
+            'email' =>'admin@gmail.com',
+            'password' =>  Hash::make('123456789')
+        ]);
+
 
 
 
