@@ -36,4 +36,10 @@ class Teacher extends Model
     {
        return $this->hasMany(Academic_assignment::class);
     }
+
+    //1 - m user - teacher
+    
+    public function user(){
+        return $this->hasMany(User::class);
+    }
 }

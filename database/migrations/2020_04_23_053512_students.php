@@ -25,6 +25,7 @@ class Students extends Migration
             $table->string('number_document', 30);
             $table->date('expedition_date');
             $table->date('birth_date');
+            $table->string('student')->default('student');
             $table->unsignedInteger('course_id');
             $table->timestamps();
 

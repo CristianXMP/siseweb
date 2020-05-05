@@ -9,7 +9,6 @@
     <title>OpenSoft | Login</title>
  </head>
 <body>
-
     <div id="fondo-img">
         <div id="box-login">
             <div id="login-box-body">
@@ -38,8 +37,10 @@
                     <div class="option-login">
                         <button class="btn-submit">Ingresar</button>
                     </div>
+                   
                 </form>
             </div>
+            
         </div>
     </div>
 

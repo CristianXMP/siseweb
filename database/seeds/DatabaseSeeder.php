@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use App\User;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -23,11 +23,12 @@ class DatabaseSeeder extends Seeder
         $this->call(SeederAcademicAssignmentTable::class);
 
         User::create([
-            'name'=>'jose',
-            'email' =>'jose@gmail.com',
-            'password' => 
+            //'name'     => 'Admin',
+            'email'    => 'admin@gmail.com',
+            'password' => bcrypt('12345678')
         ]);
 
+        factory(User::class, 7)->create();
 
 
 
