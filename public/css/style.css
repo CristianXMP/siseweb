@@ -9,8 +9,8 @@ button{
     box-shadow: 0 6px 7px 0 #4950573b;
 }
 
-#logo-principal h1{
-    font-size: 40px !important;
+#logo-principal .navbar-brand img {
+    width: 225px;
 }
 
 .info-user{
@@ -40,8 +40,8 @@ button{
     background-color: #F0F0F0;
 }
 
-.header-mobile h4{
-    font-size: 35px;
+.header-mobile .navbar-brand img{
+    width: 200px;
 }
 
 

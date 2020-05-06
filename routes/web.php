@@ -7,10 +7,13 @@ use Illuminate\Support\Facades\Route;
 
 
 
+Route::get('/educacion', function(){
+    return view('courses_home.dashboardCourses');    
+});
 
-
-
-
+Route::get('/educacion/curso/', function(){
+    return view('courses_home.course');
+});
 
 Auth::routes();
 
@@ -48,5 +51,5 @@ Route::middleware(['auth'])->group(function(){
 });
 
 Route::get('/', 'Auth\LoginController@ShowLoginForm')->name('login');
-route::post('/', 'Auth\LoginController@login')->name('login');
+Route::post('/', 'Auth\LoginController@login')->name('login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');

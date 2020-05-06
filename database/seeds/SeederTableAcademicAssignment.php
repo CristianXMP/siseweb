@@ -3,7 +3,7 @@
 use App\Academic_assignment;
 use Illuminate\Database\Seeder;
 
-class SeederAcademicAssignmentTable extends Seeder
+class SeederTableAcademicAssignment extends Seeder
 {
     /**
      * Run the database seeds.

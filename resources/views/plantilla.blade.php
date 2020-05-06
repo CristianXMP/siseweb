@@ -21,7 +21,9 @@
                 <div class="d-none d-md-block">
                     <div class="row" id="logo-principal">
                         <div class="col-12 col-md-4">
-                            <h1 class="navbar-brand">Open soft</h1>
+                            <div class="navbar-brand">
+                                <img src="{{ asset('img/siseweb.png') }}" alt="">
+                            </div>
                         </div>
                         <div class="col-12 col-md-8 info-user">
                             <h2>{{ Auth::user()->name }}</h2>
@@ -45,7 +47,9 @@
                     <div class="row">
                         <div class="header-mobile col-12">
                             <nav class="navbar navbar-light">
-                                <h4>Open soft</h4>
+                                <div class="navbar-brand">
+                                    <img src="{{ asset('img/siseweb.png') }}" alt="">
+                                </div>
 
                                 <button class="navbar-toggler first-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent20"
                                 aria-controls="navbarSupportedContent20" aria-expanded="false" aria-label="Toggle navigation">

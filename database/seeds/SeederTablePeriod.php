@@ -1,9 +1,9 @@
 <?php
 
-use App\Subject;
+use App\Period;
 use Illuminate\Database\Seeder;
 
-class SeederSubjectTable extends Seeder
+class SeederTablePeriod extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +13,6 @@ class SeederSubjectTable extends Seeder
     public function run()
     {
         //
-        factory(Subject::class, 5)->create();
+        factory(Period::class, 5)->create();
     }
 }

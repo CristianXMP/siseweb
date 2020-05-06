@@ -1,0 +1,39 @@
+
+.card{
+    border: none !important;
+    background-color: rgba(0,0,0,0);
+    border-radius: 1rem !important;
+    margin-top: 2.5rem !important;
+}
+.card-img-top{
+    border-top-left-radius: calc(1rem - 1px) !important;
+    border-top-right-radius: calc(1rem - 1px) !important;
+    border: none !important;
+}
+.card-body h5{
+    font-size: 1rem !important;
+    font-weight: bold !important;
+}
+.card-body .title-card-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media screen and (max-width: 1200px){
+    .card{
+        width: 17rem !important;
+    }
+}
+
+@media screen and (max-width: 990px){
+    .card{
+        width: 20rem !important;
+    }
+}
+
+@media screen and (max-width: 760px){
+    .card{
+        width: 100% !important;
+    }
+}
