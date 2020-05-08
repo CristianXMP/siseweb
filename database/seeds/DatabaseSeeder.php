@@ -26,16 +26,52 @@ class DatabaseSeeder extends Seeder
 
         User::create([
 
-            //'name'     => 'Admin',
-            'email'    => 'admin@gmail.com',
-            'password' => bcrypt('12345678')
-            'name'=>'admin',
-            'email' =>'admin@gmail.com',
-            'password' =>  Hash::make('123456789')
+            'nombre' => 'xavier',
+            'apellidos' => 'moreno perez',
+            'cargo' => '',
+            'teacher_id' => null,
+            'student_id' => null,
+            'cedula'    => '1234567890',
+            'cedula_verified_at' => now(),
+            'password' => bcrypt('12345678'),
+            'type_user' => 'Student',
+            'remember_token' => Str::random(10)
 
         ]);
 
-        factory(User::class, 7)->create();
+        User::create([
+
+            'nombre' => 'cristian',
+            'apellidos' => 'perez',
+            'cargo' => 'rector',
+            'teacher_id' => null,
+            'student_id' => null,
+            'cedula'    => '1193574481',
+            'cedula_verified_at' => now(),
+            'password' => bcrypt('12345678'),
+            'type_user' => 'Admin',
+            'remember_token' => Str::random(10)
+
+        ]);
+
+
+        User::create([
+
+            'nombre' => 'jose',
+            'apellidos' => 'andrades',
+            'cargo' => 'profesor',
+            'teacher_id' => null,
+            'student_id' => null,
+            'cedula'    => '0987654321',
+            'cedula_verified_at' => now(),
+            'password' => bcrypt('12345678'),
+            'type_user' => 'Teacher',
+            'remember_token' => Str::random(10)
+
+        ]);
+
+
+        //factory(User::class, 7)->create();
 
 
 

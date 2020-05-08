@@ -188,7 +188,7 @@ class TeacherController extends Controller
         }else{
 
             $Teacher = Teacher::find($id);
-            
+
             $Teacher->delete();
 
             return redirect('/profesores')->withToastSuccess('Registro Eliminado Correcatamente!');

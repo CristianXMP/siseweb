@@ -16,8 +16,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'teacher_id', 'student_id','email', 'password',
+        'nombre','apellidos','cargo','teacher_id', 'student_id','cedula', 'password','type_user',
     ];
+
+
+
 
     // 1- m users students
     public function student(){

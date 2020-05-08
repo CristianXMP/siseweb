@@ -9,11 +9,11 @@
         <div class="title">
             <h1>
                 <i class="far fa-file-alt"></i>
-                Lista de Tipos de documentos
+                Lista de usuarios
             </h1>
         </div>
         <div>
-            <a class=" btn btn-main" href="{{ route('tiposdocumentos.create') }}">
+            <a class=" btn btn-main" href="{{ route('create') }}">
                 <i class="fa fa-plus mr-1"></i>
                 Nuevo
             </a>
@@ -25,9 +25,10 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Abreviatura</th>
-                    <th>Acciones</th>
+                    <th>nombre</th>
+                    <th>Apellidos</th>
+                    <th>Cedula</th>
+                    <th>Tipo de usuario</th>
                 </tr>
             </thead>
             <tbody>

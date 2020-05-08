@@ -9,6 +9,7 @@
     <title>OpenSoft | Login</title>
  </head>
 <body>
+    @include('sweetalert::alert')
     <div id="fondo-img">
         <div id="box-login">
             <div id="login-box-body">
@@ -21,26 +22,24 @@
             <form action="{{Route('login')}}" method="POST">
                 @csrf
                     <div class="form-group">
-                        <input id="email" type="email" placeholder="Correo Electronico" class="style-input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" >
+                        <input id="cedula" class="style-input" type="text" placeholder="Numero De Documento"  name="cedula" value="{{ old('cedula') }}" autocomplete="cedula" >
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+
                     </div>
 
                     <div class="form-group">
                         <input type="password" class="style-input" placeholder="Contraseña" name="password" >
+
+
                     </div>
 
                     <div class="option-login">
-                        <button class="btn-submit">Ingresar</button>
+                        <button type="submit" class="btn-submit">Ingresar</button>
                     </div>
-                   
+
                 </form>
             </div>
-            
+
         </div>
     </div>
 

@@ -26,7 +26,7 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-8 info-user">
-                            <h2>{{ Auth::user()->name }}</h2>
+                            <h2>{{ Auth::user()->cedula }}</h2>
 
 
                             <a class="btn-logout" href="{{ route('logout') }}"

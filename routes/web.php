@@ -7,23 +7,64 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/educacion', function(){
-    return view('courses_home.dashboardCourses');    
+Route::get('/', 'Auth\LoginController@showLoginForm')->middleware('guest');
+
+Route::post('/', 'Auth\LoginController@login')->name('login');
+
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+
+
+/*Route::get('/educacion', function(){
+    return view('courses_home.dashboardCourses');
 });
 
 Route::get('/educacion/curso/', function(){
     return view('courses_home.course');
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/prueba', function(){
 
 
-Route::middleware(['auth'])->group(function(){
+    $teacherc = Academic_assignment::find(1);
 
+    return $teacherc->teacher->fir;
+
+});
+
+*/
+
+
+
+//Route::Auth();
+
+Route::middleware(['auth','role:Teacher'])->group(function(){
+
+
+    Route::get('/Profesor', 'HomeController@Teacher')->name('Profesor');
+
+
+
+});
+
+
+
+Route::middleware(['auth','role:Student'])->group(function(){
+
+
+    Route::get('/Estudiante', 'HomeController@Student')->name('Estudiante');
+
+
+
+});
+
+
+
+Route::middleware(['auth','role:Admin'])->group(function(){
+
+    Route::get('/home', 'HomeController@Admin')->name('Admin');
     //rutas periodos
- 
+
     //
     Route::resource('/periodos', 'PeriodoController');
 
@@ -47,9 +88,10 @@ Route::middleware(['auth'])->group(function(){
 
     Route::resource('usuarios', 'UserController');
 
+    Route::get('/register', 'Auth\RegisterController@index')->name('register');
+    Route::get('/create', 'Auth\RegisterController@create')->name('create');
+    Route::post('/register', 'Auth\RegisterController@store')->name('register');
+
 
 });
 
-Route::get('/', 'Auth\LoginController@ShowLoginForm')->name('login');
-Route::post('/', 'Auth\LoginController@login')->name('login');
-Route::get('logout', 'Auth\LoginController@logout')->name('logout');

@@ -1,40 +1,86 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
+use  Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
 
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function showLoginForm()
     {
-        $this->middleware('guest')->except('logout');
+        return view('auth.login');
+
     }
+
+    public function login()
+    {
+        $validator = Validator::make(request()->all(), [
+            'cedula' => 'required|numeric|digits:10',
+            'password' => 'required|max:10'
+        ],
+            [
+                'cedula.required' => 'El campo numero de documento es obligatorio.'
+            ]);
+
+        if ($validator->fails()) {
+            return back()->withToastError($validator->messages()->all()[0])->withInput();
+        }else{
+
+            $credentials = [
+                'cedula' => request()->get('cedula'),
+                'password' => request()->get('password')
+            ];
+
+            if (Auth::attempt($credentials))
+            {
+                $type_user = DB::table('users')->select('type_user')->where('cedula', '=', $credentials['cedula'])->get();
+
+
+
+                if (isset($type_user)) {
+
+                    if ( $type_user[0]->type_user == "Admin") {
+
+                        return redirect()->route('Admin');
+
+                    }
+
+                    if ( $type_user[0]->type_user == "Student") {
+
+                        return redirect()->route('Estudiante');
+                    }
+
+                    if ( $type_user[0]->type_user == "Teacher") {
+
+                        return redirect()->route('Profesor');
+                    }
+
+                }
+
+
+            }else{
+
+                return back()->withToastError(trans('auth.failed'))->withInput(request(['cedula']));//redireccionamos a loging y mostramos un mensaje de error
+            }
+
+        }
+
+
+
+
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect('/')->withToastSuccess('Sesión cerrada correctamente');
+    }
+
+
 }

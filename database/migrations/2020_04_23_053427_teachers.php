@@ -26,6 +26,7 @@ class Teachers extends Migration
             $table->date('expedition_date')->nullable();
             $table->date('birth_date')->nullable();
             $table->string('techaer')->default('techer');
+            $table->boolean('is_user')->default(false);
             $table->timestamps();
 
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade')->onUpdate('cascade');
