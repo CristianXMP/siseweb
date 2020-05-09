@@ -39,7 +39,9 @@ class RegisterController extends Controller
 
 
     public function index(){
-        return view('usuarios.index');
+
+        $user = User::all();
+        return view('usuarios.index', compact('user'));
     }
 
     public function create(){
@@ -57,7 +59,7 @@ class RegisterController extends Controller
 
     public function store(request $request)
     {
-
+          //generacion de usuarios para estudiantes
         if ($request->get('student') == "student") {
 
             $validator = Validator::make($request->all(), [
@@ -107,7 +109,7 @@ class RegisterController extends Controller
                     }
         }
 
-
+        //generacion de usuarios para profesores
         if ($request->get('teacher') == "teacher") {
 
             $validator = Validator::make($request->all(), [
@@ -134,8 +136,8 @@ class RegisterController extends Controller
                             'nombre' => $teacher->first_name,
                             'apellidos' => $teacher->second_name,
                             'cargo' => 'profesor',
-                            'teacher_id' => null,
-                            'student_id' => $teacher->id,
+                            'teacher_id' => $teacher->id,
+                            'student_id' => null,
                             'cedula'    => $teacher->number_document,
                             'cedula_verified_at' => now(),
                             'password' => bcrypt($teacher->number_document),
@@ -157,7 +159,63 @@ class RegisterController extends Controller
                     }
         }
 
+        //creacion de administradores
+        if ($request->get('admin') == "admin") {
 
+            $validator = Validator::make($request->all(), [
+
+                'nombre' => 'required|string',
+                'apellidos' => 'required|string',
+                'cargo' => 'required|string',
+                'cedula' => 'required|min:10|max:10|unique:users'
+
+            ]);
+
+            if ($validator->fails()) {
+                return back()->withToastError($validator->messages()->all()[0])->withInput();
+            }
+
+
+
+
+
+                        User::create([
+
+                            'nombre' => $request->get('nombre'),
+                            'apellidos' => $request->get('apellidos'),
+                            'cargo' => $request->get('cargo'),
+                            'teacher_id' => null,
+                            'student_id' => null,
+                            'cedula'    => $request->get('cedula'),
+                            'cedula_verified_at' => now(),
+                            'password' => bcrypt($request->get('cedula')),
+                            'type_user' => 'Admin',
+                            'remember_token' => Str::random(10)
+
+                        ]);
+
+                        alert()->success('Siseweb','Administrador creado correctamente. las credeciales para iniciar sesión
+                        son los numeros de documentos');
+
+                        return back();
+
+
+
+        }
+
+
+
+
+
+    }
+
+
+    public function restore($id){
+
+        
+    }
+
+    public function destroy($id){
 
 
 

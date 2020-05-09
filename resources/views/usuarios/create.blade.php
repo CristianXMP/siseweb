@@ -89,36 +89,66 @@
     </div>
     <br>
     <div class="row d-flex justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Registro de usuarios ejecutivos</div>
+                <div class="card-header">Registro de usuarios Administrativos</div>
 
                 <div class="card-body">
-                    <div class="text-center">registro de estudiantes</div><br>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                        <div class="row">
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                               <input type="hidden" name="admin" value="admin">
+                                <div class="form-group">
+                                    <label for="name" class="col-md-8 col-form-label text-md-right">Nombre</label>
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                    <div class="col-md-12">
+                                        <input id="name" type="text" class="form-control " name="nombre" value="{{ old('nombre') }}" required autocomplete="name">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="name" class="col-md-8 col-form-label text-md-right">Apellidos</label>
+
+                                    <div class="col-md-12">
+                                        <input id="name" type="text" class="form-control" name="apellidos" value="{{ old('apellidos') }}" required autocomplete="name">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    <label for="name" class="col-md-8 col-form-label text-md-right">Cargo</label>
+
+                                    <div class="col-md-12">
+                                        <input id="name" type="text" class="form-control " name="cargo" value="{{ old('cargo') }}" required autocomplete="name">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="name" class="col-md-8 col-form-label text-md-right">Cedula</label>
+
+                                    <div class="col-md-12">
+                                        <input id="name" type="text" class="form-control" name="cedula" value="{{ old('cedula') }}" required autocomplete="name">
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn  btn-main">
-                                    {{ __('Register') }}
-                                </button>
+                        <div class="row">
+
+                            <div class="col-md-12">
+
+                                <button type="submit" class="btn btn-main btn-block">Crear administrador</button>
+
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>

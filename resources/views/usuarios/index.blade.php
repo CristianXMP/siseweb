@@ -27,34 +27,24 @@
                     <th>ID</th>
                     <th>nombre</th>
                     <th>Apellidos</th>
+                    <th>Cargo</th>
                     <th>Cedula</th>
                     <th>Tipo de usuario</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
+                @forelse ($user as $item)
                 <tr>
-                    <td>1</td>
-                    <td>Tarjeta de Indentidad</td>
-                    <td>T.I</td>
-                    <td>
-                        <div class="btn-group">
-                            <a href="" style="color: #00723d" id="editTipoDoc">
-                                <i class="fa fa-pencil-alt mr-2"></i>
-                            </a>
-                            <a href="" style="color: #00723d" id="verTipoDoc">
-                                 <i class="fa fa-eye mr-2"></i>
-                             </a>
-                             <a href="" style="color: #00723d" id="borrarTipoDoc">
-                                 <i class="fa fa-trash"></i>
-                             </a>
-                        </div>
-                    </td>
-                </tr>
 
-                <tr>
-                    <td>1</td>
-                    <td>Cedula de Ciudadania</td>
-                    <td>C.C</td>
+                            <td>{{ $item->id }}</td>
+                            <td>{{ $item->nombre }}</td>
+                            <td>{{ $item->apellidos }}</td>
+                            <td>{{ $item->cargo }}</td>
+                            <td>{{ $item->cedula }}</td>
+                            <td>{{ $item->type_user }}</td>
+
+
                     <td>
                         <div class="btn-group">
                             <a href="" style="color: #00723d" id="editTipoDoc">
@@ -69,6 +59,10 @@
                         </div>
                     </td>
                 </tr>
+                @empty
+                @endforelse
+
+
 
             </tbody>
         </table>
