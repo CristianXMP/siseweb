@@ -1,6 +1,7 @@
 @extends('templateCourse')
 
 @section('style')
+<link rel="stylesheet" href="{{ asset('css/style-nav.css') }}">
     <link rel="stylesheet" href="{{ asset('css/course.css') }}">
 @endsection
 

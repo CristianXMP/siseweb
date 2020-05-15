@@ -15,6 +15,10 @@ Route::get('/educacion/curso/', function(){
     return view('courses_home.course');
 });
 
+Route::get('/foro', function(){
+    return view('forum.index');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -6,40 +6,6 @@ body{
     background-color: #FCFCFC !important;
 }
 
-.title-course{
-    width: 80%;
-    padding: 20px;
-    border-radius: 6px;
-    background-color: #FFF;
-    border: 1px solid #e4e4e4;
-    border-left: .35rem solid var(--color-success) !important;
-}
-.menu-coures{
-    width: 80%;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #FFF;
-    border: 1px solid #e4e4e4;
-    border-left: .35rem solid var(--color-primary) !important;
-}
-
-.menu-coures li{
-    list-style: none;
-    margin: 10px 0;
-}
-.menu-coures li a{
-    font-size: 16px;
-}
-
-.title-course h6{
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-.title-course p{
-    margin-bottom: 0 !important;
-}
-
 .new-anun{
     background-color: #fff;
     width: 80%;
@@ -118,35 +84,11 @@ body{
 
 
 @media screen and (max-width: 770px){
-    .title-course{
-        width: 100% !important;
-    }
-    .menu-coures{
-        width: 100% !important;
-        margin-top: 2rem !important;
-        margin-bottom: 2rem !important;
-        padding: 3px 5px;
-        text-align: center !important;
-    }
-    .menu-coures ul{
-        margin-bottom: 0 !important;
-        padding: 0 7px;
-        display: flex;
-        justify-content: space-between;
-        /* align-content: center; */
-        align-items: center;
-    }
+    
     .new-anun{
         width: 100% !important;
     }
     .card-anun{
         width: 100%;
-    }
-}
-
-
-@media screen and (max-width: 370px){
-    .menu-coures li a{
-        font-size: 14px !important;
     }
 }

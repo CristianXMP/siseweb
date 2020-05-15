@@ -1,0 +1,93 @@
+:root{
+    --color-success: #1cc88a;
+    --color-primary: #2756e4;
+}
+.card-new-foro{
+    padding: 20px;
+    background-color: white;
+    border-radius: 7px;
+    margin-bottom: 30px;
+}
+.card-new-foro h3{
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.card-new-foro input{
+    width: 100%;
+    font-weight: bold;
+    color: #424242;
+    font-size: 15px;
+    border: 1px solid #ceced1;
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+.card-new-foro input:focus{
+    outline: none;
+}
+
+.card-new-foro textarea{
+    width: 100%;
+    height: 10rem;
+    color: #575e66;
+    font-size: 15px;
+    border: 1px solid #ceced1;
+    border-radius: 5px;
+    padding: 8px;
+    margin-bottom: 15px;
+}
+.card-new-foro textarea:focus{
+    outline: none;
+}
+
+.card-new-foro button{
+    padding: 8px 15px;
+    color: #f0f0f0;
+    background-color: #1083d5;
+    font-weight: 600;
+}
+.card-foro{
+    padding: 15px;
+    background: #FFF;
+    border-radius: 5px;
+    border: 1px solid #e4e4e4;
+    position: relative;
+    margin-bottom: 30px;
+}
+.card-foro .foro-anchor{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.card-foro .foro-anchor:hover{
+    transition: 0.5s;
+    border: 1px solid #2756e4;
+    border-radius: 5px;
+}
+.card-foro .card-head-foro{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.card-foro .card-head-foro h3{
+    font-weight: 600;
+    font-size: 18px;
+}
+.card-foro .card-head-foro p{
+    font-weight: bold;
+    color: #939393;
+    font-size: 13px;
+}
+.card-foro .card-body-foro p{
+    font-size: 15px;
+}
+.card-foro .card-footer-foro{
+    display: flex;
+}
+.card-foro .card-footer-foro a{
+    margin-right: 20px;
+}
