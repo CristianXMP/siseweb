@@ -31,4 +31,16 @@ class Student extends Model
     {
         return $this->belongsTo(Course::class);
     }
+
+    // 1- m users students
+    public function user(){
+
+        return $this->hasMany(User::class);
+    }
+
+    public function Advertisements(){
+
+        return $this->hasMany(Advertisement::class);
+    }
+
 }

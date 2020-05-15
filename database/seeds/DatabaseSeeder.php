@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\User;
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -12,7 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-       $this->call(CountriesTableSeeder::class);
+      /* $this->call(CountriesTableSeeder::class);
         $this->call(SeederTableDepartament::class);
         $this->call(SeederTableCity::class);
         $this->call(SeederTableType_document::class);
@@ -21,14 +22,28 @@ class DatabaseSeeder extends Seeder
         $this->call(SeederTableStudent::class);
         $this->call(SeederTableSubject::class);
         $this->call(SeederTablePeriod::class);
-        $this->call(SeederTableAcademicAssignment::class);
+        $this->call(SeederTableAcademicAssignment::class);*/
+
 
         User::create([
-            'name'=>'admin',
-            'email' =>'admin@gmail.com',
-            'password' =>  Hash::make('123456789')
+
+            'nombre' => 'cristian',
+            'apellidos' => 'perez',
+            'cargo' => 'rector',
+            'teacher_id' => null,
+            'student_id' => null,
+            'cedula'    => '1193574481',
+            'cedula_verified_at' => now(),
+            'password' => bcrypt('12345678'),
+            'type_user' => 'Admin',
+            'remember_token' => Str::random(10)
+
         ]);
 
+
+
+
+        //factory(User::class, 7)->create();
 
 
 

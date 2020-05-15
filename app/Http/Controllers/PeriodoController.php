@@ -13,6 +13,8 @@ class PeriodoController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+
     }
     /**
      * Display a listing of the resource.
@@ -45,33 +47,18 @@ class PeriodoController extends Controller
     {
         //
         $validator = Validator::make($request->all(), [
-            'nombre' => 'required|numeric|min:1|max:5',
-            'fecha_inicio' => 'required',
-            'fecha_final' => 'required'
+            'nombre' => 'required|numeric|min:1|max:5|unique:periods',
+            'fecha_inicial' => 'required|unique:periods,fecha_inicial'
+
         ]);
 
         if ($validator->fails()) {
             return back()->withToastError($validator->messages()->all()[0])->withInput();
         }
 
+        Period::create($request->all());
 
-        $periodo = new period([
-            'nombre' => $request->get('nombre'),
-            'fecha_inicial' => $request->get('fecha_inicio'),
-            'fecha_final' => $request->get('fecha_final')
-        ]);
-
-        if (Period::where('nombre', $request->get('nombre'))->exists()) {
-
-            return back()->withToastError('El periodo ' . $request->get('nombre') . ' Ya Esta En Los Registros!');
-        } else {
-            $periodo->save();
-
-            return redirect('/periodos')->withToastSuccess('Registro exitoso!');
-
-        }
-
-
+        return redirect('/periodos')->withToastSuccess('Registro exitoso!');
 
     }
 
@@ -97,7 +84,7 @@ class PeriodoController extends Controller
     public function edit($id)
     {
         //
-        $periodo = period::find($id);
+        $periodo = period::findOrfail($id);
 
         return view('periods.edit', compact('periodo'));
     }
@@ -114,20 +101,14 @@ class PeriodoController extends Controller
         //
         $validator = Validator::make($request->all(), [
             'nombre' => 'required|numeric|min:1|max:5',
-            'fecha_inicio' => 'required',
-            'fecha_final' => 'required'
+            'fecha_inicial' => 'required'
         ]);
 
         if ($validator->fails()) {
             return back()->withToastError($validator->messages()->all()[0])->withInput();
         }
 
-
-        $periodo = period::find($id);
-        $periodo->nombre = $request->get('nombre');
-        $periodo->fecha_inicial = $request->get('fecha_inicio');
-        $periodo->fecha_final = $request->get('fecha_final');
-        $periodo->save();
+        period::find($id)->update($request->all());
 
         return redirect('/periodos')->withToastSuccess('El periodo se Actualizo');
     }
@@ -140,8 +121,7 @@ class PeriodoController extends Controller
      */
     public function destroy($id)
     {
-        $periodo = period::find($id);
-        $periodo->delete();
+         period::findOrfail($id)->delete();
 
         return redirect('/periodos')->with('success', 'Periodo eliminado');
     }

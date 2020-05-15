@@ -10,7 +10,7 @@ $factory->define(Academic_assignment::class, function (Faker $faker) {
     return [
         //
         'course_id' => random_int(1,5),
-        'period_id' => random_int(1,5),
+        'period_id' => 1,
         'subject_id' => random_int(1,5),
         'teacher_id' => random_int(1,5),
     ];

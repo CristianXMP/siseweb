@@ -13,6 +13,7 @@
 
 </head>
 <body>
+    @include('sweetalert::alert')
     <header class="shadow-sm">
         <div class="container">
             <div class="">
@@ -33,14 +34,27 @@
                                   </a>
                               </li>
                               <li class="nav-item">
-                                  <a href="#">Diego Rambao 
-                                      <img class="img-profile" 
+                                  <a href="#">{{ Auth::user()->nombre }}
+                                      <img class="img-profile"
                                           src="{{ asset('img/profile-example.jpg') }}" alt="">
                                   </a>
                               </li>
+
+                              <li class="nav-item">
+                                <a class="btn-logout" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                              document.getElementById('logout-form').submit();">
+                                Salir
+
+                             </a>
+
+                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                 @csrf
+                             </form>
+                              </li>
                           </ul>
                       </div>
-    
+
                 </nav>
             </div>
 
@@ -54,7 +68,7 @@
                         aria-controls="navbarSupportedContent20" aria-expanded="false" aria-label="Toggle navigation">
                         <div class="animated-icon1"><span></span><span></span><span></span></div>
                         </button>
-    
+
                         <div class="collapse navbar-collapse" id="navbarSupportedContent20">
                             <ul>
                                 <li>Inicio</li>

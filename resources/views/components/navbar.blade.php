@@ -84,7 +84,7 @@
 
             <div class="dropdown">
                 <button class="dropdown-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                onclick="location.href='{{ route('asignaciones.index') }}'"
+                onclick="location.href='{{ route('register') }}'"
                 >
                     <i class="far fa-user"></i>
                   Administrar Usuarios

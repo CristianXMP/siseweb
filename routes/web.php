@@ -1,14 +1,25 @@
 <?php
 
 use App\Academic_assignment;
+use App\Advertisement;
 use App\Course;
+use App\Student;
+use App\Subject;
 use App\Teacher;
 use Illuminate\Support\Facades\Route;
 
 
 
+Route::get('/', 'Auth\LoginController@showLoginForm')->middleware('guest');
+
+Route::post('/', 'Auth\LoginController@login')->name('login');
+
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+
+
 Route::get('/educacion', function(){
-    return view('courses_home.dashboardCourses');    
+    return view('courses_home.dashboardCourses');
 });
 
 Route::get('/educacion/curso/', function(){
@@ -20,14 +31,54 @@ Route::get('/foro', function(){
 });
 
 Auth::routes();
+route::get('/prueba', function(){
 
-Route::get('/home', 'HomeController@index')->name('home');
+    $asignacion = Teacher::find(1);
 
 
-Route::middleware(['auth'])->group(function(){
+    return $asignacion->academic_assignments;
 
+});
+
+
+
+
+
+
+//Route::Auth();
+
+Route::middleware(['auth','role:Teacher'])->group(function(){
+
+
+    Route::get('/Profesor', 'HomeController@educacion')->name('Profesor');
+    Route::get('/cursoProfesor/{subject_id}', 'HomeController@curso')->name('cursoProfesor');
+    Route::get('/anunciosProfesor', 'HomeController@anuncio')->name('anunciosProfesor');
+    Route::post('/PublicarAnuncio', 'AdvertisementsController@publicar')->name('publicar');
+    Route::get('/likes/{like}', 'AdvertisementsController@likes')->name('likes');
+
+
+
+});
+
+
+
+Route::middleware(['auth','role:Student'])->group(function(){
+
+
+    Route::get('/Estudiante', 'HomeController@educacion')->name('Estudiante');
+    Route::get('/cursoEstudiante/{subject_id}', 'HomeController@curso')->name('cursoEstudiante');
+    Route::get('/likes/{like}', 'AdvertisementsController@likes')->name('likes');
+
+
+});
+
+
+
+Route::middleware(['auth','role:Admin'])->group(function(){
+
+    Route::get('/home', 'HomeController@Admin')->name('Admin');
     //rutas periodos
- 
+
     //
     Route::resource('/periodos', 'PeriodoController');
 
@@ -49,11 +100,11 @@ Route::middleware(['auth'])->group(function(){
 
     Route::resource('/materias', 'SubjectController');
 
-    Route::resource('usuarios', 'UserController');
+
+    Route::get('/register', 'Auth\RegisterController@index')->name('register');
+    Route::get('/create', 'Auth\RegisterController@create')->name('create');
+    Route::post('/register', 'Auth\RegisterController@store')->name('register');
 
 
 });
 
-Route::get('/', 'Auth\LoginController@ShowLoginForm')->name('login');
-Route::post('/', 'Auth\LoginController@login')->name('login');
-Route::get('logout', 'Auth\LoginController@logout')->name('logout');

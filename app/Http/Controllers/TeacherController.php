@@ -6,8 +6,10 @@ use App\City;
 use App\Teacher;
 use App\Type_document;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
+
 
 class TeacherController extends Controller
 {
@@ -56,9 +58,8 @@ class TeacherController extends Controller
             'municipio' => 'required',
             'tipo_de_documento' => 'required',
             'profesion' => 'required',
-            'numero_de_documento' => 'required|min:10|max:10',
-            'fecha_de_expedicion' => 'required',
-            'fecha_de_nacimiento' => 'required'
+            'numero_de_documento' => 'required|min:10|max:10|unique:teachers,number_document',
+
         ]);
 
         if ($validator->fails()) {
@@ -97,7 +98,7 @@ class TeacherController extends Controller
     {
         //
 
-        $TeacherShow = Teacher::find($id);
+        $TeacherShow = Teacher::findOrfail($id);
         return view('teachers.show', compact('TeacherShow'));
     }
 
@@ -134,8 +135,7 @@ class TeacherController extends Controller
             'tipo_de_documento' => 'required',
             'profesion' => 'required',
             'numero_de_documento' => 'required|min:10|max:10',
-            'fecha_de_expedicion' => 'required',
-            'fecha_de_nacimiento' => 'required'
+
         ]);
 
         if ($validator->fails()) {
@@ -165,10 +165,33 @@ class TeacherController extends Controller
      */
     public function destroy($id)
     {
-        //
-        $Teacher = Teacher::find($id);
-        $Teacher->delete();
 
-        return redirect('/profesores')->withToastSuccess('Registro Eliminado Correcatamente!');
+        // verificamos que el profesor no tenga cursos o cargas academica
+        // para asi no se pueda eliminar el dato ya que otras tabla dependen de ese dato.
+
+
+            $asignacion_curso = DB::table('courses')->select('course')->where('teacher_id', '=', $id)->get();
+
+            $asignacion_academica = DB::table('academic_assignments')->select('course_id')->where('teacher_id', '=', $id)->get();
+
+
+        if (count($asignacion_curso) > 0 || count($asignacion_academica) > 0) {
+
+
+           alert()->error('Siseweb','Este profesor no puede ser eliminado del sistema,
+           debido a que tiene cursos o cargas academicas asignadas.');
+
+           return redirect('/profesores');
+
+        }else{
+
+            $Teacher = Teacher::find($id);
+
+            $Teacher->delete();
+
+            return redirect('/profesores')->withToastSuccess('Registro Eliminado Correcatamente!');
+
+        }
+
     }
 }

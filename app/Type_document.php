@@ -8,7 +8,7 @@ class Type_document extends Model
 {
 
     protected $fillable = [
-        'nombre', 'abreviatura'
+        'id','nombre', 'abreviatura'
     ];
 
     public function Type_documents()

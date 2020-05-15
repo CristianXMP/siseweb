@@ -30,19 +30,11 @@
                 <div class="form-group row" style="margin-top: 1rem;">
                     <label for="col-sm-4 col-form-label">Fecha inicial</label>
                     <div class="col-sm-8 input-group">
-                        <input type="date" class="form-control" name="fecha_inicio">
+                        <input type="date" class="form-control" name="fecha_inicial">
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-12 col-lg-6 form-left">
-                <div class="form-group row" style="margin-top: 1rem;">
-                    <label for="col-sm-4 col-form-label">Fecha Final:</label>
-                    <div class="col-sm-8 input-group">
-                        <input type="date" class="form-control" name="fecha_final">
-                    </div>
-                </div>
-            </div>
 
             <div class="col-md-12 col-lg-6 form-left"></div>
 

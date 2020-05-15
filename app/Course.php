@@ -15,9 +15,20 @@ class Course extends Model
         return $this->hasMany(Student::class);
     }
 
+    public function academic_assignments()
+    {
+      return  $this->hasMany(Academic_assignment::class);
+    }
+
     public function teacher()
     {
 
         return $this->belongsTo(Teacher::class);
+    }
+
+
+    public function Advertisements(){
+
+        return $this->hasMany(Advertisement::class);
     }
 }

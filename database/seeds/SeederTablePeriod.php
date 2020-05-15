@@ -13,6 +13,6 @@ class SeederTablePeriod extends Seeder
     public function run()
     {
         //
-        factory(Period::class, 5)->create();
+        factory(Period::class, 1)->create();
     }
 }
