@@ -1,7 +1,10 @@
 <?php
 
 use App\Academic_assignment;
+use App\Advertisement;
 use App\Course;
+use App\Student;
+use App\Subject;
 use App\Teacher;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +18,7 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 
 
-/*Route::get('/educacion', function(){
+Route::get('/educacion', function(){
     return view('courses_home.dashboardCourses');
 });
 
@@ -23,16 +26,17 @@ Route::get('/educacion/curso/', function(){
     return view('courses_home.course');
 });
 
-Route::get('/prueba', function(){
+route::get('/prueba', function(){
+
+    $asignacion = Teacher::find(1);
 
 
-    $teacherc = Academic_assignment::find(1);
-
-    return $teacherc->teacher->fir;
+    return $asignacion->academic_assignments;
 
 });
 
-*/
+
+
 
 
 
@@ -41,7 +45,11 @@ Route::get('/prueba', function(){
 Route::middleware(['auth','role:Teacher'])->group(function(){
 
 
-    Route::get('/Profesor', 'HomeController@Teacher')->name('Profesor');
+    Route::get('/Profesor', 'HomeController@educacion')->name('Profesor');
+    Route::get('/cursoProfesor/{subject_id}', 'HomeController@curso')->name('cursoProfesor');
+    Route::get('/anunciosProfesor', 'HomeController@anuncio')->name('anunciosProfesor');
+    Route::post('/PublicarAnuncio', 'AdvertisementsController@publicar')->name('publicar');
+    Route::get('/likes/{like}', 'AdvertisementsController@likes')->name('likes');
 
 
 
@@ -52,8 +60,9 @@ Route::middleware(['auth','role:Teacher'])->group(function(){
 Route::middleware(['auth','role:Student'])->group(function(){
 
 
-    Route::get('/Estudiante', 'HomeController@Student')->name('Estudiante');
-
+    Route::get('/Estudiante', 'HomeController@educacion')->name('Estudiante');
+    Route::get('/cursoEstudiante/{subject_id}', 'HomeController@curso')->name('cursoEstudiante');
+    Route::get('/likes/{like}', 'AdvertisementsController@likes')->name('likes');
 
 
 });
@@ -86,7 +95,6 @@ Route::middleware(['auth','role:Admin'])->group(function(){
 
     Route::resource('/materias', 'SubjectController');
 
-    Route::resource('usuarios', 'UserController');
 
     Route::get('/register', 'Auth\RegisterController@index')->name('register');
     Route::get('/create', 'Auth\RegisterController@create')->name('create');

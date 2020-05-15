@@ -61,9 +61,7 @@ class StudentController extends Controller
             'apellidos' => 'required',
             'municipio' => 'required',
             'tipo_de_documento' => 'required',
-            'numero_de_documento' => 'required|min:10|max:10',
-            'fecha_de_expedicion' => 'required',
-            'fecha_de_nacimiento' => 'required',
+            'numero_de_documento' => 'required|min:10|max:10|unique:students,number_document',
             'curso' => 'required',
         ]);
 
@@ -82,15 +80,10 @@ class StudentController extends Controller
             'birth_date'       => $request->get('fecha_de_nacimiento'),
             'course_id'        => $request->get('curso'),
         ]);
-
-        if (Student::where('number_document', $request->get('numero_de_documento'))->exists()) {
-
-            return back()->withToastError('El Estudiante ' . $request->get('primer_nombre') . ' Ya Esta En Los Registros!');
-        } else {
             $student->save();
 
             return redirect('/estudiantes')->withToastSuccess('Registro exitoso!');
-        }
+
     }
 
     /**
@@ -141,8 +134,6 @@ class StudentController extends Controller
             'municipio' => 'required',
             'tipo_de_documento' => 'required',
             'numero_de_documento' => 'required|min:10|max:10',
-            'fecha_de_expedicion' => 'required',
-            'fecha_de_nacimiento' => 'required',
             'curso' => 'required',
         ]);
 

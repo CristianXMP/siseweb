@@ -31,43 +31,26 @@
                 </tr>
             </thead>
             <tbody>
+                @forelse ( $type_documents as $item)
+
                 <tr>
-                    <td>1</td>
-                    <td>Tarjeta de Indentidad</td>
-                    <td>T.I</td>
+                    <td>{{ $item->id }}</td>
+                    <td>{{ $item->nombre }}</td>
+                    <td>{{ $item->abreviatura }}</td>
                     <td>
                         <div class="btn-group">
-                            <a href="" style="color: #00723d" id="editTipoDoc">
+                            <a href="{{ Route('tiposdocumentos.edit', $item->id) }}" style="color: #00723d" id="editTipoDoc">
                                 <i class="fa fa-pencil-alt mr-2"></i>
                             </a>
-                            <a href="" style="color: #00723d" id="verTipoDoc">
-                                 <i class="fa fa-eye mr-2"></i>
-                             </a>
-                             <a href="" style="color: #00723d" id="borrarTipoDoc">
-                                 <i class="fa fa-trash"></i>
-                             </a>
+
                         </div>
                     </td>
                 </tr>
 
-                <tr>
-                    <td>1</td>
-                    <td>Cedula de Ciudadania</td>
-                    <td>C.C</td>
-                    <td>
-                        <div class="btn-group">
-                            <a href="" style="color: #00723d" id="editTipoDoc">
-                                <i class="fa fa-pencil-alt mr-2"></i>
-                            </a>
-                            <a href="" style="color: #00723d" id="verTipoDoc">
-                                 <i class="fa fa-eye mr-2"></i>
-                             </a>
-                             <a href="" style="color: #00723d" id="borrarTipoDoc">
-                                 <i class="fa fa-trash"></i>
-                             </a>
-                        </div>
-                    </td>
-                </tr>
+                @empty
+
+                @endforelse
+
 
             </tbody>
         </table>

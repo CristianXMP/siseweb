@@ -38,4 +38,9 @@ class Student extends Model
         return $this->hasMany(User::class);
     }
 
+    public function Advertisements(){
+
+        return $this->hasMany(Advertisement::class);
+    }
+
 }

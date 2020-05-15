@@ -33,7 +33,7 @@
 
             <div class="col-md-12 col-lg-6 form-left">
                 <div class="form-group row" style="margin-top: 1rem;">
-                    <label for="col-sm-4 col-form-label">Abreviatura:</label>
+                    <label for="col-sm-4 col-form-label">Variacion:</label>
                     <div class="col-sm-8 input-group ">
                         <input type="text" class="form-control" name="abreviatura" value="{{$CourseEdit->variation}}">
                     </div>

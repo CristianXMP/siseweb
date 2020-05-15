@@ -58,9 +58,8 @@ class TeacherController extends Controller
             'municipio' => 'required',
             'tipo_de_documento' => 'required',
             'profesion' => 'required',
-            'numero_de_documento' => 'required|min:10|max:10',
-            'fecha_de_expedicion' => '',
-            'fecha_de_nacimiento' => ''
+            'numero_de_documento' => 'required|min:10|max:10|unique:teachers,number_document',
+
         ]);
 
         if ($validator->fails()) {
@@ -99,7 +98,7 @@ class TeacherController extends Controller
     {
         //
 
-        $TeacherShow = Teacher::find($id);
+        $TeacherShow = Teacher::findOrfail($id);
         return view('teachers.show', compact('TeacherShow'));
     }
 
@@ -136,8 +135,7 @@ class TeacherController extends Controller
             'tipo_de_documento' => 'required',
             'profesion' => 'required',
             'numero_de_documento' => 'required|min:10|max:10',
-            'fecha_de_expedicion' => 'required',
-            'fecha_de_nacimiento' => 'required'
+
         ]);
 
         if ($validator->fails()) {

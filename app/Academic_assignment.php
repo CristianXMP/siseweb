@@ -31,4 +31,11 @@ class Academic_assignment extends Model
     public function course(){
         return $this->belongsTo(Course::class);
     }
+
+    public function Advertisements()
+    {
+
+        return $this->hasMany(Advertisement::class);
+    }
+
 }

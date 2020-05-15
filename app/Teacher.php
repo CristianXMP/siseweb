@@ -38,8 +38,13 @@ class Teacher extends Model
     }
 
     //1 - m user - teacher
-    
+
     public function user(){
         return $this->hasMany(User::class);
+    }
+
+    public function Advertisements(){
+
+        return $this->hasMany(Advertisement::class);
     }
 }

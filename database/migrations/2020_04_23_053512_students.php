@@ -23,8 +23,8 @@ class Students extends Migration
             $table->unsignedInteger('city_id');
             $table->unsignedInteger('document_type_id');
             $table->string('number_document', 30);
-            $table->date('expedition_date');
-            $table->date('birth_date');
+            $table->date('expedition_date')->nullable();
+            $table->date('birth_date')->nullable();
             $table->string('student')->default('student');
             $table->boolean('is_user')->default(false);
             $table->unsignedInteger('course_id');
