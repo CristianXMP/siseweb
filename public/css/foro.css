@@ -91,3 +91,110 @@
 .card-foro .card-footer-foro a{
     margin-right: 20px;
 }
+
+.content-foro{
+    padding: 25px;
+    background-color: #FFF;
+    border-radius: .5rem;
+    border: 1px solid #e4e4e4;
+    height: max-content;
+}
+
+.content-foro .main-content-foro h2{
+    font-weight: bold;
+    color: #2a3b47;
+    letter-spacing: .015em;
+    font-size: 1.50rem;
+}
+
+.content-foro .main-content-foro p{
+    margin-top: 15px;
+    font-size: 1.15em;
+}
+.content-foro .main-content-foro .text-date{
+    font-weight: 600;
+    font-size: 13px;
+    color: #939393;
+}
+.option-foro{
+    display: flex;
+}
+.option-foro a{
+    margin-right: 20px;
+}
+.answer-form{
+    margin: 30px 0;
+    background-color: #fff;
+    width: 100%;
+    border: 1px solid #d2d2d2;
+    border-radius: 10px;
+    padding: 20px;
+}
+.answer-form textarea{
+    height: 120px;
+    border-radius: 5px;
+    border: none;
+    background-color: #f8f9fc;
+    color: rgb(15, 15, 15) !important;
+    font-size: 16px;
+}
+.answer-form textarea:focus{
+    outline: none;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    height: 90px !important;
+    border-radius: 5px !important;
+    border: none !important;
+    background-color: #f8f9fc !important;
+}
+.answer{
+    margin: 30px 0;
+    display: flex;
+}
+.answer img{
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+}
+.answer .comentario{
+    width: 100%;
+    background-color: #fdfdfd;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    border: 1px solid #e4e4e4;
+}
+
+.answer .comentario::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -.45rem;
+    width: 12px;
+    height: 12px;
+    background: #fdfdfd;
+    border-top: 1px solid #e4e4e4;
+    border-left: 1px solid #e4e4e4;
+    transform: translate(-50%,1.25rem) rotate(-45deg);
+}
+
+.answer .comentario .comentario-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comentario .comentario-head h3{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.comentario .comentario-head p{
+    font-weight: 600;
+    font-size: 13px;
+    color: #939393;
+}
+.comentario .text-comment{
+    font-size: 15px;
+}

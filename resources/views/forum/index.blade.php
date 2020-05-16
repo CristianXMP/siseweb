@@ -2,7 +2,7 @@
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/style-nav.css') }}">
-<link rel="stylesheet" href="{{ asset('css/foro.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/foro.css') }}">
 @endsection
 
 @section('content')
