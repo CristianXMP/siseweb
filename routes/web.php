@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', 'Auth\LoginController@showLoginForm')->middleware('guest');
+Route::get('/', 'Auth\LoginController@showLoginForm');
 
 Route::post('/', 'Auth\LoginController@login')->name('login');
 
@@ -31,6 +31,7 @@ Route::get('/foro', function(){
 });
 
 Auth::routes();
+
 route::get('/prueba', function(){
 
     $asignacion = Teacher::find(1);
@@ -51,10 +52,22 @@ Route::middleware(['auth','role:Teacher'])->group(function(){
 
 
     Route::get('/Profesor', 'HomeController@educacion')->name('Profesor');
+    //curso y anumcios
     Route::get('/cursoProfesor/{subject_id}', 'HomeController@curso')->name('cursoProfesor');
-    Route::get('/anunciosProfesor', 'HomeController@anuncio')->name('anunciosProfesor');
+    Route::get('/anunciosProfesor', 'HomeController@anuncio')->name('anuncios.index');
     Route::post('/PublicarAnuncio', 'AdvertisementsController@publicar')->name('publicar');
     Route::get('/likes/{like}', 'AdvertisementsController@likes')->name('likes');
+
+    //foros
+
+    route::get('foroprofesor/{subject_id}', 'homeController@forum')->name('foro.teacher');
+
+    //forums pliblic
+
+    Route::post('/PublicForums/{id}', 'ForumsController@public_forum')->name('public.forums');
+    Route::get('/comentLikes/{id}', 'ForumsController@coments_likes')->name('forum.coment');
+    Route::post('/PublicComent/{id}', 'ForumsController@public_coment')->name('public.coment');
+    Route::get('/likecoment/{id}', 'ForumsController@like_coment')->name('forum.like');
 
 
 
@@ -68,6 +81,14 @@ Route::middleware(['auth','role:Student'])->group(function(){
     Route::get('/Estudiante', 'HomeController@educacion')->name('Estudiante');
     Route::get('/cursoEstudiante/{subject_id}', 'HomeController@curso')->name('cursoEstudiante');
     Route::get('/likes/{like}', 'AdvertisementsController@likes')->name('likes');
+
+
+    //foros
+
+    route::get('foroestudiante/{subject_id}', 'homeController@forum')->name('foro.student');
+     Route::get('/comentstudent/{id}', 'ForumsController@coments_likes')->name('forum.comentstudent');
+     Route::post('/PublicComentstudent/{id}', 'ForumsController@public_coment')->name('public.comentstudent');
+     Route::get('/likecomentstudent/{id}', 'ForumsController@like_coment')->name('forum.likestudent');
 
 
 });

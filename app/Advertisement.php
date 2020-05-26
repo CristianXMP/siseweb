@@ -32,5 +32,9 @@ class Advertisement extends Model
     return $this->belongsTo(Subject::class);
 
    }
+    public function likeadvertisements(){
+        
+        return $this->hasMany(likeadvertisement::class);
+    }
 
 }
