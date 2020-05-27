@@ -38,4 +38,11 @@ class Academic_assignment extends Model
         return $this->hasMany(Advertisement::class);
     }
 
+    //relacion de carga academica y foro
+
+    public function Forums()
+    {
+        $this->hasMany(Forum::class);
+    }
+
 }

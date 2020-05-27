@@ -6,6 +6,8 @@ use App\Academic_assignment;
 use App\Advertisement;
 use App\Advertisements;
 use App\Course;
+use App\Forum;
+use App\likeadvertisement;
 use App\Student;
 use App\Subject;
 use App\Teacher;
@@ -45,6 +47,12 @@ class HomeController extends Controller
 
     }
 */
+
+    public function anuncio(){
+
+        return view('courses_home.course');
+
+    }
 
     public function educacion()  {
 
@@ -104,16 +112,11 @@ class HomeController extends Controller
 
             // recolecion de los datos de anuncios
 
-            $subjectInfo = Subject::findOrfail($subject_id);
+            $anuncios = Subject::findOrfail($subject_id)
+            ->Advertisements()
+            ->orderBy('created_at', 'desc')->paginate(5);
 
-            $anuncios = $subjectInfo->Advertisements;
-
-
-
-          return view('courses_home.course', compact('course','teacher_info','subject','anuncios'));
-
-
-
+            return  view('courses_home.course', compact('course','teacher_info','subject','anuncios'));
 
         }
 
@@ -128,7 +131,11 @@ class HomeController extends Controller
                 $course = Course::find($AsignacionAcademica[0]['course_id']);
                 $teacher_info = Teacher::findorfail($AsignacionAcademica[0]['teacher_id']);
                 $subjectInfo = Subject::findOrfail($subject_id);
-                $anuncios = $subjectInfo->Advertisements;
+
+                $anuncios = Subject::findOrfail($subject_id)
+                ->Advertisements()
+                ->orderBy('created_at', 'desc')->paginate(5);
+
                 $cargaacademica = $course->academic_assignments;
                 $subject = Subject::findorfail($subject_id);
 
@@ -138,6 +145,40 @@ class HomeController extends Controller
          }
 
     }
+
+
+    public function forum($subject_id)
+    {
+
+        if (Auth()->user()->type_user == 'Student') {
+
+            $CargaAcademica = Academic_assignment::where('subject_id', $subject_id )->get();
+            $teacher_id = $CargaAcademica[0]['teacher_id'];
+            $teacher_info = Teacher::findOrfail($teacher_id);
+            $course = Course::findOrfail($CargaAcademica[0]['course_id']);
+            $subject = Subject::findOrfail($CargaAcademica[0]['subject_id']);
+            $forums = Forum::where('academic_assignment_id', $CargaAcademica[0]['id'])->get();
+            return view('forum.index', compact('teacher_info','course','subject','forums'));
+
+        }
+
+        if (Auth()->user()->type_user == 'Teacher') {
+
+            $CargaAcademica = Academic_assignment::where('subject_id', $subject_id )->get();
+            $teacher_id = $CargaAcademica[0]['teacher_id'];
+            $teacher_info = Teacher::findOrfail($teacher_id);
+            $course = Course::findOrfail($CargaAcademica[0]['course_id']);
+            $subject = Subject::findOrfail($CargaAcademica[0]['subject_id']);
+            $forums = Forum::where('academic_assignment_id', $CargaAcademica[0]['id'])->get();
+
+            return view('forum.index', compact('teacher_info','course','subject','forums' ));
+
+        }
+
+    }
+
+
+
 
 
 

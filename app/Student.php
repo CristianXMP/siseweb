@@ -43,4 +43,22 @@ class Student extends Model
         return $this->hasMany(Advertisement::class);
     }
 
+    public function likeadvertisements(){
+        return $this->hasMany(likeadvertisement::class);
+    }
+
+    //relacion con la tabla Forums
+
+    public function Forums()
+    {
+        $this->hasMany(Forum::class);
+    }
+
+
+    public function Forum_coments()
+    {
+      return  $this->hasMany(Forum_coment::class);
+    }
+
+
 }

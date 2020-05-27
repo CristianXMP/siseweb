@@ -2,75 +2,109 @@
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/style-nav.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/foro.css') }}">
+<link rel="stylesheet" href="{{ asset('css/foro.css') }}">
+
+<style>
+    .coments {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+</style>
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-md-4">
-            <div class="title-course shadow-sm">
-                <h6>Matematicas 7-A</h6>
-                <p>Profesor: Pedrito Perez</p>
-            </div>
+<div class="row">
 
-            <div class="menu-coures mt-5 shadow">
-                <ul>
-                    <li><a href="">Anuncios</a></li>
-                    <li><a href="">Tareas</a></li>
-                    <li><a href="">Foros</a></li>
-                    <li><a href="">Examenes</a></li>
-                </ul>
-            </div>
+    <div class="col-md-4">
+        <div class="title-course shadow-sm">
+            <h6 >{{ $subject->nombre }}: {{ $course->course }} - {{ $course->variation }}</h6>
+            <p >Profesor: {{ $teacher_info->first_name }} {{ $teacher_info->last_name }} </p>
+
         </div>
-        
+
+        <div class="menu-coures mt-5 shadow">
+            <ul>
+                @if (Auth::user()->type_user == "Teacher")
+                <li><a href="{{ route('cursoProfesor', $subject->id) }}">Anuncios</a></li>
+                @endif
+                @if (Auth::user()->type_user == "Student")
+                <li><a href="{{ route('cursoEstudiante', $subject->id) }}">Anuncios</a></li>
+                @endif
+
+                <li><a href="">Tareas</a></li>
+
+                @if (Auth::user()->type_user == "Student")
+                <li><a href="{{ route('foro.student', $subject->id) }}">Foros</a></li>
+                @endif
+
+                @if (Auth::user()->type_user == "Teacher")
+                <li><a href="{{ route('foro.teacher', $subject->id) }}">Foros</a></li>
+                @endif
+
+                <li><a href="">Examenes</a></li>
+            </ul>
+        </div>
+    </div>
         <div class="col-md-8">
             <h2 class="mb-4">Foros</h2>
 
+            @if (Auth::user()->type_user == "Teacher")
+
             <div class="card-new-foro shadow-sm">
                 <h3>Crear Foro</h3>
-                <form action="">
-                    <input type="text" placeholder="Titulo del foro">
-                    <textarea name="" id="" cols="30" rows="10" placeholder="¿Que quisieras publicar?" ></textarea>
+                <form action="{{ Route('public.forums', $subject->id) }}" method="POST">
+                    @csrf
+                    <input type="text" name="title" placeholder="Titulo del foro">
+                    <textarea name="content" id="" cols="30" rows="10" placeholder="¿Que quisieras publicar?" ></textarea>
                     <button type="submit" class="btn btn-primary">Publicar</button>
                 </form>
 
             </div>
 
-            <div class="card-foro shadow-sm">
-            
-                <div class="card-head-foro">
-                    <h3>Title Foro</h3>
-                    <p>publicado el 20/20/2002</p>
-                </div>
-                <div class="card-body-foro">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam consequuntur, officiis nam error accusamus nulla veniam voluptatibus excepturi porro doloribus..</p>
-                </div>
-                <div class="card-footer-foro">
-                    <a href="">3 Me gusta</a>
-                    <a href="">3 Comentarios</a>
-                </div>
-                <a href="#" class="foro-anchor"></a>
-            </div>
+            @endif
+
+            @foreach ($forums as $item)
 
             <div class="card-foro shadow-sm">
-            
+
                 <div class="card-head-foro">
-                    <h3>Title Foro</h3>
-                    <p>publicado el 20/20/2002</p>
+                    <h3>{{ $item->title }}</h3>
+                    <p>publicado el {{ $item->created_at }}</p>
                 </div>
                 <div class="card-body-foro">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam consequuntur, officiis nam error accusamus nulla veniam voluptatibus excepturi porro doloribus..</p>
+                    <p>{{ $item->content }} {{ $item->id }}</p>
                 </div>
                 <div class="card-footer-foro">
-                    <a href="">3 Me gusta</a>
-                    <a href="">3 Comentarios</a>
+                    @if (Auth::user()->type_user == "Student")
+                    <a href="{{ route('forum.likestudent', $item->id) }}">{{ $item->likecount }} Me gusta</a>
+                    <a href="{{ route('forum.comentstudent', $item->id) }}" class=""> <i class="far fa-comments"></i> {{ $item->comentcount }} Comentarios</a>
+                    @endif
+                    @if (Auth::user()->type_user == "Teacher")
+                    <a href="{{ route('forum.like', $item->id) }}">{{ $item->likecount }} Me gusta</a>
+                    <a href="{{ route('forum.coment', $item->id) }}" class=""> <i class="far fa-comments"></i> {{ $item->comentcount }} Comentarios</a>
+                    @endif
+
+
                 </div>
-                <a href="#" class="foro-anchor"></a>
+
+
+
             </div>
-            
+            @endforeach
+
+
         </div>
+
+
 
     </div>
 
-    
 @endsection
+
+
+
+

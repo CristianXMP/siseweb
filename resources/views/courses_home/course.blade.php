@@ -9,15 +9,31 @@
     <div class="row">
         <div class="col-md-4">
             <div class="title-course shadow-sm">
-                <h6 >Curso: {{ $course->course }} - {{ $course->variation }}</h6>
-                <p >Profesor: <h6>{{ $teacher_info->first_name }} {{ $teacher_info->last_name }}</h6> </p>
-                <p >Materia: <h6>{{ $subject->nombre }}</h6> </p>
+                <h6 >{{ $subject->nombre }}: {{ $course->course }} - {{ $course->variation }}</h6>
+                <p >Profesor: {{ $teacher_info->first_name }} {{ $teacher_info->last_name }} </p>
+
             </div>
 
             <div class="menu-coures mt-5 shadow">
                 <ul>
+                    @if (Auth::user()->type_user == "Teacher")
+                    <li><a href="{{ route('cursoProfesor', $subject->id) }}">Anuncios</a></li>
+                    @endif
+                    @if (Auth::user()->type_user == "Student")
+                    <li><a href="{{ route('cursoEstudiante', $subject->id) }}">Anuncios</a></li>
+                    @endif
+
+
                     <li><a href="">Tareas</a></li>
-                    <li><a href="">Foros</a></li>
+
+                @if (Auth::user()->type_user == "Student")
+                <li><a href="{{ route('foro.student', $subject->id) }}">Foros</a></li>
+                @endif
+
+                @if (Auth::user()->type_user == "Teacher")
+                <li><a href="{{ route('foro.teacher', $subject->id) }}">Foros</a></li>
+                @endif
+
                     <li><a href="">Examenes</a></li>
                 </ul>
             </div>
@@ -58,19 +74,27 @@
 
                             <p class="name-anun mr-3">{{ $item->teacher->first_name }} {{ $item->teacher->last_name }} (Profesor)</p>
 
+                            <p class="date-anun">Publicado {{ $item->created_at}}</p>
 
-                        <p class="date-anun">{{ $item->datetime}}</p>
                     </div>
                     <div class="body-anu">
-                        <p>{{ $item->announced }}</p>
+                        <p >{{ $item->announced }}</p>
                     </div>
                     <div class="footer-anu">
+
+                        @if (Auth::user()->type_user == 'Student')
+
                         <form action="{{ Route('likes', $item->id) }}" method="get">
 
-                            <button type="submit" class="btn btn-transparent"> {{ $item->likes}} Me gustas</button>
+                            <button type="submit"  class="btn btn-transparent text-primary"> <i class="far fa-thumbs-up"></i>Me gusta</button>
+
                         </form>
 
-                        <h6 class="text-right">{{ $item->subject->nombre }}</h6>
+                        @endif
+
+
+                        <h6 class="text-primary">{{ $item->likes}} Me gustas</h6>
+
                     </div>
                 </div>
                 @endforeach
@@ -78,6 +102,8 @@
 
 
             </div>
+
         </div>
     </div>
 @endsection
+

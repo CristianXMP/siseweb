@@ -47,4 +47,18 @@ class Teacher extends Model
 
         return $this->hasMany(Advertisement::class);
     }
+
+     //relacion con la tabla Forums
+
+     public function Forums()
+     {
+       return  $this->hasMany(Forum::class);
+     }
+
+
+     public function Forum_coments()
+     {
+       return  $this->hasMany(Forum_coment::class);
+     }
+
 }
