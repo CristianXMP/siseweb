@@ -47,13 +47,13 @@
 
                     <td>
                         <div class="btn-group">
-                            <a href="" style="color: #00723d" id="editTipoDoc">
+                            <a href="" class="color-option" id="editTipoDoc">
                                 <i class="fa fa-pencil-alt mr-2"></i>
                             </a>
-                            <a href="" style="color: #00723d" id="verTipoDoc">
+                            <a href="" class="color-option" id="verTipoDoc">
                                  <i class="fa fa-eye mr-2"></i>
                              </a>
-                             <a href="" style="color: #00723d" id="borrarTipoDoc">
+                             <a href="" class="color-option" id="borrarTipoDoc">
                                  <i class="fa fa-trash"></i>
                              </a>
                         </div>

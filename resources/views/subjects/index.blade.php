@@ -39,8 +39,8 @@
                     <td>{{$item->nombre}}</td>
                     <td>{{$item->abreviatura}}</td>
                    <td>
-                      <div class="btn-group" style="color: #00723d">
-                        <a href="{{route('materias.edit', $item->id)}}" class="btn btn-transparent" style="color: #00723d" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
+                      <div class="btn-group" >
+                        <a href="{{route('materias.edit', $item->id)}}" class="btn btn-transparent color-option" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
                       </div>
                    </td>
                 </tr>

@@ -47,9 +47,9 @@
                 <td>{{$item->working_day}}</td>
                 <td>{{$item->teacher->first_name}} {{$item->teacher->last_name}}</td>
                    <td>
-                      <div class="btn-group" style="color: #00723d">
+                      <div class="btn-group">
 
-                        <a href="{{route('cursos.edit', $item->id)}}" class="btn btn-transparent" style="color: #00723d;padding: 2px;" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
+                        <a href="{{route('cursos.edit', $item->id)}}" class="btn btn-transparent color-option" padding: 2px;" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
 
 
 

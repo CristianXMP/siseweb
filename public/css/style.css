@@ -68,7 +68,7 @@ button{
 }
 
 .navWeb .container-menu .dropdown-menu a:hover{
-    background-color: #00723d !important;
+    background-color: #075a72  !important;
     color: #FFF !important;
 }
 
@@ -91,8 +91,8 @@ button{
 }
 
 .dropdown .dropdown-button:hover{
-    background: #00723d;
-    border: 1px solid #00723d;
+    background: #075a72 ;
+    border: 1px solid #075a72 ;
     border-radius: 5px;
     box-sizing: border-box;
     padding: 7px 5px;
