@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\City;
 use App\Teacher;
+use App\User;
 use App\Type_document;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
@@ -82,9 +84,36 @@ class TeacherController extends Controller
 
             return back()->withToastError('El Estudiante ' . $request->get('primer_nombre') . ' Ya Esta En Los Registros!');
         } else {
-            $TeacherStore->save();
 
-            return redirect('/profesores')->withToastSuccess('Registro exitoso!');
+
+
+        if ($TeacherStore->save()) {
+
+            $RegisterDateUser =  Teacher::all()->last();
+
+            //generamos el usuario para este profesor
+
+            User::create([
+
+                'nombre' => $RegisterDateUser->first_name,
+                'apellidos' => $RegisterDateUser->second_name,
+                'cargo' => 'Profesor',
+                'teacher_id' => $RegisterDateUser->id,
+                'student_id' => null,
+                'cedula'    => $RegisterDateUser->number_document,
+                'cedula_verified_at' => now(),
+                'password' => bcrypt($RegisterDateUser->number_document),
+                'type_user' => 'Teacher',
+                'remember_token' => Str::random(10)
+            ]);
+
+            Teacher::where('is_user', false)
+                ->where('id', $RegisterDateUser->id)
+                ->update(['is_user' => true]);
+
+                return back()->withToastSuccess('Registro y generacion de usuario realizado correctamente!');
+
+        }
         }
     }
 

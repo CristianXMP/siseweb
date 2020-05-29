@@ -6,7 +6,9 @@ use App\City;
 use App\Course;
 use App\Student;
 use App\Type_document;
+use app\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
@@ -80,10 +82,34 @@ class StudentController extends Controller
             'birth_date'       => $request->get('fecha_de_nacimiento'),
             'course_id'        => $request->get('curso'),
         ]);
-            $student->save();
 
-            return redirect('/estudiantes')->withToastSuccess('Registro exitoso!');
+        if ($student->save()) {
 
+            $RegisterDateUser =  Student::all()->last();
+
+            //generamos el usuario para este estudiante
+
+            User::create([
+
+                'nombre' => $RegisterDateUser->first_name,
+                'apellidos' => $RegisterDateUser->second_name,
+                'cargo' => 'Estudiante',
+                'teacher_id' => null,
+                'student_id' => $RegisterDateUser->id,
+                'cedula'    => $RegisterDateUser->number_document,
+                'cedula_verified_at' => now(),
+                'password' => bcrypt($RegisterDateUser->number_document),
+                'type_user' => 'Student',
+                'remember_token' => Str::random(10)
+            ]);
+
+            Student::where('is_user', false)
+                ->where('id', $RegisterDateUser->id)
+                ->update(['is_user' => true]);
+
+                return redirect('/estudiantes')->withToastSuccess('Registro y generacion de usuario realizado correctamente!');
+
+        }
     }
 
     /**

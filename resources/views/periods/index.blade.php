@@ -78,8 +78,8 @@
 
                    <td>
 
-                      <a href="{{route('periodos.edit', $item->id)}}" class="btn btn-transparent color-option"  id="editTipoDo" ><i class="fa fa-pencil-alt"></i></a>
-                      </div> <div class="btn-group">
+                      <a href="{{route('periodos.edit', $item->id)}}" class="btn btn-transparent" style="color: #00723d" id="editTipoDo" ><i class="fa fa-pencil-alt"></i></a>
+                      </div> <div class="btn-group" style="color: #00723d">
 
 
 

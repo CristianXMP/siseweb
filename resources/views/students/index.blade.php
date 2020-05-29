@@ -41,14 +41,14 @@
                     <td>
 
 
-                            <div class="btn-group" >
+                            <div class="btn-group" style="color: #00723d">
                               <form  action="{{route('estudiantes.destroy', $item->id)}}" method="post">
-                              <a href="{{route('estudiantes.edit', $item->id)}}" class="btn btn-transparent color-option" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
-                              <a href="{{route('estudiantes.show', $item->id)}}" class="btn btn-transparent color-option"  id="editTipoDo" ><i class="fas fa-eye mr-2"></i></a>
+                              <a href="{{route('estudiantes.edit', $item->id)}}" class="btn btn-transparent" style="color: #00723d" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
+                              <a href="{{route('estudiantes.show', $item->id)}}" class="btn btn-transparent" style="color: #00723d" id="editTipoDo" ><i class="fas fa-eye mr-2"></i></a>
 
                                   @csrf
                                   @method('DELETE')
-                                  <button type="submit" class="btn btn-transparent color-option" id="borrarTipoDoc" ><i class="fas fa-trash"></i></button>
+                                  <button type="submit" class="btn btn-transparent" style="color: #00723d" id="borrarTipoDoc" ><i class="fas fa-trash"></i></button>
                                 </form>
 
                             </div>

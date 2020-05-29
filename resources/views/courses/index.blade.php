@@ -45,11 +45,16 @@
                 <td>{{$item->id}}</td>
                 <td>{{$item->course}} - °{{$item->variation}}</td>
                 <td>{{$item->working_day}}</td>
-                <td>{{$item->teacher->first_name}} {{$item->teacher->last_name}}</td>
-                   <td>
-                      <div class="btn-group">
+                @if ($item->teacher == "")
+                    <td>No hay director de grupo</td>
+                    @else
+                    <td>{{$item->teacher->first_name}} {{$item->teacher->last_name}}</td>
+                @endif
 
-                        <a href="{{route('cursos.edit', $item->id)}}" class="btn btn-transparent color-option" padding: 2px;" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
+                   <td>
+                      <div class="btn-group" style="color: #00723d">
+
+                        <a href="{{route('cursos.edit', $item->id)}}" class="btn btn-transparent" style="color: #00723d;padding: 2px;" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
 
 
 
