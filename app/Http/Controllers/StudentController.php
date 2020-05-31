@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\City;
 use App\Course;
 use App\Student;
+use App\User;
 use App\Type_document;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
+use illuminate\Support\Str;
 
 class StudentController extends Controller
 {
@@ -80,10 +82,39 @@ class StudentController extends Controller
             'birth_date'       => $request->get('fecha_de_nacimiento'),
             'course_id'        => $request->get('curso'),
         ]);
-            $student->save();
 
-            return redirect('/estudiantes')->withToastSuccess('Registro exitoso!');
 
+
+        if ($student->save()) {
+            $studentDateUser = Student::all()->last();
+            if (User::where('student_id', $studentDateUser->id)->exists()) {
+
+                return back()->withToastError('Este usuario ya existe');
+            } else {
+
+
+                User::create([
+
+                    'nombre' => $studentDateUser->first_name,
+                    'apellidos' => $studentDateUser->second_name,
+                    'cargo' => 'Estudiante',
+                    'teacher_id' => null,
+                    'student_id' => $studentDateUser->id,
+                    'cedula'    => $studentDateUser->number_document,
+                    'cedula_verified_at' => now(),
+                    'password' => bcrypt($studentDateUser->number_document),
+                    'type_user' => 'Student',
+                    'remember_token' => Str::random(10)
+
+                ]);
+
+                Student::where('is_user', false)
+                    ->where('id', $studentDateUser->id)
+                    ->update(['is_user' => true]);
+
+                return redirect('/estudiantes')->withToastSuccess('Registro y generacion de usuario exitoso');
+            }
+        }
     }
 
     /**

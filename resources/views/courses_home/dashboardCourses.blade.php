@@ -8,9 +8,8 @@
 <div class="row">
     @if (Auth::user()->type_user == "Teacher")
 
-    @foreach ($cargaacademica as $item)
 
-
+    @forelse ($cargaacademica as $item)
     <div class="col-lg-4 col-md-6 col-sm-12">
         <div class="card shadow" style="width: 20rem;">
             <a href="{{ route('cursoProfesor', $item->subject_id) }}">
@@ -28,16 +27,20 @@
             </div>
           </div>
     </div>
+    @empty
+    <h3 class="text-center text-primary">No tienes asignacion academica.</h3>
+    @endforelse
 
-    @endforeach
+
+
 
     @else
 
     @if (Auth::user()->type_user == "Student")
 
-    @foreach ($materias as $item)
 
 
+    @forelse ($materias as $item)
     <div class="col-lg-4 col-md-6 col-sm-12">
         <div class="card shadow" style="width: 20rem;">
             <a href="{{ route('cursoEstudiante', $item->subject->id) }}">
@@ -52,8 +55,9 @@
             </div>
           </div>
     </div>
-
-    @endforeach
+    @empty
+    <h3 class="text-center text-primary">Sin materias asignadas.</h3>
+    @endforelse
 
     @endif
 

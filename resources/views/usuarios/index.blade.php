@@ -15,25 +15,24 @@
         <div>
             <a class=" btn btn-main" href="{{ route('create') }}">
                 <i class="fa fa-plus mr-1"></i>
-                Nuevo
+                Administrar usuarios
             </a>
         </div>
     </div>
 
     <div class="table-responsive">
-        <table class="table table-stripe " id="tablaTipoDocuemnto">
-            <thead>
+        <table class="table table-stripe " id="tablaEstudiante">
+            <thead class="text-left">
                 <tr>
                     <th>ID</th>
                     <th>nombre</th>
                     <th>Apellidos</th>
                     <th>Cargo</th>
                     <th>Cedula</th>
-                    <th>Tipo de usuario</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-left">
                 @forelse ($user as $item)
                 <tr>
 
@@ -42,18 +41,15 @@
                             <td>{{ $item->apellidos }}</td>
                             <td>{{ $item->cargo }}</td>
                             <td>{{ $item->cedula }}</td>
-                            <td>{{ $item->type_user }}</td>
 
 
                     <td>
-                        <div class="btn-group">
-                            <a href="" class="color-option" id="editTipoDoc">
-                                <i class="fa fa-pencil-alt mr-2"></i>
+                        <div class="btn-group float-center">
+                            <a href="{{ route('restore.user', $item->id) }}" class="color-option" id="editTipoDoc">
+                                <i class="fas fa-redo-alt mr-4"></i>
                             </a>
-                            <a href="" class="color-option" id="verTipoDoc">
-                                 <i class="fa fa-eye mr-2"></i>
-                             </a>
-                             <a href="" class="color-option" id="borrarTipoDoc">
+
+                             <a href="{{ route('delete.user', $item->id) }}" class="color-option" id="borrarTipoDoc">
                                  <i class="fa fa-trash"></i>
                              </a>
                         </div>
@@ -70,5 +66,7 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset('js/typeDocument.js') }}"></script>
+    <script src="{{ asset('js/student.js') }}"></script>
 @endsection
+
+

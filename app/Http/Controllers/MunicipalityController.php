@@ -22,7 +22,8 @@ class MunicipalityController extends Controller
     public function index()
     {
         $cities = City::all();
-        return view('municipios.index', compact('cities'));
+        $departament = Departament::all();
+        return view('municipios.index', compact('cities','departament'));
     }
 
     /**
