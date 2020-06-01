@@ -184,6 +184,14 @@ class TeacherController extends Controller
         $TeacherUpdate->birth_date      =  $request->get('fecha_de_nacimiento');
         $TeacherUpdate->save();
 
+        User::where('teacher_id', $id)
+        ->update([
+            'nombre' => $request->get('primer_nombre'),
+            'apellidos' => $request->get('apellidos'),
+            'cedula' => $request->get('numero_de_documento'),
+            'password' => bcrypt($request->get('numero_de_documento'))
+            ]);
+
         return redirect('/profesores')->withToastSuccess('Registro Actualizado Correcatamente!');
     }
 
@@ -203,6 +211,7 @@ class TeacherController extends Controller
             $asignacion_curso = DB::table('courses')->select('course')->where('teacher_id', '=', $id)->get();
 
             $asignacion_academica = DB::table('academic_assignments')->select('course_id')->where('teacher_id', '=', $id)->get();
+            
 
 
         if (count($asignacion_curso) > 0 || count($asignacion_academica) > 0) {

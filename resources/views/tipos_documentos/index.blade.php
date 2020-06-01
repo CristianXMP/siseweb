@@ -21,7 +21,7 @@
     </div>
 
     <div class="table-responsive">
-        <table class="table table-stripe " id="tablaTipoDocuemnto">
+        <table class="table table-stripe table-sm" id="tablaTipoDocuemnto">
             <thead>
                 <tr>
                     <th>ID</th>

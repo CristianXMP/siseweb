@@ -78,14 +78,16 @@
                 <div class="card-body-foro">
                     <p>{{ $item->content }} {{ $item->id }}</p>
                 </div>
+                <hr class="my-0 mt-5">
                 <div class="card-footer-foro">
                     @if (Auth::user()->type_user == "Student")
-                    <a href="{{ route('forum.likestudent', $item->id) }}">{{ $item->likecount }} Me gusta</a>
-                    <a href="{{ route('forum.comentstudent', $item->id) }}" class=""> <i class="far fa-comments"></i> {{ $item->comentcount }} Comentarios</a>
+                    <a class="btn btn-transparent" href="{{ route('forum.likestudent', $item->id) }}"><i class="far fa-thumbs-up"></i> {{ $item->likecount }} Me gusta</a>
+                    <a class="btn btn-transparent text-primary"  href="{{ route('forum.comentstudent', $item->id) }}" class=""> <i class="far fa-comments"></i> {{ $item->comentcount }} Comentarios</a>
                     @endif
                     @if (Auth::user()->type_user == "Teacher")
-                    <a href="{{ route('forum.like', $item->id) }}">{{ $item->likecount }} Me gusta</a>
-                    <a href="{{ route('forum.coment', $item->id) }}" class=""> <i class="far fa-comments"></i> {{ $item->comentcount }} Comentarios</a>
+                    <a class="btn btn-transparent text-primary" href="{{ route('forum.like', $item->id) }}"><i class="fas fa-thumbs-up"></i>  {{ $item->likecount }} Me gusta</a>
+                    <a class="btn btn-transparent text-primary"  href="{{ route('forum.coment', $item->id) }}" > <i class="fas fa-comment-alt"></i> {{ $item->comentcount }} Comentarios</a>
+                    <a class="btn btn-transparent text-primary"  href="{{ route('forum.coment', $item->id) }}" > <i class="fas fa-users"></i> 43 Participantes</a>
                     @endif
 
 

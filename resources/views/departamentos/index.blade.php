@@ -34,7 +34,7 @@
     </div>
 
     <div class="table-responsive">
-        <table class="table" id="tablaDepartamento">
+        <table class="table  table-sm" id="tablaDepartamento">
             <thead>
                 <tr>
                     <th width="10px">ID</th>
@@ -54,7 +54,7 @@
                     <td>{{$item->pais->nombre}}</td>
                    <td>
                       <div class="btn-group">
-                        <a href="{{route('departamentos.edit', $item->id)}}" class="btn btn-transparent color-option" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
+                        <a href="{{route('departamentos.edit', $item->id)}}" class="btn btn-transparent color-option"  style="padding: 2px;" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
                       </div>
 
                    </td>

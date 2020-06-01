@@ -3,6 +3,14 @@
         <div class="container-menu">
             <div class="dropdown">
                 <button class="dropdown-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                onclick="location.href='{{ route('Admin') }}'"
+                >
+                <i class="fas fa-home"></i>
+                    Inicio
+                </button>
+            </div>
+            <div class="dropdown">
+                <button class="dropdown-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                 onclick="location.href='{{ route('periodos.index') }}'"
                 >
                 <i class="far  fa-calendar"></i>

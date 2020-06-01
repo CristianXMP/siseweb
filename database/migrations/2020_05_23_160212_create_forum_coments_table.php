@@ -18,6 +18,8 @@ class CreateForumComentsTable extends Migration
 
             $table->unsignedInteger('forum_id');
             $table->foreign('forum_id')->references('id')->on('forums');
+            $table->unsignedInteger('student_id')->nullable();
+            $table->foreign('student_id')->references('id')->on('students');
             $table->string('name_user');
             $table->string('type_user');
             $table->string('coment', 255);

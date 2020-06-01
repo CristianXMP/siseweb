@@ -29,9 +29,14 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-8 info-user">
-                            <h2 class="text-primary text-uppercase">{{ Auth::user()->nombre }} {{ Auth::user()->apellidos }}</h2>
+                            @if (Auth::user()->type_user == "Admin")
+                            Administrador:
+                            @endif
+                            <h2 class="title text-uppercase"> {{ Auth::user()->nombre }} {{ Auth::user()->apellidos }}
 
-                            <a class="btn btn-success" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            </h2>
+
+                            <a class="btn btn-logout" href="{{ route('logout') }}" onclick="event.preventDefault();
                                           document.getElementById('logout-form').submit();">
                                 Salir
                                 <i class="fas fa-sign-out-alt"></i>
@@ -63,34 +68,37 @@
                                     <div class="row">
 
                                         <div class="col-sm-12 d-flex">
-                                            <div class="mr-auto p-2"><h5 class="text-primary text-uppercase">{{ Auth::user()->nombre }} {{ Auth::user()->apellidos }}</h5></div>
+                                            <div class="mr-auto p-2">
+                                                @if (Auth::user()->type_user == "Admin")
+                                                Administrador:
+                                                @endif
+                                                <h5 class="title text-uppercase">{{ Auth::user()->nombre }}
+                                                    {{ Auth::user()->apellidos }}</h5>
+
+                                            </div>
                                             <div class="p-2">
-                                                <form action="{{ route('logout') }}" method="POST" >
+                                                <form action="{{ route('logout') }}" method="POST">
                                                     @csrf
-                                                    <button class="btn btn-success" type="submit">Salir
+                                                    <button class="btn btn-logout" type="submit">Salir
                                                         <i class="fas fa-sign-out-alt"></i></button>
                                                 </form>
                                             </div>
                                         </div>
 
-
-
-                                        </div>
-
-
-                                        {{-- Component navbar --}}
-                                        @component('components/navbar')
-
-                                        @endcomponent
                                     </div>
+
+                                    {{-- Component navbar --}}
+                                    @component('components/navbar')
+
+                                    @endcomponent
                                 </div>
-                            </nav>
                         </div>
+                        </nav>
                     </div>
                 </div>
+        </div>
 
-            </header>
-
+        </header>
 
         <div class="row">
             <div class="col-12 col-md-4 col-lg-3 d-none d-md-block" style="    margin-top: 30px;

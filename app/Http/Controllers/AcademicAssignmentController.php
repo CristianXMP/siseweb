@@ -10,6 +10,8 @@ use App\Teacher;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+
 
 class AcademicAssignmentController extends Controller
 {
@@ -150,9 +152,17 @@ class AcademicAssignmentController extends Controller
     {
         //
 
-        $asignacion = Academic_assignment::find($id);
-        $asignacion->delete();
+
+        $foros = DB::table('forums')->where('academic_assignment_id', '=', $id)->get();
+
+        if (count($foros) > 0) {
+            return redirect('/asignaciones')->withToastError('No se completo la accion ya que la carga academica tiene foros publicados.');
+        }else{
+            $asignacion = Academic_assignment::find($id);
+            $asignacion->delete();
 
         return redirect('/asignaciones')->withToastSuccess('Asignacion Eliminada Correcatamente!');
+        }
+        /**/
     }
 }

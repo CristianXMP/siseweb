@@ -184,6 +184,17 @@ class StudentController extends Controller
         $studentUpdate->course_id       =  $request->get('curso');
         $studentUpdate->save();
 
+        //update usuario
+
+        User::where('student_id', $id)
+        ->update([
+            'nombre' => $request->get('primer_nombre'),
+            'apellidos' => $request->get('apellidos'),
+            'cedula' => $request->get('numero_de_documento'),
+            'password' => bcrypt($request->get('numero_de_documento'))
+            ]);
+
+
         return redirect('/estudiantes')->withToastSuccess('Registro Actualizado Correcatamente!');
     }
 

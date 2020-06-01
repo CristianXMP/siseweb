@@ -21,7 +21,7 @@
     </div>
 
     <div class="table-responsive">
-        <table class="table table-stripe " id="tablaEstudiante">
+        <table class="table table-stripe table-sm" id="tablaEstudiante">
             <thead class="text-left">
                 <tr>
                     <th>ID</th>
@@ -45,11 +45,11 @@
 
                     <td>
                         <div class="btn-group float-center">
-                            <a href="{{ route('restore.user', $item->id) }}" class="color-option" id="editTipoDoc">
+                            <a href="{{ route('restore.user', $item->id) }}" class="color-option"  style="padding: 2px;" id="editTipoDoc">
                                 <i class="fas fa-redo-alt mr-4"></i>
                             </a>
 
-                             <a href="{{ route('delete.user', $item->id) }}" class="color-option" id="borrarTipoDoc">
+                             <a href="{{ route('delete.user', $item->id) }}" class="color-option"  style="padding: 2px;" id="borrarTipoDoc">
                                  <i class="fa fa-trash"></i>
                              </a>
                         </div>
