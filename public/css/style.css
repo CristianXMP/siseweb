@@ -35,7 +35,6 @@ button{
     color: white !important;
     font-size: 14px;
 }
-
 .header-mobile {
     background-color: #F0F0F0;
 }
@@ -58,17 +57,17 @@ button{
 }
 #divNavigationView{
     padding: 15px;
-   /* border-radius: 1rem;*/
+   /* border-radius: 1rem; */
 }
 .navWeb{
     border: 1px solid #C8C8C8;
-    /*border-radius: 30px;*/
+    border-radius: 10px;
     background: white;
     padding: 20px 15px;
 }
 
 .navWeb .container-menu .dropdown-menu a:hover{
-    background-color: #00723d !important;
+    background-color: #075a72  !important;
     color: #FFF !important;
 }
 
@@ -91,8 +90,8 @@ button{
 }
 
 .dropdown .dropdown-button:hover{
-    background: #00723d;
-    border: 1px solid #00723d;
+    background: #075a72 ;
+    border: 1px solid #075a72 ;
     border-radius: 5px;
     box-sizing: border-box;
     padding: 7px 5px;
