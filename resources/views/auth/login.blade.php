@@ -15,7 +15,7 @@
             <div id="login-box-body">
                 <div class="logo-login">
                     <a href="/">
-                        <img src="{{ asset('img/logo-opensoft.png') }}" class="img-responsive">
+                        <img src="{{ asset('img/siseweb.png') }}" class="img-responsive">
                     </a>
                 </div>
                 <h2>Aula Virtual</h2>
