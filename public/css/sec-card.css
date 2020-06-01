@@ -1,14 +1,31 @@
 
 .card{
     border: none !important;
-    background-color: rgba(0,0,0,0);
+    border-top: 4px solid #7B68EE !important;
+    background-color: #FFF;
     border-radius: 1rem !important;
     margin-top: 2.5rem !important;
+    color: #343434 !important;
+}
+.panel.card-linked{
+    /* position: relative; */
+}
+a.card-link {
+    /* position: absolute; */
+    top: 0; left: 0;
+    height: 100%; width: 100%;
+}
+a.card-link:hover{
+    text-decoration: none;
 }
 .card-img-top{
     border-top-left-radius: calc(1rem - 1px) !important;
     border-top-right-radius: calc(1rem - 1px) !important;
     border: none !important;
+}
+.card-body{
+    color: #544D61;
+    padding: 1rem !important;
 }
 .card-body h5{
     font-size: 1rem !important;
