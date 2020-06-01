@@ -85,7 +85,7 @@ class RegisterController extends Controller
 
                             'nombre' => $student->first_name,
                             'apellidos' => $student->second_name,
-                            'cargo' => '',
+                            'cargo' => 'Estudiante',
                             'teacher_id' => null,
                             'student_id' => $student->id,
                             'cedula'    => $student->number_document,
@@ -211,13 +211,51 @@ class RegisterController extends Controller
 
 
     public function restore($id){
+        $user = User::findorfail($id);
+        User::where('id', $id)
+        ->update(['password' =>  bcrypt($user->cedula)]);
 
-        
+        return back()->withToastSuccess('Usuario restaurado correctamente');
+
+
+
     }
 
     public function destroy($id){
 
+        $user = User::findorfail($id);
 
+        if ($user->type_user == "Admin") {
+
+            return back()->withToastError('Los usuarios administradores no se pueden eliminar');
+        }
+
+
+        if ($user->type_user == "Student") {
+
+            Student::where('is_user', true)
+            ->where('id', $user->student_id)
+            ->update(['is_user' => false]);
+
+            $user->delete();
+
+            return back()->withToastSuccess('Usuario desactivado');
+
+
+        }
+
+        if ($user->type_user == "Teacher") {
+
+            Teacher::where('is_user', true)
+            ->where('id', $user->teacher_id)
+            ->update(['is_user' => false]);
+
+            $user->delete();
+
+            return back()->withToastSuccess('Usuario desactivado');
+
+
+        }
 
     }
 }

@@ -20,7 +20,7 @@
     </div>
 
     <div class="table-responsive">
-        <table class="table table-stripe " id="tablaProfesor">
+        <table class="table table-stripe table-sm " id="tablaProfesor">
             <thead>
                 <tr>
                     <th>ID</th>

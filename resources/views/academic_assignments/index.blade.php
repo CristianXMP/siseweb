@@ -22,7 +22,7 @@
     </div>
 
     <div class="table-responsive">
-        <table class="table" id="tablaAsignacion">
+        <table class="table table-sm text-center" id="tablaAsignacion">
             <thead>
                 <tr>
                     <th width="10px">ID</th>
@@ -45,10 +45,10 @@
                    <td>
                       <div class="btn-group" style="color: #00723d">
                         <form  action="{{route('asignaciones.destroy', $item->id)}}" method="post">
-                            <a href="{{route('asignaciones.edit', $item->id)}}" class="btn btn-transparent" style="color: #00723d" id="editTipoDo" ><i class="fa fa-pencil-alt"></i></a>
+                            <a href="{{route('asignaciones.edit', $item->id)}}" class="btn btn-transparent color-option"  style="padding: 2px;" id="editTipoDo" ><i class="fa fa-pencil-alt"></i></a>
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-transparent" style="color: #00723d" id="borrarTipoDoc" ><i class="fas fa-trash"></i></button>
+                                <button type="submit" class="btn btn-transparent color-option"  style="padding: 2px;" id="borrarTipoDoc" ><i class="fas fa-trash"></i></button>
                               </form>
                     </div>
                    </td>

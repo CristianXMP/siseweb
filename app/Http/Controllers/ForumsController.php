@@ -57,7 +57,7 @@ class ForumsController extends Controller
 
     public function coments_likes($id)
     {
-       
+
         $GetForum = Forum::findorfail($id);
         $GetAsignament = Academic_assignment::findorfail($GetForum->academic_assignment_id);
 
@@ -126,6 +126,7 @@ class ForumsController extends Controller
 
             $coment = new Forum_coment([
                 'forum_id' => $id,
+                'student_id' => Auth::user()->student_id,
                 'name_user' => $student_info->first_name .' '. $student_info->last_name,
                 'type_user' => Auth::user()->type_user,
                 'coment' => $request->get('coment'),

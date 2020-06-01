@@ -28,14 +28,14 @@
 
 
     <div class="table-responsive">
-        <table class="table text-center" style="width:100%" id="tablaMunicipio">
+        <table class="table text-center table-sm" style="width:100%" id="tablaMunicipio">
             <thead>
                 <tr>
-                    <th width="10px">ID</th>
-                    <th width="10px" >Nombre</th>
-                    <th width="10px">Abreviatura</th>
-                    <th width="10px">Departamento</th>
-                    <th width="5px">Acciones</th>
+                    <th >ID</th>
+                    <th >Nombre</th>
+                    <th >Abreviatura</th>
+                    <th >Departamento</th>
+                    <th >Acciones</th>
 
                 </tr>
             </thead>
@@ -47,8 +47,8 @@
                     <td>{{$item->abreviatura}}</td>
                     <td>{{$item->departament->nombre}}</td>
                    <td>
-                      <div class="btn-group" style="color: #00723d">
-                        <a href="{{route('municipios.edit', $item->id)}}" class="btn btn-transparent" style="color: #00723d" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
+                      <div class="btn-group">
+                        <a href="{{route('municipios.edit', $item->id)}}" class="btn btn-transparent color-option"  style="padding: 2px;" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
 
 
                       </div>

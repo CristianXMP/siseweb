@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\City;
 use App\Course;
 use App\Student;
+use App\User;
 use App\Type_document;
-use app\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -83,32 +83,37 @@ class StudentController extends Controller
             'course_id'        => $request->get('curso'),
         ]);
 
+
+
         if ($student->save()) {
+            $studentDateUser = Student::all()->last();
+            if (User::where('student_id', $studentDateUser->id)->exists()) {
 
-            $RegisterDateUser =  Student::all()->last();
+                return back()->withToastError('Este usuario ya existe');
+            } else {
 
-            //generamos el usuario para este estudiante
 
-            User::create([
+                User::create([
 
-                'nombre' => $RegisterDateUser->first_name,
-                'apellidos' => $RegisterDateUser->second_name,
-                'cargo' => 'Estudiante',
-                'teacher_id' => null,
-                'student_id' => $RegisterDateUser->id,
-                'cedula'    => $RegisterDateUser->number_document,
-                'cedula_verified_at' => now(),
-                'password' => bcrypt($RegisterDateUser->number_document),
-                'type_user' => 'Student',
-                'remember_token' => Str::random(10)
-            ]);
+                    'nombre' => $studentDateUser->first_name,
+                    'apellidos' => $studentDateUser->second_name,
+                    'cargo' => 'Estudiante',
+                    'teacher_id' => null,
+                    'student_id' => $studentDateUser->id,
+                    'cedula'    => $studentDateUser->number_document,
+                    'cedula_verified_at' => now(),
+                    'password' => bcrypt($studentDateUser->number_document),
+                    'type_user' => 'Student',
+                    'remember_token' => Str::random(10)
 
-            Student::where('is_user', false)
-                ->where('id', $RegisterDateUser->id)
-                ->update(['is_user' => true]);
+                ]);
 
-                return redirect('/estudiantes')->withToastSuccess('Registro y generacion de usuario realizado correctamente!');
+                Student::where('is_user', false)
+                    ->where('id', $studentDateUser->id)
+                    ->update(['is_user' => true]);
 
+                return redirect('/estudiantes')->withToastSuccess('Registro y generacion de usuario exitoso');
+            }
         }
     }
 
@@ -178,6 +183,17 @@ class StudentController extends Controller
         $studentUpdate->birth_date      =  $request->get('fecha_de_nacimiento');
         $studentUpdate->course_id       =  $request->get('curso');
         $studentUpdate->save();
+
+        //update usuario
+
+        User::where('student_id', $id)
+        ->update([
+            'nombre' => $request->get('primer_nombre'),
+            'apellidos' => $request->get('apellidos'),
+            'cedula' => $request->get('numero_de_documento'),
+            'password' => bcrypt($request->get('numero_de_documento'))
+            ]);
+
 
         return redirect('/estudiantes')->withToastSuccess('Registro Actualizado Correcatamente!');
     }
