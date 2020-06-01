@@ -20,7 +20,7 @@ class Courses extends Migration
     $table->integer('course');
     $table->char('variation', 2);
     $table->string('working_day', 50);
-    $table->unsignedInteger('teacher_id');
+    $table->unsignedInteger('teacher_id')->nullable();
     $table->timestamps();
     $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade')->onUpdate('cascade');
 });

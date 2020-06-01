@@ -52,7 +52,7 @@ class CourseController extends Controller
             'curso' => 'numeric|required|min:1|max:11|unique:courses,course',
             'abreviatura' => 'required|min:1|max:3',
             'jornada' => 'required',
-            'director_de_grupo' => 'required'
+            'director_de_grupo' => ''
 
         ]);
 

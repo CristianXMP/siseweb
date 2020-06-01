@@ -30,10 +30,6 @@ Route::get('/foro', function(){
     return view('forum.index');
 });
 
-Route::get('/foro/detail', function(){
-    return view('forum.detail');
-});
-
 Auth::routes();
 
 route::get('/prueba', function(){
@@ -64,7 +60,7 @@ Route::middleware(['auth','role:Teacher'])->group(function(){
 
     //foros
 
-    route::get('foroprofesor/{subject_id}', 'homeController@forum')->name('foro.teacher');
+    route::get('foroprofesor/{subject_id}', 'HomeController@forum')->name('foro.teacher');
 
     //forums pliblic
 
@@ -89,7 +85,7 @@ Route::middleware(['auth','role:Student'])->group(function(){
 
     //foros
 
-    route::get('foroestudiante/{subject_id}', 'homeController@forum')->name('foro.student');
+    route::get('foroestudiante/{subject_id}', 'HomeController@forum')->name('foro.student');
      Route::get('/comentstudent/{id}', 'ForumsController@coments_likes')->name('forum.comentstudent');
      Route::post('/PublicComentstudent/{id}', 'ForumsController@public_coment')->name('public.comentstudent');
      Route::get('/likecomentstudent/{id}', 'ForumsController@like_coment')->name('forum.likestudent');
@@ -129,6 +125,8 @@ Route::middleware(['auth','role:Admin'])->group(function(){
     Route::get('/register', 'Auth\RegisterController@index')->name('register');
     Route::get('/create', 'Auth\RegisterController@create')->name('create');
     Route::post('/register', 'Auth\RegisterController@store')->name('register');
+    Route::get('/restauracion/{id}', 'Auth\RegisterController@restore')->name('restore.user');
+    Route::get('/eliminar/{id}', 'Auth\RegisterController@destroy')->name('delete.user');
 
 
 });

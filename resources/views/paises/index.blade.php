@@ -22,24 +22,24 @@
     </div>
 
     <div class="table-responsive">
-        <table class="table text-center"  id="tablaPais">
+        <table class="table table-stripe text-center table-sm"  id="tablaPais">
             <thead>
                 <tr>
-                    <th scope="col" >ID</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Abreviatura</th>
-                    <th scope="col">Acciones</th>
+                    <th >ID</th>
+                    <th >Nombre</th>
+                    <th >Abreviatura</th>
+                    <th >Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($country as $item)
                 <tr>
-                    <th scope="row">{{$item->id}}</th>
+                    <th>{{$item->id}}</th>
                     <td>{{$item->nombre}}</td>
                     <td>{{$item->abreviatura}}</td>
                    <td>
                     <div class="btn-group">
-                        <a href="{{route('paises.edit', $item->id)}}" class="btn btn-transparent color-option" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
+                        <a href="{{route('paises.edit', $item->id)}}" class="btn btn-transparent color-option" style="padding: 2px;" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
                       </div>
 
 

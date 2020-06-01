@@ -28,7 +28,7 @@
 
 
     <div class="table-responsive">
-        <table class="table text-center" style="width:100%" id="tablaCursos">
+        <table class="table text-center table-sm" style="width:100%" id="tablaCursos">
             <thead>
                 <tr>
                     <th width="10px">ID</th>
@@ -45,11 +45,16 @@
                 <td>{{$item->id}}</td>
                 <td>{{$item->course}} - °{{$item->variation}}</td>
                 <td>{{$item->working_day}}</td>
+                @if ($item->teacher == "")
+                    <td>No tiene director de grupo</td>
+                @else
                 <td>{{$item->teacher->first_name}} {{$item->teacher->last_name}}</td>
-                   <td>
-                      <div class="btn-group">
+                @endif
 
-                        <a href="{{route('cursos.edit', $item->id)}}" class="btn btn-transparent color-option" padding: 2px;" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
+                   <td>
+                      <div class="btn-group" style="color: #00723d">
+
+                        <a href="{{route('cursos.edit', $item->id)}}" class="btn btn-transparent color-option" style="padding: 2px;" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
 
 
 

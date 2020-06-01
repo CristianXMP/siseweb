@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\City;
 use App\Teacher;
+use App\User;
 use App\Type_document;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
@@ -58,7 +60,7 @@ class TeacherController extends Controller
             'municipio' => 'required',
             'tipo_de_documento' => 'required',
             'profesion' => 'required',
-            'numero_de_documento' => 'required|min:10|max:10|unique:teachers,number_document',
+            'numero_de_documento' => 'required|digits_between:7,10|numeric|unique:teachers,number_document',
 
         ]);
 
@@ -82,9 +84,37 @@ class TeacherController extends Controller
 
             return back()->withToastError('El Estudiante ' . $request->get('primer_nombre') . ' Ya Esta En Los Registros!');
         } else {
-            $TeacherStore->save();
 
-            return redirect('/profesores')->withToastSuccess('Registro exitoso!');
+        if ($TeacherStore->save()) {
+            $TeacherdateUser = Teacher::all()->last();
+            if (User::where('student_id', $TeacherdateUser->id)->exists()) {
+
+                return back()->withToastError('Este usuario ya existe');
+            } else {
+
+
+                User::create([
+
+                    'nombre' => $TeacherdateUser->first_name,
+                    'apellidos' => $TeacherdateUser->second_name,
+                    'cargo' => 'Profesor',
+                    'teacher_id' => $TeacherdateUser->id,
+                    'student_id' => null,
+                    'cedula'    => $TeacherdateUser->number_document,
+                    'cedula_verified_at' => now(),
+                    'password' => bcrypt($TeacherdateUser->number_document),
+                    'type_user' => 'Teacher',
+                    'remember_token' => Str::random(10)
+
+                ]);
+
+                Teacher::where('is_user', false)
+                    ->where('id',$TeacherdateUser->id)
+                    ->update(['is_user' => true]);
+
+                return redirect('/profesores')->withToastSuccess('Registro y generacion de usuario exitoso');
+            }
+        }
         }
     }
 
@@ -134,7 +164,7 @@ class TeacherController extends Controller
             'municipio' => 'required',
             'tipo_de_documento' => 'required',
             'profesion' => 'required',
-            'numero_de_documento' => 'required|min:10|max:10',
+            'numero_de_documento' => 'required|digits_between:7,10|numeric',
 
         ]);
 
@@ -153,6 +183,14 @@ class TeacherController extends Controller
         $TeacherUpdate->expedition_date  =  $request->get('fecha_de_expedicion');
         $TeacherUpdate->birth_date      =  $request->get('fecha_de_nacimiento');
         $TeacherUpdate->save();
+
+        User::where('teacher_id', $id)
+        ->update([
+            'nombre' => $request->get('primer_nombre'),
+            'apellidos' => $request->get('apellidos'),
+            'cedula' => $request->get('numero_de_documento'),
+            'password' => bcrypt($request->get('numero_de_documento'))
+            ]);
 
         return redirect('/profesores')->withToastSuccess('Registro Actualizado Correcatamente!');
     }
@@ -173,6 +211,7 @@ class TeacherController extends Controller
             $asignacion_curso = DB::table('courses')->select('course')->where('teacher_id', '=', $id)->get();
 
             $asignacion_academica = DB::table('academic_assignments')->select('course_id')->where('teacher_id', '=', $id)->get();
+            
 
 
         if (count($asignacion_curso) > 0 || count($asignacion_academica) > 0) {

@@ -19,8 +19,8 @@ class CreateForumsTable extends Migration
             $table->foreign('academic_assignment_id')->references('id')->on('academic_assignments');
             $table->string('title', 100);
             $table->string('content',400);
-            $table->unsignedInteger('lkikecount');
-            $table->unsignedInteger('comentcount');
+            $table->unsignedInteger('likecount')->default(0);
+            $table->unsignedInteger('comentcount')->default(0);
             $table->timestamps();
         });
     }

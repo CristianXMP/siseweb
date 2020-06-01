@@ -20,7 +20,7 @@
     </div>
 
     <div class="table-responsive">
-        <table class="table table-stripe " id="tablaProfesor">
+        <table class="table table-stripe table-sm " id="tablaProfesor">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -46,15 +46,15 @@
                     <td>
 
 
-                            <div class="btn-group" >
+                            <div class="btn-group" style="color: #00723d">
 
                               <form  action="{{route('profesores.destroy', $item->id)}}" method="post">
-                              <a href="{{route('profesores.edit', $item->id)}}" class="btn btn-transparent color-option" style="padding: 2px;" id="editTipoDo" ><i class="fa fa-pencil-alt"></i></a>
-                              <a href="{{route('profesores.show', $item->id)}}" class="btn btn-transparent color-option" style="padding: 2px;" id="editTipoDo" ><i class="fas fa-eye"></i></a>
+                              <a href="{{route('profesores.edit', $item->id)}}" class="btn btn-transparent" style="color: #00723d;padding: 2px;" id="editTipoDo" ><i class="fa fa-pencil-alt"></i></a>
+                              <a href="{{route('profesores.show', $item->id)}}" class="btn btn-transparent" style="color: #00723d;padding: 2px;" id="editTipoDo" ><i class="fas fa-eye"></i></a>
 
                                   @csrf
                                   @method('DELETE')
-                                  <button type="submit" class="btn btn-transparent color-option" style="padding: 2px;" id="borrarTipoDoc" ><i class="fas fa-trash"></i></button>
+                                  <button type="submit" class="btn btn-transparent" style="color: #00723d;padding: 2px;" id="borrarTipoDoc" ><i class="fas fa-trash"></i></button>
                                 </form>
 
                             </div>

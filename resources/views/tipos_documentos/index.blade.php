@@ -21,7 +21,7 @@
     </div>
 
     <div class="table-responsive">
-        <table class="table table-stripe " id="tablaTipoDocuemnto">
+        <table class="table table-stripe table-sm" id="tablaTipoDocuemnto">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -39,7 +39,7 @@
                     <td>{{ $item->abreviatura }}</td>
                     <td>
                         <div class="btn-group">
-                            <a href="{{ Route('tiposdocumentos.edit', $item->id) }}" class="color-option" id="editTipoDoc">
+                            <a href="{{ Route('tiposdocumentos.edit', $item->id) }}" style="color: #00723d" id="editTipoDoc">
                                 <i class="fa fa-pencil-alt mr-2"></i>
                             </a>
 

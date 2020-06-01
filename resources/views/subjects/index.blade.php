@@ -22,7 +22,7 @@
     </div>
 
     <div class="table-responsive">
-        <table class="table" id="tablaMateria">
+        <table class="table table-sm" id="tablaMateria">
             <thead>
                 <tr>
                     <th width="10px">ID</th>
@@ -40,7 +40,7 @@
                     <td>{{$item->abreviatura}}</td>
                    <td>
                       <div class="btn-group" >
-                        <a href="{{route('materias.edit', $item->id)}}" class="btn btn-transparent color-option" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
+                        <a href="{{route('materias.edit', $item->id)}}" class="btn btn-transparent color-option"  style="padding: 2px;" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
                       </div>
                    </td>
                 </tr>

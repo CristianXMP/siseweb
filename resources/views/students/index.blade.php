@@ -20,12 +20,13 @@
     </div>
 
     <div class="table-responsive">
-        <table class="table table-stripe " id="tablaEstudiante">
+        <table class="table table-stripe table-sm" id="tablaEstudiante">
             <thead>
                 <tr>
                     <th width="10px">ID</th>
                     <th width="10px">Nombres</th>
                     <th width="10px">Apellidos</th>
+                    <th width="10px">No. documento</th>
                     <th width="10px">Curso</th>
                     <th width="10px">Acciones</th>
                 </tr>
@@ -37,18 +38,19 @@
                     <td>{{$item->id}}</td>
                     <td>{{$item->first_name}} {{ $item->second_name}}</td>
                     <td>{{$item->last_name}}</td>
-                <td>{{$item->course->course}} - {{$item->course->variation}}</td>
+                    <td>{{$item->number_document}}</td>
+                    <td>{{$item->course->course}} - {{$item->course->variation}}</td>
                     <td>
 
 
-                            <div class="btn-group" >
+                            <div class="btn-group" style="color: #00723d">
                               <form  action="{{route('estudiantes.destroy', $item->id)}}" method="post">
-                              <a href="{{route('estudiantes.edit', $item->id)}}" class="btn btn-transparent color-option" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
-                              <a href="{{route('estudiantes.show', $item->id)}}" class="btn btn-transparent color-option"  id="editTipoDo" ><i class="fas fa-eye mr-2"></i></a>
+                              <a href="{{route('estudiantes.edit', $item->id)}}" class="btn btn-transparent color-option" style="padding: 2px; id="editTipoDo" ><i class="fa fa-pencil-alt "></i></a>
+                              <a href="{{route('estudiantes.show', $item->id)}}" class="btn btn-transparent color-option" style="padding: 2px;  id="editTipoDo" ><i class="fas fa-eye"></i></a>
 
                                   @csrf
                                   @method('DELETE')
-                                  <button type="submit" class="btn btn-transparent color-option" id="borrarTipoDoc" ><i class="fas fa-trash"></i></button>
+                                  <button type="submit" class="btn btn-transparent color-option" style="padding: 2px;" id="borrarTipoDoc" ><i class="fas fa-trash"></i></button>
                                 </form>
 
                             </div>

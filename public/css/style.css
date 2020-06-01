@@ -58,17 +58,17 @@ button{
 }
 #divNavigationView{
     padding: 15px;
-    border-radius: 1rem;
+   /* border-radius: 1rem;*/
 }
 .navWeb{
     border: 1px solid #C8C8C8;
-    border-radius: 20px;
+    /*border-radius: 30px;*/
     background: white;
     padding: 20px 15px;
 }
 
 .navWeb .container-menu .dropdown-menu a:hover{
-    background-color: #075a72  !important;
+    background-color: #00723d !important;
     color: #FFF !important;
 }
 
@@ -91,8 +91,8 @@ button{
 }
 
 .dropdown .dropdown-button:hover{
-    background: #075a72 ;
-    border: 1px solid #075a72 ;
+    background: #00723d;
+    border: 1px solid #00723d;
     border-radius: 5px;
     box-sizing: border-box;
     padding: 7px 5px;
@@ -103,7 +103,7 @@ button{
     cursor: pointer;
 }
 .dropdown .dropdown-button i {
-    
+
     margin-right: 15px;
     /* font-size: 18px; */
     width: 25px;
@@ -169,7 +169,7 @@ button{
 .animated-icon1 span:nth-child(2) {
     top: 10px;
 }
-    
+
 .animated-icon1 span:nth-child(3) {
     top: 20px;
 }
@@ -186,7 +186,7 @@ button{
     opacity: 0;
     left: -60px;
 }
-    
+
 .animated-icon1.open span:nth-child(3) {
     top: 11px;
     -webkit-transform: rotate(-135deg);

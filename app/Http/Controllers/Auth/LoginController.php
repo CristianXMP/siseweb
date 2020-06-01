@@ -17,7 +17,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-    
+
         return view('auth.login');
 
 
@@ -27,8 +27,8 @@ class LoginController extends Controller
     public function login()
     {
         $validator = Validator::make(request()->all(), [
-            'cedula' => 'required|numeric|digits:10',
-            'password' => 'required|max:10'
+            'cedula' => 'required|digits_between:7,10|numeric',
+            'password' => 'required|digits_between:7,10|numeric'
         ],
             [
                 'cedula.required' => 'El campo numero de documento es obligatorio.'

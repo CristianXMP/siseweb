@@ -45,7 +45,7 @@
     </div>
 
     <div class="table-responsive">
-        <table class="table text-center"  id="tablaPeriodo">
+        <table class="table text-center table-sm"  id="tablaPeriodo">
             <thead>
                 <tr>
                     <th scope="col" >ID</th>
@@ -78,7 +78,7 @@
 
                    <td>
 
-                      <a href="{{route('periodos.edit', $item->id)}}" class="btn btn-transparent color-option"  id="editTipoDo" ><i class="fa fa-pencil-alt"></i></a>
+                      <a href="{{route('periodos.edit', $item->id)}}" class="btn btn-transparent color-option"  style="padding: 2px;"  id="editTipoDo" ><i class="fa fa-pencil-alt"></i></a>
                       </div> <div class="btn-group">
 
 
