@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Open Soft</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/homecardstyle.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -128,10 +129,17 @@
         </div>
     </div>
 
-    </div>
-    <footer class="">
-        <div class=" my-0 bg-white text-center">
-            <p>Todos los derechos reservados &copy; OpenSoft </p>
+
+
+    <footer class="fixed-bottom shadow bg-white container-fluit ">
+
+      {{--  <div class="clearfix ">
+            <p class="mt-2 float-left">Todos los derechos reservados @ OpenSoft</p>
+
+        </div>--}}
+
+        <div class="clearfix">
+            <div class="col-md-8">esto es el footer</div>
         </div>
     </footer>
 

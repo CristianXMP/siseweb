@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/style-tem-course.css') }}">
+
     @yield('style')
     <title>Aula virtual</title>
 
@@ -89,11 +90,16 @@
         </div>
     </main>
 
-    {{-- <footer>
-        <div class="">
-            <p>Todos los derechos reservados @</p>
+ <footer class="fixed-bottom shadow p-2 bg-white mt-2">
+        <div class="container">
+            <div class="clearfix">
+                <p class="mt-2 float-left">Todos los derechos reservados @ OpenSoft</p>
+            </div>
+
         </div>
-    </footer> --}}
+    </footer>
+
+
 
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

@@ -26,6 +26,14 @@ class AcademicAssignmentController extends Controller
      */
     public function index()
     {
+       /* $academicCourses = Academic_assignment::select('course_id')->get();
+        $academicSubjects = Academic_assignment::select('subject_id')->get();
+        $academicTeacher = Academic_assignment::select('teacher_id')->get();
+
+         $cursos = Course::findMany($academicCourses);
+         $materias = Subject::findMany($academicSubjects);
+        $teacher = Teacher::findMany($academicTeacher);*/
+
         $academicAssignment = Academic_assignment::all();
         return view('academic_assignments.index', compact('academicAssignment'));
     }
@@ -58,22 +66,35 @@ class AcademicAssignmentController extends Controller
             'curso' => 'required',
             'profesor' => 'required',
             'periodo' => 'required',
-            'materia' => 'required'
+            'materia' => 'required'//|unique:academic_assignments,subject_id'
         ]);
         if ($validator->fails()) {
             return back()->withToastError($validator->messages()->all()[0])->withInput();
         }
-        $academicAssignment = new Academic_assignment([
 
-            'course_id' => $request->get('curso'),
-            'teacher_id' => $request->get('profesor'),
-            'period_id' => $request->get('periodo'),
-            'subject_id' => $request->get('materia')
-        ]);
+        $verify = Academic_assignment::where('course_id',$request->get('curso'))
+        ->where( 'subject_id' , $request->get('materia'))->get();
+
+        if (count($verify)  > 0) {
+
+            return redirect('/asignaciones')->withToastError('Lo siento pero un profesor no pude tener la misma carga academica en un curso!');
+
+        }else{
+
+            $academicAssignment = new Academic_assignment([
+
+                'course_id' => $request->get('curso'),
+                'teacher_id' => $request->get('profesor'),
+                'period_id' => $request->get('periodo'),
+                'subject_id' => $request->get('materia')
+            ]);
 
 
-            $academicAssignment->save();
-            return redirect('/asignaciones')->withToastSuccess('Asignacion Academica  Exitosa!');
+                $academicAssignment->save();
+                return redirect('/asignaciones')->withToastSuccess('Asignacion Academica  Exitosa!');
+
+        }
+
 
     }
 
