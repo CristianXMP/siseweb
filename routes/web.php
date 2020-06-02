@@ -30,10 +30,6 @@ Route::get('/foro', function(){
     return view('forum.index');
 });
 
-Route::get('/foro/detail', function(){
-    return view('forum.detail');
-});
-
 Auth::routes();
 
 route::get('/prueba', function(){

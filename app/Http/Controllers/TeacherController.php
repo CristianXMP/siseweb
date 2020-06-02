@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\City;
 use App\Teacher;
-use App\Type_document;
 use App\User;
+use App\Type_document;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
-use illuminate\Support\Str;
 
 
 class TeacherController extends Controller

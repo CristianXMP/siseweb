@@ -35,7 +35,6 @@ button{
     color: white !important;
     font-size: 14px;
 }
-
 .header-mobile {
     background-color: #F0F0F0;
 }
@@ -58,11 +57,11 @@ button{
 }
 #divNavigationView{
     padding: 15px;
-   /* border-radius: 1rem;*/
+   /* border-radius: 1rem; */
 }
 .navWeb{
     border: 1px solid #C8C8C8;
-    /*border-radius: 30px;*/
+    border-radius: 10px;
     background: white;
     padding: 20px 15px;
 }

@@ -43,7 +43,7 @@
                     <td>
 
 
-                            <div class="btn-group" >
+                            <div class="btn-group" style="color: #00723d">
                               <form  action="{{route('estudiantes.destroy', $item->id)}}" method="post">
                               <a href="{{route('estudiantes.edit', $item->id)}}" class="btn btn-transparent color-option" style="padding: 2px; id="editTipoDo" ><i class="fa fa-pencil-alt "></i></a>
                               <a href="{{route('estudiantes.show', $item->id)}}" class="btn btn-transparent color-option" style="padding: 2px;  id="editTipoDo" ><i class="fas fa-eye"></i></a>

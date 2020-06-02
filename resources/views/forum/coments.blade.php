@@ -17,6 +17,7 @@
 	overflow-y: scroll;
     scrollbar-color: #6a6adb white;
     scrollbar-width: 5px;
+    padding: 20px
 }
 #coments {
 	height: auto;
@@ -73,23 +74,15 @@
 
                 @foreach ($coments as $item)
 
-                @if ($item->type_user == 'Teacher')
-                <small><h6 class="text-sm-right text-primary">{{ $item->created_at }}</h6> </small>
-
-                <div class="bg-success text-white shadow p-1 mb-2  rounded " style="width: 20rem;">
-
-                @endif
-                @if ($item->type_user == 'Student')
-                <small><h6 class="text-sm-right text-primary">{{ $item->created_at }}</h6> </small>
-
-                <div class="bg-primary text-white shadow p-1 mb-2  rounded " style="width: 20rem;">
-
-                @endif
-
-                    <h6 class="text-white"> {{ $item->name_user }}</h6>
-                    <p class="text-center">{{ $item->coment }}</p>
-
-                     </div>
+                <div class="card-comment">
+                    <div class="header-comment">
+                        <h3>{{ $item->name_user }}</h3>
+                        <p>{{ $item->created_at }}</p>
+                    </div>
+                    <div class="content-comment">
+                    <p>{{ $item->coment }}</p>
+                    </div>
+                </div>
 
                 @endforeach
 
@@ -100,7 +93,7 @@
                   @if (Auth::user()->type_user == "Student")
                   <form action="{{ route('public.comentstudent',$GetForum->id) }}" method="POST">
                     @csrf
-                <textarea class="form-control rounded " name="coment" id="exampleFormControlTextarea1"
+                <textarea class="form-control rounded height-textarea-comment" name="coment" id="exampleFormControlTextarea1"
                 rows="1" placeholder="Escribe tu comentario..."></textarea>
                  <button class="btn btn-primary btn-block mt-3">Comentar</button>
                   @endif
@@ -108,7 +101,7 @@
                   @if (Auth::user()->type_user == "Teacher")
                   <form action="{{ route('public.coment',$GetForum->id) }}" method="POST">
                     @csrf
-                <textarea class="form-control rounded " name="coment" id="exampleFormControlTextarea1"
+                <textarea class="form-control rounded height-textarea-comment" name="coment" id="exampleFormControlTextarea1"
                 rows="1" placeholder="Escribe tu comentario..."></textarea>
                  <button class="btn btn-primary btn-block mt-3">Comentar</button>
                  @endif

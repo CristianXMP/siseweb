@@ -52,7 +52,7 @@
                 @endif
 
                    <td>
-                      <div class="btn-group">
+                      <div class="btn-group" style="color: #00723d">
 
                         <a href="{{route('cursos.edit', $item->id)}}" class="btn btn-transparent color-option" style="padding: 2px;" id="editTipoDo" ><i class="fa fa-pencil-alt mr-2"></i></a>
 

@@ -8,9 +8,9 @@ use App\Student;
 use App\User;
 use App\Type_document;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
-use illuminate\Support\Str;
 
 class StudentController extends Controller
 {
