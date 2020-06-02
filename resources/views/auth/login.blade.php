@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
  <html lang="es">
  <head>
     <meta charset="UTF-8">
@@ -29,8 +29,10 @@
 
                     <div class="form-group">
                         <input type="password" class="style-input" placeholder="Contraseña" name="password" >
-
-
+                    </div>
+                    <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                        <input type="checkbox" class="custom-control-input" id="customControlInline">
+                        <label class="custom-control-label" for="customControlInline" style="font-size: 15px">Recuerdame</label>
                     </div>
 
                     <div class="option-login">
@@ -38,8 +40,11 @@
                     </div>
 
                 </form>
+                    <a href="" class="recover-pass">¿Has olvidado tu contrañesa?</a>
             </div>
 
+            
+            
         </div>
     </div>
 

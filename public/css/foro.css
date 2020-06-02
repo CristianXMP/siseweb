@@ -91,3 +91,26 @@
 .card-foro .card-footer-foro a{
     margin-right: 20px;
 }
+
+.card-comment{
+    background-color: #f8f9fc;
+    border: 1px solid #e5eaec;
+    border-radius: 1rem;
+    padding: 1.25rem;
+    margin-bottom: 15px;
+    width: fit-content;
+}
+.card-comment .header-comment{
+    display: flex;
+    
+}
+.card-comment .header-comment h3{
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #575e66;
+    margin-right: 2.50rem;
+}
+
+.height-textarea-comment{
+    height: 5rem !important;
+}
