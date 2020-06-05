@@ -58,8 +58,6 @@ class HomeController extends Controller
 
         if (Auth()->user()->type_user == 'Teacher') {
 
-
-
             $teacher_id = auth()->user()->teacher_id;
 
             $teacher = Teacher::find($teacher_id);
@@ -68,14 +66,9 @@ class HomeController extends Controller
 
             return view('courses_home.dashboardCourses', compact('cargaacademica'));
 
-
-
-
         }
 
         if (Auth()->user()->type_user == 'Student') {
-
-
 
                //informacion de ralacion estudiante curso
                 $student_id = auth()->user()->student_id;
@@ -90,7 +83,6 @@ class HomeController extends Controller
                 $materias = $cargaacademica->academic_assignments;
 
             return view('courses_home.dashboardCourses', compact('materias'));
-
 
          }
     }
@@ -116,7 +108,16 @@ class HomeController extends Controller
             ->Advertisements()
             ->orderBy('created_at', 'desc')->paginate(5);
 
-            return  view('courses_home.course', compact('course','teacher_info','subject','anuncios'));
+            $info_course = [
+               'cur' => $course,
+               'sub' => $subject,
+               'tea' => $teacher_info
+            ];
+            session($info_course);
+
+
+
+            return  view('courses_home.course', compact('anuncios'));
 
         }
 
@@ -141,45 +142,16 @@ class HomeController extends Controller
 
                 return view('courses_home.course', compact('cargaacademica','course','teacher_info','anuncios','subject'));
 
-
          }
 
     }
 
-
     public function forum($subject_id)
     {
+        $CargaAcademica = Academic_assignment::where('subject_id', $subject_id )->get();
+        $forums = Forum::where('academic_assignment_id', $CargaAcademica[0]['id'])->get();
 
-        if (Auth()->user()->type_user == 'Student') {
-
-            $CargaAcademica = Academic_assignment::where('subject_id', $subject_id )->get();
-            $teacher_id = $CargaAcademica[0]['teacher_id'];
-            $teacher_info = Teacher::findOrfail($teacher_id);
-            $course = Course::findOrfail($CargaAcademica[0]['course_id']);
-            $subject = Subject::findOrfail($CargaAcademica[0]['subject_id']);
-            $forums = Forum::where('academic_assignment_id', $CargaAcademica[0]['id'])->get();
-            return view('forum.index', compact('teacher_info','course','subject','forums'));
-
-        }
-
-        if (Auth()->user()->type_user == 'Teacher') {
-
-            $CargaAcademica = Academic_assignment::where('subject_id', $subject_id )->get();
-            $teacher_id = $CargaAcademica[0]['teacher_id'];
-            $teacher_info = Teacher::findOrfail($teacher_id);
-            $course = Course::findOrfail($CargaAcademica[0]['course_id']);
-            $subject = Subject::findOrfail($CargaAcademica[0]['subject_id']);
-            $forums = Forum::where('academic_assignment_id', $CargaAcademica[0]['id'])->get();
-
-            return view('forum.index', compact('teacher_info','course','subject','forums' ));
-
-        }
-
+        return view('forum.index', compact('forums' ));
     }
-
-
-
-
-
 
 }

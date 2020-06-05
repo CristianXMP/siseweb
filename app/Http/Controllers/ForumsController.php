@@ -59,15 +59,10 @@ class ForumsController extends Controller
     {
 
         $GetForum = Forum::findorfail($id);
-        $GetAsignament = Academic_assignment::findorfail($GetForum->academic_assignment_id);
 
-        $subject = Subject::findorfail($GetAsignament->subject_id);
-        $course = Course::findorfail($GetAsignament->course_id);
-        $teacher_info = Teacher::findorfail($GetAsignament->teacher_id);
         $coments = Forum_coment::where('forum_id', $id)->get();
 
-
-        return view('forum.coments', compact('subject','course','teacher_info','GetForum','coments'));
+        return view('forum.coments', compact('GetForum','coments'));
 
     }
 

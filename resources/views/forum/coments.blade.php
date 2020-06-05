@@ -12,7 +12,7 @@
 }
 
 #coment {
-	height: 250px;
+	height: 300px;
 	width: auto;
 	overflow-y: scroll;
     scrollbar-color: #6a6adb white;
@@ -21,6 +21,9 @@
 }
 #coments {
 	height: auto;
+}
+#content{
+    font-size: 15px;
 }
 .texto {
 	padding:4px;
@@ -34,39 +37,13 @@
 <div class="row">
 
     <div class="col-md-4">
-        <div class="title-course shadow-sm">
-            <h6 >{{ $subject->nombre }}: {{ $course->course }} - {{ $course->variation }}</h6>
-            <p >Profesor: {{ $teacher_info->first_name }} {{ $teacher_info->last_name }} </p>
-
-        </div>
-
-        <div class="menu-coures mt-5 shadow">
-            <ul>
-                @if (Auth::user()->type_user == "Teacher")
-                <li><a href="{{ route('cursoProfesor', $subject->id) }}">Anuncios</a></li>
-                @endif
-                @if (Auth::user()->type_user == "Student")
-                <li><a href="{{ route('cursoEstudiante', $subject->id) }}">Anuncios</a></li>
-                @endif
-
-                <li><a href="">Tareas</a></li>
-
-                @if (Auth::user()->type_user == "Student")
-                <li><a href="{{ route('foro.student', $subject->id) }}">Foros</a></li>
-                @endif
-
-                @if (Auth::user()->type_user == "Teacher")
-                <li><a href="{{ route('foro.teacher', $subject->id) }}">Foros</a></li>
-                @endif
-
-                <li><a href="">Examenes</a></li>
-            </ul>
-        </div>
+        @component('components.navbar-course')
+        @endcomponent
     </div>
         <div class="col-md-8 shadow p-3 mb-5 bg-white rounded" >
             <h2 class="mb-4">{{ $GetForum->title }}</h2>
-            <hr class="my-0">
-            <p class="text-center " id="content">{{ $GetForum->content }}</p>
+
+            <p id="content">{{ $GetForum->content }}</p>
 
             <hr class="my-2">
 

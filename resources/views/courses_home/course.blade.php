@@ -8,35 +8,10 @@
 @section('content')
     <div class="row">
         <div class="col-md-4">
-            <div class="title-course shadow-sm">
-                <h6 >{{ $subject->nombre }}: {{ $course->course }} - {{ $course->variation }}</h6>
-                <p >Profesor: {{ $teacher_info->first_name }} {{ $teacher_info->last_name }} </p>
+            
+            @component('components.navbar-course')
+            @endcomponent
 
-            </div>
-
-            <div class="menu-coures mt-5 shadow">
-                <ul>
-                    @if (Auth::user()->type_user == "Teacher")
-                    <li><a href="{{ route('cursoProfesor', $subject->id) }}">Anuncios</a></li>
-                    @endif
-                    @if (Auth::user()->type_user == "Student")
-                    <li><a href="{{ route('cursoEstudiante', $subject->id) }}">Anuncios</a></li>
-                    @endif
-
-
-                    <li><a href="">Tareas</a></li>
-
-                @if (Auth::user()->type_user == "Student")
-                <li><a href="{{ route('foro.student', $subject->id) }}">Foros</a></li>
-                @endif
-
-                @if (Auth::user()->type_user == "Teacher")
-                <li><a href="{{ route('foro.teacher', $subject->id) }}">Foros</a></li>
-                @endif
-
-                    <li><a href="">Examenes</a></li>
-                </ul>
-            </div>
         </div>
         <div class="col-md-8">
             <h2 class="mb-2">Anuncios</h2>
@@ -46,9 +21,9 @@
                     @csrf
 
 
-                    <input type="hidden" name="course_id" value="{{ $course->id }}">
-                    <input type="hidden" name="teacher_id" value="{{ $teacher_info->id }}">
-                    <input type="hidden" name="subject_id" value="{{ $subject->id }}">
+                    <input type="hidden" name="course_id" value="{{ in_c('cur', 'id') }}">
+                    <input type="hidden" name="teacher_id" value="{{ in_c('tea', 'id') }}">
+                    <input type="hidden" name="subject_id" value="{{ in_c('sub', 'id') }}">
 
                     <textarea name="anuncio" id="" cols="30" rows="10" class="form-control" placeholder="Compartir con tu clase"></textarea>
                     <button type="submit" class="btn btn-secondary mt-2">
@@ -86,14 +61,12 @@
 
                         <form action="{{ Route('likes', $item->id) }}" method="get">
 
-                            <button type="submit"  class="btn btn-transparent text-primary"> <i class="far fa-thumbs-up"></i>Me gusta</button>
+                            <button type="submit"  class="btn btn-transparent text-primary"> <i class="far fa-thumbs-up"></i> {{ $item->likes}} Me gusta</button>
 
                         </form>
 
                         @endif
 
-
-                        <h6 class="text-primary">{{ $item->likes}} Me gustas</h6>
 
                     </div>
                 </div>
