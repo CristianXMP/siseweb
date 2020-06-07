@@ -3,6 +3,8 @@
 use App\Academic_assignment;
 use App\Advertisement;
 use App\Course;
+use App\FinalScore;
+use App\ForumParticipant;
 use App\Student;
 use App\Subject;
 use App\Teacher;
@@ -30,14 +32,24 @@ Route::get('/foro', function(){
     return view('forum.index');
 });
 
-Auth::routes();
+
 
 route::get('/prueba', function(){
 
-    $asignacion = Teacher::find(1);
+    $participanteforo = FinalScore::
+    where('forum_id', 1)->get();
+
+    foreach ($participanteforo as $item) {
+
+        echo $item->qualification;
+    }
+
+    //$student_participants = Student::find(1);
+
+    //return $student_participants->participants_forums;
 
 
-    return $asignacion->academic_assignments;
+
 
 });
 
@@ -68,6 +80,8 @@ Route::middleware(['auth','role:Teacher'])->group(function(){
     Route::get('/comentLikes/{id}', 'ForumsController@coments_likes')->name('forum.coment');
     Route::post('/PublicComent/{id}', 'ForumsController@public_coment')->name('public.coment');
     Route::get('/likecoment/{id}', 'ForumsController@like_coment')->name('forum.like');
+    Route::get('/participants/{id}', 'ForumsController@participants')->name('forum.participant');
+    Route::post('/qualification/{id}','ForumsController@sendqualification')->name('forum.qualification');
 
 
 

@@ -101,9 +101,21 @@ class CourseController extends Controller
     public function edit($id)
     {
         //
-        $CourseEdit = Course::find($id);
-        $Teacher = Teacher::all();
-        return view('courses.edit', compact('CourseEdit', 'Teacher'));
+
+    $CourseEdit = Course::where('id',$id)->get();
+
+      foreach ($CourseEdit as $item) {
+
+         $teacheractive = [
+            'id' =>  $item->teacher['id'],
+            'nombre' =>  $item->teacher['first_name'].' '. $item->teacher['last_name']
+          ];
+
+      }
+
+     // return $teacheractive['nombre'];
+       $Teacher = Teacher::all();
+       return view('courses.edit', compact('teacheractive', 'Teacher','CourseEdit'));
     }
 
     /**
@@ -121,7 +133,7 @@ class CourseController extends Controller
             'curso' => 'numeric|required|min:1|max:11',
             'abreviatura' => 'required|min:1|max:3',
             'jornada' => 'required',
-            'director_de_grupo' => 'required'
+          
 
         ]);
 

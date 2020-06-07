@@ -13,7 +13,7 @@
             </h1>
         </div>
         <div>
-            <a class=" btn btn-main" href="{{ route('profesores.create') }}">
+            <a class=" btn btn-main" href="{{ route('profesores.create') }}" >
                 <i class="fa fa-plus mr-1"></i>
             Nuevo</a>
         </div>

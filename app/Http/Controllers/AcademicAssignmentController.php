@@ -26,16 +26,17 @@ class AcademicAssignmentController extends Controller
      */
     public function index()
     {
-       /* $academicCourses = Academic_assignment::select('course_id')->get();
+        $academicCourses = Academic_assignment::select('course_id')->get();
         $academicSubjects = Academic_assignment::select('subject_id')->get();
         $academicTeacher = Academic_assignment::select('teacher_id')->get();
 
          $cursos = Course::findMany($academicCourses);
          $materias = Subject::findMany($academicSubjects);
-        $teacher = Teacher::findMany($academicTeacher);*/
+         $teacher = Teacher::findMany($academicTeacher);
+
 
         $academicAssignment = Academic_assignment::all();
-        return view('academic_assignments.index', compact('academicAssignment'));
+        return view('academic_assignments.index', compact('teacher','academicAssignment'));
     }
 
     /**

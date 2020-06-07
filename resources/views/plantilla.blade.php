@@ -116,7 +116,7 @@
                 </div>
             </div>
 
-            <div class="col-md-8 col-12 col-lg-9">
+            <div class="col-md-6 col-12 col-lg-9">
                 <div class="shadow p-3 mb-5 bg-white rounded contentBody">
 
                     {{-- Aqui va el contenido  --}}

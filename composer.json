@@ -39,11 +39,17 @@
         "psr-4": {
             "App\\": "app/"
         },
+
+        "files": [
+            "app/helpers/activeitem.php"
+        ],
+
         "classmap": [
             "database/seeds",
             "database/factories"
         ]
     },
+
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"

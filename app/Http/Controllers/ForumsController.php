@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Academic_assignment;
 use App\Course;
+use App\FinalScore;
 use App\Forum;
 use App\Forum_coment;
 use App\Forum_like;
 use App\Student;
 use App\Subject;
 use App\Teacher;
+use App\ForumParticipant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +20,8 @@ use Illuminate\Support\Facades\DB;
 
 class ForumsController extends Controller
 {
-    public function public_forum(Request $request, $id){
+    public function public_forum(Request $request, $id)
+    {
 
 
 
@@ -50,8 +53,6 @@ class ForumsController extends Controller
         $forum->save();
 
         return back()->withToastSuccess('Foro Publicado!');
-
-
     }
 
 
@@ -67,8 +68,7 @@ class ForumsController extends Controller
         $coments = Forum_coment::where('forum_id', $id)->get();
 
 
-        return view('forum.coments', compact('subject','course','teacher_info','GetForum','coments'));
-
+        return view('forum.coments', compact('subject', 'course', 'teacher_info', 'GetForum', 'coments'));
     }
 
 
@@ -95,15 +95,14 @@ class ForumsController extends Controller
             return back()->withToastError($validator->messages()->all()[0])->withInput();
         }
 
-        if(Auth::user()->type_user == 'Teacher')
-        {
+        if (Auth::user()->type_user == 'Teacher') {
             $teacher_info  = Teacher::findorfail(Auth::user()->teacher_id);
 
 
 
             $coment = new Forum_coment([
                 'forum_id' => $id,
-                'name_user' => $teacher_info->first_name .' '. $teacher_info->last_name,
+                'name_user' => $teacher_info->first_name . ' ' . $teacher_info->last_name,
                 'type_user' => Auth::user()->type_user,
                 'coment' => $request->get('coment'),
 
@@ -118,92 +117,176 @@ class ForumsController extends Controller
             return back()->withToastSuccess('Comentario publicado!');
         }
 
-        if(Auth::user()->type_user == 'Student')
-        {
+        if (Auth::user()->type_user == 'Student') {
             $student_info  = Student::findorfail(Auth::user()->student_id);
 
+            $verify = ForumParticipant::where('forum_id', $id)
+                ->where('student_id', Auth::user()->student_id)->get();
+
+            if (count($verify) == 0) {
+                $coment = new Forum_coment([
+                    'forum_id' => $id,
+                    'student_id' => Auth::user()->student_id,
+                    'name_user' => $student_info->first_name . ' ' . $student_info->last_name,
+                    'type_user' => Auth::user()->type_user,
+                    'coment' => $request->get('coment'),
+
+                ]);
 
 
-            $coment = new Forum_coment([
-                'forum_id' => $id,
-                'student_id' => Auth::user()->student_id,
-                'name_user' => $student_info->first_name .' '. $student_info->last_name,
-                'type_user' => Auth::user()->type_user,
-                'coment' => $request->get('coment'),
 
-            ]);
+                $coment->save();
+
+                Forum::findorfail($id)->update(['comentcount' => $CountComent]);
+
+                ForumParticipant::create([
+                    'forum_id' => $id,
+                    'student_id' => Auth::user()->student_id
+                ]);
+
+                return back()->withToastSuccess('Comentario publicado!');
+            } else {
+                if (count($verify) > 0) {
+                    $coment = new Forum_coment([
+                        'forum_id' => $id,
+                        'student_id' => Auth::user()->student_id,
+                        'name_user' => $student_info->first_name . ' ' . $student_info->last_name,
+                        'type_user' => Auth::user()->type_user,
+                        'coment' => $request->get('coment'),
+
+                    ]);
 
 
 
-            $coment->save();
+                    $coment->save();
 
-            Forum::findorfail($id)->update(['comentcount' => $CountComent]);
+                    Forum::findorfail($id)->update(['comentcount' => $CountComent]);
 
-            return back()->withToastSuccess('Comentario publicado!');
+                    return back()->withToastSuccess('Comentario publicado!');
+                }
+            }
         }
-
-
-
     }
 
     public function like_coment($id)
     {
         $forum = Forum::findorfail($id);
         $newlike = $forum->likecount + 1;
-       if(Auth::user()->type_user == 'Teacher')
-       {
+        if (Auth::user()->type_user == 'Teacher') {
 
-        $VerifyLikes  = DB::table('forum_likes')
-        ->where('forum_id', '=', $id)
-        ->where('teacher_id', '=', Auth::user()->teacher_id)
-        ->get();
+            $VerifyLikes  = DB::table('forum_likes')
+                ->where('forum_id', '=', $id)
+                ->where('teacher_id', '=', Auth::user()->teacher_id)
+                ->get();
 
-        if ($VerifyLikes->isEmpty()) {
+            if ($VerifyLikes->isEmpty()) {
 
 
-            Forum_like::create([
+                Forum_like::create([
                     'forum_id' => $id,
                     'teacher_id' => Auth::user()->teacher_id
                 ]);
                 Forum::where('id', $id)
-              ->update(['likecount' => $newlike]);
+                    ->update(['likecount' => $newlike]);
 
-              return back()->withToastSuccess('Te ha gustado este foro');
+                return back()->withToastSuccess('Te ha gustado este foro');
+            } else {
 
-        } else {
-
-            return back()->withToastInfo('Ya te ha gustado este foro!');
+                return back()->withToastInfo('Ya te ha gustado este foro!');
+            }
         }
 
-       }
+
+        if (Auth::user()->type_user == 'Student') {
+
+            $VerifyLikes  = DB::table('forum_likes')
+                ->where('forum_id', '=', $id)
+                ->where('student_id', '=', Auth::user()->student_id)
+                ->get();
 
 
-       if(Auth::user()->type_user == 'Student')
-       {
-
-        $VerifyLikes  = DB::table('forum_likes')
-        ->where('forum_id', '=', $id)
-        ->where('student_id', '=', Auth::user()->student_id)
-        ->get();
+            if ($VerifyLikes->isEmpty()) {
 
 
-       if ($VerifyLikes->isEmpty()) {
-
-
-            Forum_like::create([
+                Forum_like::create([
                     'forum_id' => $id,
                     'student_id' => Auth::user()->student_id
                 ]);
                 Forum::where('id', $id)
-              ->update(['likecount' => $newlike]);
+                    ->update(['likecount' => $newlike]);
 
-              return back()->withToastSuccess('Te ha gustado este foro');
+                return back()->withToastSuccess('Te ha gustado este foro');
+            } else {
+
+                return back()->withToastInfo('Ya te ha gustado este foro!');
+            }
+        }
+    }
+
+
+    public function participants($id)
+    {
+
+        $GetForum = Forum::findorfail($id);
+        $GetAsignament = Academic_assignment::findorfail($GetForum->academic_assignment_id);
+
+        $subject = Subject::findorfail($GetAsignament->subject_id);
+        $course = Course::findorfail($GetAsignament->course_id);
+        $teacher_info = Teacher::findorfail($GetAsignament->teacher_id);
+
+        $participantsforo = ForumParticipant::where('forum_id', $id)->get();
+
+
+
+        if (count($participantsforo) > 0) {
+
+            $qualificationStudent = FinalScore::
+                where('forum_id', $id)->get();
+
+
+                return view('forum.paticipants', compact('GetForum', 'subject', 'course', 'teacher_info', 'participantsforo','qualificationStudent'));
+
+
 
         } else {
-
-            return back()->withToastInfo('Ya te ha gustado este foro!');
+            return back()->withToastError('Este foro no tiene participantes aun.');
         }
+    }
 
-       }
+    public function sendqualification(Request $request, $id)
+    {
+        $GetForum = Forum::findorfail($id);
+        $GetAsignament = Academic_assignment::findorfail($GetForum->academic_assignment_id);
+
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'estudiante' => 'required',
+                'calificacion' => 'required',
+            ],
+            [
+                'estudiante.required' => 'Por favor no intentes modificar el codigo del sistema',
+                'calificacion.required' => 'Ingresa una nota'
+            ]
+        );
+        if ($validator->fails()) {
+            return back()->withToastError($validator->messages()->all()[0])->withInput();
+        } else {
+
+            FinalScore::create([
+                'academic_assignment_id' => $GetAsignament->id,
+                'forum_id' => $id,
+                'student_id' => $request->get('estudiante'),
+                'qualification' => $request->get('calificacion'),
+
+
+            ]);
+
+            ForumParticipant::where('forum_id', $id)
+            ->where('student_id', $request->get('estudiante'))
+            ->update(['state' => true]);
+
+            return back();
+        }
     }
 }

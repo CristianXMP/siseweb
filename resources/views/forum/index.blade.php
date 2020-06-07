@@ -87,7 +87,7 @@
                     @if (Auth::user()->type_user == "Teacher")
                     <a class="btn btn-transparent text-primary" href="{{ route('forum.like', $item->id) }}"><i class="fas fa-thumbs-up"></i>  {{ $item->likecount }} Me gusta</a>
                     <a class="btn btn-transparent text-primary"  href="{{ route('forum.coment', $item->id) }}" > <i class="fas fa-comment-alt"></i> {{ $item->comentcount }} Comentarios</a>
-                    <a class="btn btn-transparent text-primary"  href="{{ route('forum.coment', $item->id) }}" > <i class="fas fa-users"></i> 43 Participantes</a>
+                    <a class="btn btn-transparent text-primary"  href="{{ route('forum.participant', $item->id) }}" > <i class="fas fa-users"></i> 43 Participantes</a>
                     @endif
 
 

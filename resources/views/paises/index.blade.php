@@ -22,6 +22,7 @@
     </div>
 
     <div class="table-responsive">
+
         <table class="table table-stripe text-center table-sm"  id="tablaPais">
             <thead>
                 <tr>

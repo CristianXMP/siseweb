@@ -60,5 +60,11 @@ class Student extends Model
       return  $this->hasMany(Forum_coment::class);
     }
 
+    public function participants_forums(){
+
+        return $this->hasMany(ForumParticipant::class);
+    }
+
+ 
 
 }
