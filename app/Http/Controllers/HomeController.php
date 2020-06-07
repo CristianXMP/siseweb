@@ -68,8 +68,6 @@ class HomeController extends Controller
 
         if (Auth()->user()->type_user == 'Teacher') {
 
-
-
             $teacher_id = auth()->user()->teacher_id;
 
             $teacher = Teacher::find($teacher_id);
@@ -77,15 +75,25 @@ class HomeController extends Controller
             $cargaacademica = $teacher->academic_assignments;
 
             return view('courses_home.dashboardCourses', compact('cargaacademica'));
+
+
+
+
         }
 
         if (Auth()->user()->type_user == 'Student') {
 
 
 
+
             //informacion de ralacion estudiante curso
             $student_id = auth()->user()->student_id;
             $student = Student::find($student_id);
+
+               //informacion de ralacion estudiante curso
+                $student_id = auth()->user()->student_id;
+                $student = Student::find($student_id);
+
 
             //informacion de ralacion  curso carga academica
 
@@ -96,7 +104,12 @@ class HomeController extends Controller
             $materias = $cargaacademica->academic_assignments;
 
             return view('courses_home.dashboardCourses', compact('materias'));
+
         }
+
+
+         }
+
     }
 
 
@@ -118,8 +131,24 @@ class HomeController extends Controller
             // recolecion de los datos de anuncios
 
             $anuncios = Subject::findOrfail($subject_id)
+
                 ->Advertisements()
                 ->orderBy('created_at', 'desc')->paginate(5);
+
+            ->Advertisements()
+            ->orderBy('created_at', 'desc')->paginate(5);
+
+            $info_course = [
+               'cur' => $course,
+               'sub' => $subject,
+               'tea' => $teacher_info
+            ];
+            session($info_course);
+
+
+
+            return  view('courses_home.course', compact('anuncios'));
+
 
             return  view('courses_home.course', compact('course', 'teacher_info', 'subject', 'anuncios'));
         }
@@ -140,16 +169,27 @@ class HomeController extends Controller
                 ->Advertisements()
                 ->orderBy('created_at', 'desc')->paginate(5);
 
+
             $cargaacademica = $course->academic_assignments;
             $subject = Subject::findorfail($subject_id);
+
+                $cargaacademica = $course->academic_assignments;
+                $subject = Subject::findorfail($subject_id);
+
+                return view('courses_home.course', compact('cargaacademica','course','teacher_info','anuncios','subject'));
+
+         }
+
 
             return view('courses_home.course', compact('cargaacademica', 'course', 'teacher_info', 'anuncios', 'subject'));
         }
     }
 
-
     public function forum($subject_id)
     {
+        $CargaAcademica = Academic_assignment::where('subject_id', $subject_id )->get();
+        $forums = Forum::where('academic_assignment_id', $CargaAcademica[0]['id'])->get();
+
 
         if (Auth()->user()->type_user == 'Student') {
 
@@ -174,4 +214,9 @@ class HomeController extends Controller
             return view('forum.index', compact('teacher_info', 'course', 'subject', 'forums'));
         }
     }
+
+        return view('forum.index', compact('forums' ));
+    }
+
+
 }

@@ -105,10 +105,18 @@
     
 }
 .card-comment .header-comment h3{
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: bold;
     color: #575e66;
-    margin-right: 2.50rem;
+    margin-right: 2rem;
+}
+.card-comment .header-comment p{
+    color: #575e66;
+    font-size: 12px;
+
+}
+.card-comment .content-comment p{
+    margin-bottom: 0;
 }
 
 .height-textarea-comment{

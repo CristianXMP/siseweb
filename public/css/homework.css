@@ -1,0 +1,176 @@
+.content-button-homework{
+   margin: 45px 0;
+}
+.content-button-homework a{
+    padding: 12px 20px;
+    text-decoration: none;
+    background: #3f36df;
+    color: #fff;
+    border-radius: 2em;
+    font-size: 1em;
+    font-weight: 600;
+    border-bottom: 4px solid #1d14a2;
+}
+.content-button-homework a:hover{
+    background-color: #2c24c1;
+}
+.content-button-homework a svg{
+    fill: currentColor;
+    width: 2em;
+    height: 2em;
+}
+a.card-link{
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+.info-date-homework{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.info-date-homework p{
+    margin-right: 4em;
+}
+.info-date-homework p:first-child{
+    color: #42bd40;
+    font-weight: bolder;
+}
+.info-date-homework p:first-child svg{
+    fill: currentColor;
+}
+
+.info-date-homework p:last-child{
+    color: #F25045;
+    font-weight: bolder;
+}
+.info-date-homework p:last-child svg{
+    fill: currentColor;
+}
+
+.list-homeworks .card-homework{
+    border-radius: 0.75em;
+    padding: 18px;
+    display: flex;
+    justify-content: space-between;
+}
+.card-homework p{
+    margin: 0;
+    color: #f7f7f7;
+    font-weight: bold;
+}
+.card-homework .title-homework p{
+    font-size: 1.11em;
+}
+.card-homework .option-homework{
+    margin-top: 10px;
+    margin-right: 20px;
+}
+.card-danger{
+    background-color: #e95e5e;
+    border: 1px solid #e95e5e;
+}
+.card-danger:hover{
+    border: 2px solid #d64545;
+    border-bottom: 5px solid #d64545;
+}
+.card-success{
+    background-color: #75ca5b;
+    border: 1px solid #75ca5b;
+}
+.card-success:hover{
+    border: 2px solid #57bb39;
+    border-bottom: 5px solid #57bb39;
+}
+.shadow-car-danger{
+    box-shadow: 0 0.125rem 0.60rem rgba(210, 59, 60, 0.4) !important;
+}
+.shadow-car-success{
+    box-shadow: 0 0.125rem 0.60rem rgba(144, 214, 123, 0.4) !important;
+}
+
+/* --------- STYLE VIEW NEW HOMEWORK  --------- */
+
+.content-form-new-home{
+    background-color: #fdfdfd;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.content-form-new-home form input.control, .content-form-new-home form textarea{
+    padding: 4px 20px;
+    width: 100%;
+    font-size: 17px;
+    background-color: #f7f7f7;
+    border: 2px solid #e5e5e5;
+    border-radius: 5px;
+    margin: 15px 0;
+    color: #636363;
+    overflow: auto;
+    text-align: left;
+    width: 100%;
+    font-weight: bold;
+    margin-top: 0px;
+}
+.content-form-new-home form input:focus, .content-form-new-home form textarea:focus{
+    outline: none;
+}
+
+.content-form-new-home form label{
+    font-size: 15px;
+    font-weight: bold;
+    color: #636363;
+}
+.style-textarea-new-form{
+    height: 180px;
+}
+
+.content-form-new-home form button{
+    padding: 10px 25px;
+    background-color: #3f36df;
+    text-decoration: none;
+    border: none;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: 600;
+    border-bottom: 4px solid #1d14a2;
+    
+}
+.content-form-new-home form a{
+    padding: 10px 25px;
+    background-color: #ebebeb;
+    text-decoration: none;
+    border: 2px solid rgb(173, 173, 173);
+    color: rgb(117, 117, 117);
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: 600;
+    border-bottom: 4px solid rgb(173, 173, 173);
+    margin-right: 10px;
+}
+
+
+@media (max-width: 560px){
+    .info-date-homework{
+        display: block;
+    }
+    
+}
+@media (max-width: 500px){
+    .list-homeworks .card-homework{
+        display: block;
+    }
+    .list-homeworks .card-homework p{
+        margin-bottom: 10px;
+    }
+
+    .card-homework .date-homework{
+        display: flex;
+    }
+    .card-homework .date-homework p:first-child{
+        margin-right: 20px;
+    }
+
+}

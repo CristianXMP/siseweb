@@ -20,34 +20,8 @@
 <div class="row">
 
     <div class="col-md-4">
-        <div class="title-course shadow-sm">
-            <h6 >{{ $subject->nombre }}: {{ $course->course }} - {{ $course->variation }}</h6>
-            <p >Profesor: {{ $teacher_info->first_name }} {{ $teacher_info->last_name }} </p>
-
-        </div>
-
-        <div class="menu-coures mt-5 shadow">
-            <ul>
-                @if (Auth::user()->type_user == "Teacher")
-                <li><a href="{{ route('cursoProfesor', $subject->id) }}">Anuncios</a></li>
-                @endif
-                @if (Auth::user()->type_user == "Student")
-                <li><a href="{{ route('cursoEstudiante', $subject->id) }}">Anuncios</a></li>
-                @endif
-
-                <li><a href="">Tareas</a></li>
-
-                @if (Auth::user()->type_user == "Student")
-                <li><a href="{{ route('foro.student', $subject->id) }}">Foros</a></li>
-                @endif
-
-                @if (Auth::user()->type_user == "Teacher")
-                <li><a href="{{ route('foro.teacher', $subject->id) }}">Foros</a></li>
-                @endif
-
-                <li><a href="">Examenes</a></li>
-            </ul>
-        </div>
+        @component('components.navbar-course')
+        @endcomponent
     </div>
         <div class="col-md-8">
             <h2 class="mb-4">Foros</h2>
@@ -56,7 +30,7 @@
 
             <div class="card-new-foro shadow-sm">
                 <h3>Crear Foro</h3>
-                <form action="{{ Route('public.forums', $subject->id) }}" method="POST">
+                <form action="{{ Route('public.forums', in_c('sub', 'id')) }}" method="POST">
                     @csrf
                     <input type="text" name="title" placeholder="Titulo del foro">
                     <textarea name="content" id="" cols="30" rows="10" placeholder="¿Que quisieras publicar?" ></textarea>
@@ -89,12 +63,7 @@
                     <a class="btn btn-transparent text-primary"  href="{{ route('forum.coment', $item->id) }}" > <i class="fas fa-comment-alt"></i> {{ $item->comentcount }} Comentarios</a>
                     <a class="btn btn-transparent text-primary"  href="{{ route('forum.participant', $item->id) }}" > <i class="fas fa-users"></i> 43 Participantes</a>
                     @endif
-
-
                 </div>
-
-
-
             </div>
             @endforeach
 

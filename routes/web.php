@@ -18,18 +18,12 @@ Route::post('/', 'Auth\LoginController@login')->name('login');
 
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-
-
-Route::get('/educacion', function(){
-    return view('courses_home.dashboardCourses');
+Route::get('/homework', function(){
+    return view('homework.homework');
 });
 
-Route::get('/educacion/curso/', function(){
-    return view('courses_home.course');
-});
-
-Route::get('/foro', function(){
-    return view('forum.index');
+Route::get('/new-homework', function(){
+    return view('homework.new');
 });
 
 
@@ -70,7 +64,6 @@ Route::middleware(['auth','role:Teacher'])->group(function(){
     Route::post('/PublicarAnuncio', 'AdvertisementsController@publicar')->name('publicar');
     Route::get('/likes/{like}', 'AdvertisementsController@likes')->name('likes');
 
-    //foros
 
     route::get('foroprofesor/{subject_id}', 'HomeController@forum')->name('foro.teacher');
 

@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="icon" href="{{ asset('img/favicon-siseweb.png') }}">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style-tem-course.css') }}">
 
     @yield('style')
@@ -20,7 +22,7 @@
             <div class="">
                 <nav class="navbar navbar-expand-lg" role="navigation">
                     <div class="navbarHeader">
-                        <h2>LOGO</h2>
+                        <img src="{{ asset('img/siseweb.png') }}" alt="">
                     </div>
                     <button class="navbar-toggler first-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <div class="animated-icon1"><span></span><span></span><span></span></div>
@@ -30,8 +32,11 @@
                           <ul class="navbar-nav ml-auto">
                               <li class="nav-item"><a href="#">Mis cursos</a></li>
                               <li class="nav-item">
-                                  <a href="#">
-                                      <i class="fa fa-envelope"></i><span class="sec counter counter-lg">+9</span>
+                                  <a href="#" class="message">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px" 
+                                    preserveAspectRatio="x200Y200 meet"
+                                    ><path d="M0 0h24v24H0z" fill="none"/><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/></svg>
+                                    <span class="sec counter counter-lg">+9</span>
                                   </a>
                               </li>
                               <li class="nav-item">
@@ -45,6 +50,8 @@
                                 <a class="btn-logout" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                               document.getElementById('logout-form').submit();">
+                               
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
                                 Salir
 
                              </a>

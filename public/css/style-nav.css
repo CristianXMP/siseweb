@@ -26,6 +26,11 @@
 }
 .menu-coures li a{
     font-size: 16px;
+    color: #4e45ec;
+    font-weight: bold;
+}
+.menu-coures li a svg{
+    fill: currentColor;
 }
 
 .title-course h6{
