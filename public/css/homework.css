@@ -1,5 +1,10 @@
+
+
 .content-button-homework{
    margin: 45px 0;
+}
+hr{
+    border-top: 2px solid #e5e5e5;
 }
 .content-button-homework a{
     padding: 12px 20px;
@@ -90,6 +95,9 @@ a.card-link{
     box-shadow: 0 0.125rem 0.60rem rgba(144, 214, 123, 0.4) !important;
 }
 
+
+
+
 /* --------- STYLE VIEW NEW HOMEWORK  --------- */
 
 .content-form-new-home{
@@ -152,6 +160,241 @@ a.card-link{
 }
 
 
+/* --------- STYLE VIEW NEW HOMEWORK  --------- */
+
+
+.container-detail-homework {
+    border: 2px solid #e5e5e5;
+    background-color: #fff;
+    border-radius: 10px;
+}
+.container-detail-homework > .header {
+    display: grid;
+    grid-template-columns: 1fr 3%;
+    background-color: #f7f7f7;
+    padding: 15px;
+    border-radius: 10px 10px 0px 0px;
+    color: #4b4b4b;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
+}
+
+.container-detail-homework > .header div:first-child{
+    display: flex;
+    justify-content: space-between;
+}
+.container-detail-homework > .header h2 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.container-detail-homework > .header p {
+    font-size: 13px;
+    font-weight: bold;
+    color:  #8b8b8b;
+    margin-right: 3rem;
+    margin-bottom: 0;
+}
+
+.container-detail-homework > .header .dropdown button {
+    background-color: rgba(0,0,0,0);
+    border: none;
+}
+.header .dropdown button svg{
+    width: 27px;
+    height: 27px;
+    fill: currentColor;
+}
+.dropdown-menu {
+    min-width: 7rem;
+    padding: 0;
+    left: -40px !important;
+    border-radius: 0.5rem;
+}
+.dropdown-item {
+    padding: 0.40rem 1.5rem;
+    border-radius: 0.5rem;
+}
+
+
+.container-detail-homework > .body{
+    padding: 20px;
+}
+.container-detail-homework > .body p{
+    margin-bottom: 30px;
+}
+.container-detail-homework > .body a {
+    padding: 10px 25px;
+    background-color: #6960fb;
+    text-decoration: none;
+    border: none;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: 600;
+    border-bottom: 4px solid #4c43c6;
+    margin-bottom: 30px;
+    width: 193px;
+    display: block;
+}
+
+
+.container-detail-homework > .body a svg {
+    width: 33px;
+    height: 33px;
+    fill: currentColor;
+    margin-right: 5px;
+}
+.container-detail-homework > .body .content-state-home {
+    display: flex;
+}
+
+.container-detail-homework > .body input[type="file"]{
+
+    padding: 4px 20px;
+    font-size: 17px;
+    background-color: #f7f7f7;
+    border: 2px solid #e5e5e5;
+    border-radius: 5px;
+    margin: 15px 0;
+    color: #636363;
+    overflow: auto;
+    text-align: left;
+    width: 60%;
+    font-weight: bold;
+    margin-top: 0px;
+    border: 2px solid #e5e5e5 !important; 
+}
+
+.container-detail-homework > .body form button {
+    padding: 10px 25px;
+    background-color: #3f36df;
+    text-decoration: none;
+    border: none;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: 600;
+    border-bottom: 4px solid #1d14a2;
+    margin: 30px 0;
+}
+
+.container-detail-homework > .body .custom-file-label {
+    width: 60% ;
+}
+.container-detail-homework .content-state-home div:first-child {
+    margin-right: 6rem;
+    margin-left: 1rem;
+}
+
+.item-homework {
+    width: 80%;
+    display: grid;
+    grid-template-columns: 60% 1fr 1fr;
+    margin-top: 30px;
+}
+.title-items {
+    color: #999;
+}
+
+.item-homework h4 {
+    color: #3c3c3c;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.item-homework p {
+    font-weight: bold;
+}
+.item-homework a {
+    padding: 5px 18px;
+    width: 60px;
+    height: 40px;
+    background-color: #3f36df;
+    text-decoration: none;
+    border: none;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: 600;
+    border-bottom: 4px solid #1d14a2;
+}
+
+.container-detail-homework .content-state-home h1, .container-detail-homework .content-state-home p {
+    font-weight: bold;
+}
+
+
+/* --------- STYLE VIEW NEW HOMEWORK  --------- */
+
+.content-qualify {
+    background-color: #fdfdfd;
+    padding: 30px;
+    border-radius: 10px;
+}
+.content-qualify .header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.content-qualify .header h1, .content-qualify .header p {
+    font-weight: bold;
+}
+.btn-h {
+    padding: 12px 20px;
+    text-decoration: none;
+    background: #3f36df;
+    color: #fff;
+    border-radius: 2em;
+    font-size: 1em;
+    font-weight: 600;
+    border-bottom: 4px solid #1d14a2;
+}
+
+.btn-h:hover {
+    padding: 12px 20px;
+    text-decoration: none;
+    background: #3f36df;
+    color: #fff;
+    border-radius: 2em;
+    font-size: 1em;
+    font-weight: 600;
+    border-bottom: 4px solid #1d14a2;
+}
+.content-qualify .container-button-download {
+    margin-bottom: 30px;
+}
+.content-qualify svg {
+    fill: currentColor;
+    width: 2em;
+    height: 2em;
+}
+
+.form-control-h {
+    padding: 0px 20px;
+    width: 100%;
+    font-size: 17px;
+    background-color: #f7f7f7;
+    border: 2px solid #e5e5e5;
+    border-radius: 5px;
+    margin: 15px 0;
+    color: #636363;
+    overflow: auto;
+    text-align: left;
+    width: 100%;
+    font-weight: bold;
+    margin-top: 0px;
+}
+.form-control-h:focus {
+    outline: none;
+}
+.content-qualify form button.btn-h{
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-radius: 10px;
+}
+
 @media (max-width: 560px){
     .info-date-homework{
         display: block;
@@ -173,4 +416,42 @@ a.card-link{
         margin-right: 20px;
     }
 
+    .container-detail-homework > .header {
+        grid-template-columns: 1fr 10%;
+    }
+
+    .container-detail-homework > .header div:first-child{
+        display: block;
+    }
+    .container-detail-homework > .header h2 {
+        margin-bottom: 20px;
+    }
+
+    .container-detail-homework .content-state-home div:first-child {
+        margin-right: 3rem;
+        margin-left: 0;
+    }
+    .item-homework {
+        width: 100%;
+    }
+    .item-homework h4 {
+        font-size: 17px;
+    }
+    .item-homework p {
+        font-size: 13px;
+    }
+
+    .container-detail-homework > .body input[type="file"]{
+        width: 100%;
+    }
+
+    .container-detail-homework > .body .custom-file-label {
+        width: 100% ;
+    }
+
+    .content-qualify .header {
+        display: block;
+    }
+
 }
+
