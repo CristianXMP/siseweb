@@ -125,6 +125,22 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-12 col-lg-6 form-left">
+            <div class="form-group row" style="margin-top: 1rem;">
+                <label for="col-sm-4 col-form-label">Estado:</label>
+                <div class="col-sm-8 input-group ">
+                    <select name="Estado" id="" class="form-control">
+                    <option value="{{$student->state}}" selected>{{$student->state}} </option>
+                    @if ($student->state == 'Activo')
+                    <option value="Retirado">Reatirar</option>
+                    @endif
+                    @if ($student->state == 'Retirado')
+                    <option value="Activo">Activar</option>
+                    @endif
+                    </select>
+                </div>
+            </div>
+        </div>
 
         <div class="col-md-12 col-lg-6 form-left"></div>
 

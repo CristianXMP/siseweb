@@ -1,6 +1,8 @@
 <?php
 use Illuminate\Support\Facades\Route;
 
+//------/itemsdinamics/-----
+
 function active($path){
 
 
@@ -27,3 +29,13 @@ function active($path){
 
 }
 
+//------/datos de inicio de de session\------
+
+if (! function_exists('in_c')) {
+
+    function in_c($key1, $key2)
+    {
+        $array1 = session($key1);
+        return $array1[$key2];
+    }
+}

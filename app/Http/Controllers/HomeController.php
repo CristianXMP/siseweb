@@ -42,8 +42,14 @@ class HomeController extends Controller
         $countacademicassignment = Academic_assignment::all()->count();
         $countcourses = Course::all()->count();
         $countuser = User::all()->count();
-        return view('home', compact('countteacher','countstudent','countsubject','countacademicassignment',
-                                       'countcourses','countuser'));
+        return view('home', compact(
+            'countteacher',
+            'countstudent',
+            'countsubject',
+            'countacademicassignment',
+            'countcourses',
+            'countuser'
+        ));
     }
 
     /* public function Teacher(){
@@ -75,10 +81,6 @@ class HomeController extends Controller
             $cargaacademica = $teacher->academic_assignments;
 
             return view('courses_home.dashboardCourses', compact('cargaacademica'));
-
-
-
-
         }
 
         if (Auth()->user()->type_user == 'Student') {
@@ -90,9 +92,9 @@ class HomeController extends Controller
             $student_id = auth()->user()->student_id;
             $student = Student::find($student_id);
 
-               //informacion de ralacion estudiante curso
-                $student_id = auth()->user()->student_id;
-                $student = Student::find($student_id);
+            //informacion de ralacion estudiante curso
+            $student_id = auth()->user()->student_id;
+            $student = Student::find($student_id);
 
 
             //informacion de ralacion  curso carga academica
@@ -104,12 +106,7 @@ class HomeController extends Controller
             $materias = $cargaacademica->academic_assignments;
 
             return view('courses_home.dashboardCourses', compact('materias'));
-
         }
-
-
-         }
-
     }
 
 
@@ -126,8 +123,6 @@ class HomeController extends Controller
             $course = Course::findOrfail($CargaAcademica[0]['course_id']);
             $subject = Subject::findOrfail($CargaAcademica[0]['subject_id']);
 
-            //------/-------
-
             // recolecion de los datos de anuncios
 
             $anuncios = Subject::findOrfail($subject_id)
@@ -135,19 +130,14 @@ class HomeController extends Controller
                 ->Advertisements()
                 ->orderBy('created_at', 'desc')->paginate(5);
 
-            ->Advertisements()
-            ->orderBy('created_at', 'desc')->paginate(5);
-
-            $info_course = [
-               'cur' => $course,
-               'sub' => $subject,
-               'tea' => $teacher_info
+          $info_course = [
+                'cur' => $course,
+                'sub' => $subject,
+                'tea' => $teacher_info
             ];
             session($info_course);
 
-
-
-            return  view('courses_home.course', compact('anuncios'));
+       
 
 
             return  view('courses_home.course', compact('course', 'teacher_info', 'subject', 'anuncios'));
@@ -173,21 +163,17 @@ class HomeController extends Controller
             $cargaacademica = $course->academic_assignments;
             $subject = Subject::findorfail($subject_id);
 
-                $cargaacademica = $course->academic_assignments;
-                $subject = Subject::findorfail($subject_id);
-
-                return view('courses_home.course', compact('cargaacademica','course','teacher_info','anuncios','subject'));
-
-         }
-
+            $cargaacademica = $course->academic_assignments;
+            $subject = Subject::findorfail($subject_id);
 
             return view('courses_home.course', compact('cargaacademica', 'course', 'teacher_info', 'anuncios', 'subject'));
         }
     }
 
+
     public function forum($subject_id)
     {
-        $CargaAcademica = Academic_assignment::where('subject_id', $subject_id )->get();
+        $CargaAcademica = Academic_assignment::where('subject_id', $subject_id)->get();
         $forums = Forum::where('academic_assignment_id', $CargaAcademica[0]['id'])->get();
 
 
@@ -214,9 +200,4 @@ class HomeController extends Controller
             return view('forum.index', compact('teacher_info', 'course', 'subject', 'forums'));
         }
     }
-
-        return view('forum.index', compact('forums' ));
-    }
-
-
 }

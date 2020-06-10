@@ -230,8 +230,9 @@ caption {
   caption-side: bottom;
 }
 
-th {
+table th {
   text-align: inherit;
+
 }
 
 label {

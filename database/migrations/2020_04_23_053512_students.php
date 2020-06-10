@@ -25,6 +25,7 @@ class Students extends Migration
             $table->string('number_document', 30);
             $table->date('expedition_date')->nullable();
             $table->date('birth_date')->nullable();
+            $table->string('state', '40')->default('Activo');
             $table->string('student')->default('student');
             $table->boolean('is_user')->default(false);
             $table->unsignedInteger('course_id');

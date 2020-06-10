@@ -19,7 +19,7 @@
 <body>
 
     @include('sweetalert::alert')
-    <div class="container-fluid">
+    <div class="container-fluid h-100">
         <div class="row">
             <header class="col-12 headLogin">
                 <div class="d-none d-md-block">
@@ -116,15 +116,17 @@
                 </div>
             </div>
 
-            <div class="col-md-6 col-12 col-lg-9">
-                <div class="shadow p-3 mb-5 bg-white rounded contentBody">
+                <div class=" col-md-8 col-12 col-lg-9">
+                    <div class="shadow p-3 mb-5 bg-white rounded contentBody">
 
-                    {{-- Aqui va el contenido  --}}
-                    @yield('content')
+                        {{-- Aqui va el contenido  --}}
+                        @yield('content')
+
+                    </div>
 
                 </div>
 
-            </div>
+
 
         </div>
     </div>

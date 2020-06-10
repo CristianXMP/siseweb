@@ -117,7 +117,7 @@
                             @forelse ($course as $item)
                         <option value="{{$item->id}}">{{$item->course}} -  °{{$item->variation}}</option>
                             @empty
-                            <option value="">Example 1</option>
+                            <option value="" selected>No hay datos</option>
                             @endforelse
 
 

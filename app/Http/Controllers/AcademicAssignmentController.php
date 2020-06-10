@@ -26,17 +26,12 @@ class AcademicAssignmentController extends Controller
      */
     public function index()
     {
-        $academicCourses = Academic_assignment::select('course_id')->get();
-        $academicSubjects = Academic_assignment::select('subject_id')->get();
+
         $academicTeacher = Academic_assignment::select('teacher_id')->get();
-
-         $cursos = Course::findMany($academicCourses);
-         $materias = Subject::findMany($academicSubjects);
-         $teacher = Teacher::findMany($academicTeacher);
-
+        $teacher = Teacher::findMany($academicTeacher);
 
         $academicAssignment = Academic_assignment::all();
-        return view('academic_assignments.index', compact('teacher','academicAssignment'));
+        return view('academic_assignments.index', compact('teacher'));
     }
 
     /**
@@ -108,6 +103,16 @@ class AcademicAssignmentController extends Controller
     public function show($id)
     {
         //
+         $academicCourses = Academic_assignment::where('teacher_id', $id)->get();
+        $teacher = Teacher::findorfail($id);
+
+
+
+        return view('academic_assignments.show', compact('academicCourses','teacher'));
+
+
+
+
     }
 
     /**
@@ -157,10 +162,6 @@ class AcademicAssignmentController extends Controller
         $AsignacionUpdate->save();
 
         return redirect('/asignaciones')->withToastSuccess('Asignacion Actualizada Correcatamente!');
-
-
-
-
 
     }
 

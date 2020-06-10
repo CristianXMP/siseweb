@@ -165,6 +165,7 @@ class StudentController extends Controller
             'municipio' => 'required',
             'tipo_de_documento' => 'required',
             'numero_de_documento' => 'required|min:10|max:10',
+            'Estado' => 'required',
             'curso' => 'required',
         ]);
 
@@ -181,9 +182,32 @@ class StudentController extends Controller
         $studentUpdate->number_document  =  $request->get('numero_de_documento');
         $studentUpdate->expedition_date  =  $request->get('fecha_de_expedicion');
         $studentUpdate->birth_date      =  $request->get('fecha_de_nacimiento');
+        $studentUpdate->state      =        $request->get('Estado');
         $studentUpdate->course_id       =  $request->get('curso');
         $studentUpdate->save();
 
+        if ($request->get('Estado') == "Activo") {
+            
+            User::create([
+
+                'nombre' => $request->get('primer_nombre'),
+                'apellidos' => $request->get('apellidos'),
+                'cargo' => 'Estudiante',
+                'teacher_id' => null,
+                'student_id' => $id,
+                'cedula'    => $request->get('tipo_de_documento'),
+                'cedula_verified_at' => now(),
+                'password' => bcrypt($request->get('tipo_de_documento')),
+                'type_user' => 'Student',
+                'remember_token' => Str::random(10)
+
+            ]);
+        }
+
+        if ($request->get('Estado') == "Retirado") {
+            User::where('student_id', $id)
+            ->delete();
+        }
         //update usuario
 
         User::where('student_id', $id)
