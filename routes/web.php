@@ -11,7 +11,6 @@ use App\Teacher;
 use Illuminate\Support\Facades\Route;
 
 
-
 Route::get('/', 'Auth\LoginController@showLoginForm');
 
 Route::post('/', 'Auth\LoginController@login')->name('login');
@@ -26,6 +25,12 @@ Route::get('/new-homework', function(){
     return view('homework.new');
 });
 
+
+Route::view('/detail-homework', 'homework.detail');
+
+Route::view('/qualify', 'homework.qualify');
+
+Auth::routes();
 
 
 route::get('/prueba', function(){
