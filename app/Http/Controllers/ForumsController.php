@@ -81,13 +81,7 @@ class ForumsController extends Controller
 
         $coments = Forum_coment::where('forum_id', $id)->get();
 
-
-
-        return view('forum.coments', compact('subject', 'course', 'teacher_info', 'GetForum', 'coments'));
-
-
         return view('forum.coments', compact('GetForum','coments'));
-
 
     }
 

@@ -122,3 +122,25 @@
 .height-textarea-comment{
     height: 5rem !important;
 }
+/* -----Style view Participants  ------ */
+
+
+.accordion .card {
+    border: none;
+    margin-bottom: 10px;
+
+}
+.accordion .card .card-header{
+    border-radius: 2em;
+    background-color: var(--color-primary);
+}
+.accordion .card .card-header:hover{
+    background-color: #3663e9;
+}
+
+.accordion button {
+    font-size: 15px;
+}
+.accordion button:focus {
+    box-shadow: none;
+}

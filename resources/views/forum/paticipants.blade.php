@@ -22,7 +22,7 @@
         <div class="accordion mt-4" id="accordionExample">
 
             <div class="card">
-                <div class="card-header bg-primary" id="headingTwo">
+                <div class="card-header" id="headingTwo">
                     <h2 class="mb-0">
                         <button class="btn btn-sm btn-block text-center text-white collapsed " type="button"
                             data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
@@ -82,7 +82,7 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-header bg-primary" id="headingThree">
+                <div class="card-header" id="headingThree">
                     <h2 class="mb-0">
                         <button class="btn btn-sm text-center text-white btn-block  collapsed" type="button"
                             data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
