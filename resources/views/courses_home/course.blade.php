@@ -8,7 +8,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-4">
-            
+
             @component('components.navbar-course')
             @endcomponent
 
@@ -21,9 +21,9 @@
                     @csrf
 
 
-                    <input type="hidden" name="course_id" value="{{ in_c('cur', 'id') }}">
-                    <input type="hidden" name="teacher_id" value="{{ in_c('tea', 'id') }}">
-                    <input type="hidden" name="subject_id" value="{{ in_c('sub', 'id') }}">
+                    <input type="hidden" name="course_id" value="{{-- in_c('cur','id') --}}">
+                    <input type="hidden" name="teacher_id" value="{{-- in_c('tea','id') --}}">
+                    <input type="hidden" name="subject_id" value="{{-- in_c('sub','id') --}}">
 
                     <textarea name="anuncio" id="" cols="30" rows="10" class="form-control" placeholder="Compartir con tu clase"></textarea>
                     <button type="submit" class="btn btn-secondary mt-2">

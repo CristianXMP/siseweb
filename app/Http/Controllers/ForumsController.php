@@ -20,6 +20,24 @@ use Illuminate\Support\Facades\DB;
 
 class ForumsController extends Controller
 {
+
+    public function forum($id)
+    {
+        $CargaAcademica = Academic_assignment::findorfail($id);
+
+        $forums = Forum::where('academic_assignment_id', $id)->get();
+
+
+        if (Auth()->user()->type_user == 'Student') {
+            return view('forum.index', compact('forums'));
+        }
+
+        if (Auth()->user()->type_user == 'Teacher') {
+            return view('forum.index', compact('forums'));
+        }
+    }
+
+
     public function public_forum(Request $request, $id)
     {
 

@@ -35,13 +35,7 @@ Auth::routes();
 
 route::get('/prueba', function(){
 
-    $participanteforo = FinalScore::
-    where('forum_id', 1)->get();
-
-    foreach ($participanteforo as $item) {
-
-        echo $item->qualification;
-    }
+  return "hola";
 
     //$student_participants = Student::find(1);
 
@@ -64,16 +58,17 @@ Route::middleware(['auth','role:Teacher'])->group(function(){
 
     Route::get('/Profesor', 'HomeController@educacion')->name('Profesor');
     //curso y anumcios
-    Route::get('/cursoProfesor/{subject_id}', 'HomeController@curso')->name('cursoProfesor');
+    Route::get('/cursoProfesor/{id}', 'HomeController@curso')->name('cursoProfesor');
     Route::get('/anunciosProfesor', 'HomeController@anuncio')->name('anuncios.index');
     Route::post('/PublicarAnuncio', 'AdvertisementsController@publicar')->name('publicar');
     Route::get('/likes/{like}', 'AdvertisementsController@likes')->name('likes');
 
 
-    route::get('foroprofesor/{subject_id}', 'HomeController@forum')->name('foro.teacher');
+
 
     //forums pliblic
 
+    route::get('foroprofesor/{id}', 'ForumsController@forum')->name('foro.teacher');
     Route::post('/PublicForums/{id}', 'ForumsController@public_forum')->name('public.forums');
     Route::get('/comentLikes/{id}', 'ForumsController@coments_likes')->name('forum.coment');
     Route::post('/PublicComent/{id}', 'ForumsController@public_coment')->name('public.coment');
@@ -81,6 +76,17 @@ Route::middleware(['auth','role:Teacher'])->group(function(){
     Route::get('/participants/{id}', 'ForumsController@participants')->name('forum.participant');
     Route::post('/qualification/{id}','ForumsController@sendqualification')->name('forum.qualification');
 
+
+    /**
+     * modulo de tareas
+     */
+
+     Route::get('homework','HomeWork@homework')->name('homework');
+     Route::get('/new-homework', function(){
+        return view('homework.new');
+    })->name('new.homework');
+
+    Route::post('PublicHomework/{id}','HomeWork@PublicHomework')->name('PublicHomework');
 
 
 });
@@ -91,13 +97,13 @@ Route::middleware(['auth','role:Student'])->group(function(){
 
 
     Route::get('/Estudiante', 'HomeController@educacion')->name('Estudiante');
-    Route::get('/cursoEstudiante/{subject_id}', 'HomeController@curso')->name('cursoEstudiante');
+    Route::get('/cursoEstudiante/{id}', 'HomeController@curso')->name('cursoEstudiante');
     Route::get('/likes/{like}', 'AdvertisementsController@likes')->name('likes');
 
 
     //foros
 
-    route::get('foroestudiante/{subject_id}', 'HomeController@forum')->name('foro.student');
+    route::get('foroestudiante/{id}', 'ForumsController@forum')->name('foro.student');
      Route::get('/comentstudent/{id}', 'ForumsController@coments_likes')->name('forum.comentstudent');
      Route::post('/PublicComentstudent/{id}', 'ForumsController@public_coment')->name('public.comentstudent');
      Route::get('/likecomentstudent/{id}', 'ForumsController@like_coment')->name('forum.likestudent');

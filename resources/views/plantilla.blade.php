@@ -133,7 +133,7 @@
 
 
 
-    <footer class="fixed-bottom shadow bg-white container-fluit ">
+    <footer class=" shadow bg-white container-fluit ">
 
       {{--  <div class="clearfix ">
             <p class="mt-2 float-left">Todos los derechos reservados @ OpenSoft</p>

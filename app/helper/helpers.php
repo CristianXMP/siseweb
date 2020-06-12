@@ -33,9 +33,14 @@ function active($path){
 
 if (! function_exists('in_c')) {
 
-    function in_c($key1, $key2)
+    function in_c($key1, $key2, $key3)
     {
+        if (is_null($key3)) {
+            $array1 = session($key1);
+        return $array1->$key2;
+        }
+
         $array1 = session($key1);
-        return $array1[$key2];
+        return $array1->$key2->$key3;
     }
 }

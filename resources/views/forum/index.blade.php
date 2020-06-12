@@ -30,7 +30,7 @@
 
             <div class="card-new-foro shadow-sm">
                 <h3>Crear Foro</h3>
-                <form action="{{ Route('public.forums', in_c('sub', 'id')) }}" method="POST">
+                <form action="{{ Route('public.forums', in_c('car', 'id', null)) }}" method="POST">
                     @csrf
                     <input type="text" name="title" placeholder="Titulo del foro">
                     <textarea name="content" id="" cols="30" rows="10" placeholder="¿Que quisieras publicar?" ></textarea>

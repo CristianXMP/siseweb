@@ -10,34 +10,9 @@
 <div class="row">
 
     <div class="col-md-4">
-        <div class="title-course shadow-sm">
-            <h6>{{ $subject->nombre }}: {{ $course->course }} - {{ $course->variation }}</h6>
-            <p>Profesor: {{ $teacher_info->first_name }} {{ $teacher_info->last_name }} </p>
+        @component('components.navbar-course')
+        @endcomponent
 
-        </div>
-
-        <div class="menu-coures mt-5 shadow">
-            <ul>
-                @if (Auth::user()->type_user == "Teacher")
-                <li><a href="{{ route('cursoProfesor', $subject->id) }}">Anuncios</a></li>
-                @endif
-                @if (Auth::user()->type_user == "Student")
-                <li><a href="{{ route('cursoEstudiante', $subject->id) }}">Anuncios</a></li>
-                @endif
-
-                <li><a href="">Tareas</a></li>
-
-                @if (Auth::user()->type_user == "Student")
-                <li><a href="{{ route('foro.student', $subject->id) }}">Foros</a></li>
-                @endif
-
-                @if (Auth::user()->type_user == "Teacher")
-                <li><a href="{{ route('foro.teacher', $subject->id) }}">Foros</a></li>
-                @endif
-
-                <li><a href="">Examenes</a></li>
-            </ul>
-        </div>
     </div>
     <div class="col-md-8 shadow p-3 mb-5 bg-white rounded">
         <h2 class="mb-4 text-center">{{ $GetForum->title }}</h2>
