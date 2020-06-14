@@ -45,4 +45,11 @@ class Academic_assignment extends Model
         $this->hasMany(Forum::class);
     }
 
+    //homeworks
+
+    public function Homeworks()
+    {
+       return $this->hasMany(Job::class);
+    }
+
 }

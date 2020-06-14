@@ -5,6 +5,7 @@ use App\Advertisement;
 use App\Course;
 use App\FinalScore;
 use App\ForumParticipant;
+use App\Job;
 use App\Student;
 use App\Subject;
 use App\Teacher;
@@ -35,11 +36,15 @@ Auth::routes();
 
 route::get('/prueba', function(){
 
-  return "hola";
 
-    //$student_participants = Student::find(1);
+    //saber que taras pertenencen a la carga academica con id 1
+    $car = Academic_assignment::find(1);
 
-    //return $student_participants->participants_forums;
+   return $car->Homeworks;
+ //saber que carga academica pertenencen a la tarea  con id 2
+   $job = Job::find(2);
+
+   return $job->Academic_assignment;
 
 
 
@@ -81,7 +86,7 @@ Route::middleware(['auth','role:Teacher'])->group(function(){
      * modulo de tareas
      */
 
-     Route::get('homework','HomeWork@homework')->name('homework');
+     Route::get('homework','HomeWork@index')->name('homework');
      Route::get('/new-homework', function(){
         return view('homework.new');
     })->name('new.homework');
