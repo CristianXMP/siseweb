@@ -31,9 +31,9 @@ class CreateFinalScoresTable extends Migration
             $table->unsignedInteger('test_id')->nullable();
             $table->foreign('test_id')->references('id')->on('tests');
 
-            $table->dateTime('date_qualification')->default(now());
+            $table->dateTime('date_qualification')->default(now()->format('y-m-d'));
 
-            $table->float('qualification');
+            $table->decimal('qualification', 3,1);
 
             $table->timestamps();
         });

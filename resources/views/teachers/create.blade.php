@@ -67,7 +67,7 @@
                     <label for="col-sm-4 col-form-label">Tipo de Documento:</label>
                     <div class="col-sm-8 input-group ">
                         <select name="tipo_de_documento" id="" class="form-control">
-                            <option value="" selected disabled>Escoge tpo de documento</option>
+                            <option value="" selected disabled>Escoge tipo de documento</option>
 
                             @forelse ($type_document as $item)
                           <option value="{{$item->id}}">{{$item->nombre}} - {{$item->abreviatura}}</option>
@@ -81,7 +81,7 @@
 
             <div class="col-md-12 col-lg-6 form-left">
                 <div class="form-group row" style="margin-top: 1rem;">
-                    <label for="col-sm-4 col-form-label">Profesion:</label>
+                    <label for="col-sm-4 col-form-label">Profesión:</label>
                     <div class="col-sm-8 input-group">
                         <input type="text" class="form-control" name="profesion">
                     </div>

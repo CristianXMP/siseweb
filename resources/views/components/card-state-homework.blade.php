@@ -1,4 +1,4 @@
 <div>
-    <h2>{{ $number }}</h2>
+    <h5 class="text-center">{{ $number }}</h5>
     <p>{{ $text }}</p>
 </div>

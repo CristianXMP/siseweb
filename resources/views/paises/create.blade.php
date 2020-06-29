@@ -9,7 +9,7 @@
         <div class="title">
             <h1>
                 <i class="far fa-file-alt"></i>
-                Agregar Pais
+                Agregar País
             </h1>
         </div>
     </div>

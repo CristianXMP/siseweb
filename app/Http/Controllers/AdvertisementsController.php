@@ -15,32 +15,19 @@ class AdvertisementsController extends Controller
 {
     //
 
-
-
-    public function publicar(Request $request)
+    public function __construct()
     {
+        $this->middleware('auth');
+    }
 
-
-
-
+    public function publicar(Request $request, $id)
+    {
         if (Auth::user()->type_user == 'Teacher') {
-
-
-
 
             $validator = Validator::make(
                 $request->all(),
                 [
-                    'course_id' => 'required',
-                    'teacher_id' => 'required',
-                    'subject_id' => 'required',
                     'anuncio'        => 'required|max:250|min:8'
-                ],
-                [
-                    'course_id.required'     => 'Por favor no intentes modificar el codigo html de esta sistema',
-                    'teacher_id.required'    => 'Por favor no intentes modificar el codigo html de esta sistema',
-                    'subject_id.required'    => 'Por favor no intentes modificar el codigo html de esta sistema',
-
                 ]
             );
             if ($validator->fails()) {
@@ -49,13 +36,13 @@ class AdvertisementsController extends Controller
 
 
             $advertisement = new Advertisement([
-                'course_id' =>  $request->get('course_id'),
-                'teacher_id' => $request->get('teacher_id'),
-                'subject_id' => $request->get('subject_id'),
+                'Academic_assignment_id' => $id,
                 'announced' => $request->get('anuncio'),
             ]);
 
             $advertisement->save();
+
+
             return back()->withToastSuccess('Anuncio Publicado!');
         }
 
@@ -72,21 +59,20 @@ class AdvertisementsController extends Controller
 
 
         $VerifyLikes  = DB::table('likeadvertisements')
-        ->where('advertisement_id', '=', $id)
-        ->where('student_id', '=', Auth::user()->student_id)
-        ->get();
+            ->where('advertisement_id', '=', $id)
+            ->where('student_id', '=', Auth::user()->student_id)
+            ->get();
 
         if ($VerifyLikes->isEmpty()) {
 
 
             likeadvertisement::create([
-                    'advertisement_id' => $id,
-                    'student_id' => Auth::user()->student_id
-                ]);
-                Advertisement::where('id', $id)
-              ->update(['likes' => $newlike]);
-              return back()->withToastSuccess('Te ha gustado un anuncio');
-
+                'advertisement_id' => $id,
+                'student_id' => Auth::user()->student_id
+            ]);
+            Advertisement::where('id', $id)
+                ->update(['likes' => $newlike]);
+            return back()->withToastSuccess('Te ha gustado un anuncio');
         } else {
 
             return back()->withToastInfo('Ya te ha gustado este anuncio!');

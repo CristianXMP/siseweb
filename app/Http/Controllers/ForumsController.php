@@ -28,6 +28,7 @@ class ForumsController extends Controller
         $forums = Forum::where('academic_assignment_id', $id)->get();
 
 
+
         if (Auth()->user()->type_user == 'Student') {
             return view('forum.index', compact('forums'));
         }
@@ -46,8 +47,8 @@ class ForumsController extends Controller
         $validator = validator::make(
             $request->all(),
             [
-                'title' => 'required|max:80|min:8',
-                'content' => 'required|max:250|min:20'
+                'title' => 'required',
+                'content' => 'required'
             ],
             [
                 'title.required' => 'El campo titulo es obligatorio.',
@@ -83,12 +84,10 @@ class ForumsController extends Controller
 
 
 
-        return view('forum.coments', compact('subject', 'course', 'teacher_info', 'GetForum', 'coments'));
+        return view('forum.coments', compact('GetForum', 'coments'));
 
 
-        return view('forum.coments', compact('GetForum','coments'));
-
-
+        return view('forum.coments', compact('GetForum', 'coments'));
     }
 
 
@@ -152,9 +151,6 @@ class ForumsController extends Controller
                     'coment' => $request->get('coment'),
 
                 ]);
-
-
-
                 $coment->save();
 
                 Forum::findorfail($id)->update(['comentcount' => $CountComent]);
@@ -165,6 +161,7 @@ class ForumsController extends Controller
                 ]);
 
                 return back()->withToastSuccess('Comentario publicado!');
+
             } else {
                 if (count($verify) > 0) {
                     $coment = new Forum_coment([
@@ -260,14 +257,10 @@ class ForumsController extends Controller
 
         if (count($participantsforo) > 0) {
 
-            $qualificationStudent = FinalScore::
-                where('forum_id', $id)->get();
+            $qualificationStudent = FinalScore::where('forum_id', $id)->get();
 
 
-                return view('forum.paticipants', compact('GetForum', 'subject', 'course', 'teacher_info', 'participantsforo','qualificationStudent'));
-
-
-
+            return view('forum.paticipants', compact('GetForum', 'participantsforo', 'qualificationStudent'));
         } else {
             return back()->withToastError('Este foro no tiene participantes aun.');
         }
@@ -303,10 +296,40 @@ class ForumsController extends Controller
             ]);
 
             ForumParticipant::where('forum_id', $id)
-            ->where('student_id', $request->get('estudiante'))
-            ->update(['state' => true]);
+                ->where('student_id', $request->get('estudiante'))
+                ->update(['state' => true]);
 
             return back();
         }
+    }
+
+
+    public function modified_qualify(request $request, $id)
+    {
+        $validator =  validator::make(
+            $request->all(),
+            [
+                'mqualify' => 'required|numeric|between:1,100.0'
+            ],
+            [
+                'mqualify.required' => 'El campo Rv es obligatorio',
+                'mqualify.numeric' => 'El campo Rv debe ser un numero entero o un decimal'
+
+            ]
+        );
+
+        if ($validator->fails()) {
+            return back()->withToastError($validator->messages()->all()[0])->withInput();
+        }
+
+
+
+        FinalScore::where('id', $id)
+            ->update([
+                'qualification' => $request->get('mqualify'),
+
+            ]);
+
+        return back()->withToastSuccess('Nota modificada correctamente');
     }
 }

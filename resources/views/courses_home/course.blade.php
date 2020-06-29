@@ -17,13 +17,8 @@
             <h2 class="mb-2">Anuncios</h2>
             @if (Auth::user()->type_user == 'Teacher')
             <div class="new-anun shadow-sm">
-                <form action="{{ Route('publicar') }}" class="" method="POST">
+                <form action="{{ Route('publicar', in_c('car','id', null)) }}" class="" method="POST">
                     @csrf
-
-
-                    <input type="hidden" name="course_id" value="{{-- in_c('cur','id') --}}">
-                    <input type="hidden" name="teacher_id" value="{{-- in_c('tea','id') --}}">
-                    <input type="hidden" name="subject_id" value="{{-- in_c('sub','id') --}}">
 
                     <textarea name="anuncio" id="" cols="30" rows="10" class="form-control" placeholder="Compartir con tu clase"></textarea>
                     <button type="submit" class="btn btn-secondary mt-2">
@@ -47,7 +42,7 @@
                             class="mr-3">
 
 
-                            <p class="name-anun mr-3">{{ $item->teacher->first_name }} {{ $item->teacher->last_name }} (Profesor)</p>
+                            <p class="name-anun mr-3">{{ in_c('car','teacher', 'first_name')}} {{ in_c('car','teacher', 'last_name')}}</p>
 
                             <p class="date-anun">Publicado {{ $item->created_at}}</p>
 
@@ -67,16 +62,37 @@
 
                         @endif
 
+                        @if (Auth::user()->type_user == 'Teacher')
+
+
+
+                            <small class="text-primary"><i class="far fa-thumbs-up"></i> {{ $item->likes}} Me gusta</small>
+
+
+
+                        @endif
+
 
                     </div>
                 </div>
+
                 @endforeach
+                @if (count($anuncios) != null)
+                <div class="mt-5">
+                    <small>Paginación de anuncios</small>
+                    {{ $anuncios->links() }}
+                </div>
+
+
+                @endif
+
 
 
 
             </div>
 
         </div>
+
     </div>
 @endsection
 

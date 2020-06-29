@@ -22,7 +22,7 @@
                 <input type="text" placeholder="Titulo" class="control" name="title">
                 <textarea name="description" id="" cols="30" rows="10" placeholder="Descripcción" class="style-textarea-new-form"></textarea>
 
-                <div class="form-row">
+                <div class="row">
                     <div class="col-md-6">
                         <label for="">Fecha de Entrega</label>
                         <input type="date" class="control" name="deliverdate">
@@ -31,15 +31,16 @@
                         <label for="">Recurso (opcional)</label>
 
                         <div class="custom-file text-center">
-                            <input accept=".doc,.docx,.pdf,.xls" type="file" class="custom-file-input" id="customFile" name="resource">
+                            <input accept=".doc,.docx,.pdf,.xls" type="file" class="custom-file-input form-control-md" id="customFile" name="resource">
                             <label class="custom-file-label text-left" for="customFile"  data-browse="Elegir">Ningún archivo seleccionado</label>
-                            <small  class="text-center">Solo archivos con las siguentes extenciones (doc, pdf, xls)</small>
+
 
                         </div>
+                        <small  class="text-left">Solo archivos (word, excel o pdf)</small>
                     </div>
                 </div>
                 <div class="mt-4">
-                    <a href="" class="btn-secundary">Cancelar</a>
+                <a href="{{ route('homework') }}" class="btn-secundary">Cancelar</a>
                     <button type="submit">Publicar</button>
                 </div>
             </form>

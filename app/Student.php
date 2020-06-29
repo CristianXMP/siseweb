@@ -32,7 +32,7 @@ class Student extends Model
         return $this->belongsTo(Course::class);
     }
 
-    // 1- m users students
+    //  users students
     public function user(){
 
         return $this->hasMany(User::class);
@@ -47,7 +47,7 @@ class Student extends Model
         return $this->hasMany(likeadvertisement::class);
     }
 
-    //relacion con la tabla Forums
+    // Forums
 
     public function Forums()
     {
@@ -65,6 +65,16 @@ class Student extends Model
         return $this->hasMany(ForumParticipant::class);
     }
 
- 
+    //hasmany partisipants_homeworks
+
+    public function partisipants_homeworks(){
+        return $this->hasMany(HomeworkParticipant::class);
+    }
+
+    //hasmany jobs
+
+    public function jobs(){
+        return $this->hasMany(Job::class);
+    }
 
 }

@@ -18,8 +18,5 @@ class Subject extends Model
       return  $this->hasMany(Academic_assignment::class);
     }
 
-    public function Advertisements(){
 
-        return $this->hasMany(Advertisement::class);
-    }
 }

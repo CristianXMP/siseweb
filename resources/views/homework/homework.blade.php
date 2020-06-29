@@ -3,6 +3,10 @@
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/style-nav.css') }}">
     <link rel="stylesheet" href="{{ asset('css/homework.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/estudiantes.css') }}">
+@endsection
+@section('scripts')
+    <script src="{{ asset('js/homework.js') }}"></script>
 @endsection
 
 @section('content')
@@ -15,71 +19,105 @@
     </div>
 
     <div class="col-md-8">
-        <h2 class="mb-4">Tarea</h2>
+
+        <div class="clearfix">
+            <div class="float-left">
+                <h2 class="">Tareas</h2>
+            </div>
+            <div class="float-right">
+                @if (Auth::user()->type_user == 'Teacher')
+
+                    <div class=" col-sm-12 text-center ">
+                        <a href="{{route('new.homework')}}" class="btn-main btn text-white btn-block rounded-lg "
+                        style=" font-size: 1em; font-weight: 600" >
+
+                            Crear Tarea
+                            <i class="fas  fa-plus ml-1"></i>
+                        </a>
+                    </div>
+
+            @endif
+            </div>
+        </div>
         <hr>
-        <div class="content-button-homework">
-            <a href="{{ route('new.homework') }}">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-                Crear Tarea</a>
-        </div>
-
-        <div class="info-date-homework">
-            <p>
-                <svg width="16px" height="16px">
-                    <circle cx="10" cy="10" r="5"/>
-                </svg>
-                Tareas aun a tiempo</p>
-            <p>
-                <svg width="16px" height="16px">
-                    <circle cx="10" cy="10" r="5"/>
-                </svg>
-                Tarea que llego fecha limite de entrega</p>
-        </div>
 
 
-        <div class="list-homeworks">
-            <a href="" class="card-link">
-                <div class="card-homework card-danger shadow-car-danger">
+        <div class="table-responsive">
+            <table class="table text-center table-sm" style="width:100%" id="homework-list">
+                <thead>
+                    <tr>
+                        <th >Titulo</th>
+                        <th >Fecha de entrega</th>
+                        <th >Guía</th>
+                        <th>Estado</th>
+                        <th>Acción</th>
 
-                    <div class="title-homework">
-                        <p>Informe sobre vicent Van vohg</p>
-                    </div>
-                    <div class="date-homework">
-                        <p>Fecha limite</p>
-                        <p>05/04/2002</p>
-                    </div>
-                    <div class="option-homework">
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($car as $item)
+
+                    <tr>
+                    <td class="">{{ $item->title}}</td>
+                    @if (strtotime(now()->format('y-m-d')) == strtotime($item->deliver_date))
+                    <td class="text-center">{{$item->deliver_date}}</td>
+                    @else
+                    @if (strtotime(now()->format('y-m-d')) > strtotime($item->deliver_date))
+                        <td>{{$item->deliver_date}}</td>
+                    @else
+                    <td >{{$item->deliver_date }}</td>
+                    @endif
+
+                    @endif
+
+                    <td class="">
+                        @if ($item->resource == "")
+
+                        @else
                         @if (Auth::user()->type_user == "Student")
+                        <small><a href="{{route('download.homework', $item->id)}}" class="btn btn-sm text-white btn-block" style="background: #075a72; font-size: 1em; font-weight: 600">
+                            <i class="fas  fa-arrow-alt-circle-down"></i> </a></small>
+                        @elseif(Auth::user()->type_user == "Teacher")
+                        <small><a href="{{route('download.file', $item->id)}}" class="btn btn-sm text-white btn-block" style="background: #075a72; font-size: 1em; font-weight: 600">
+                            <i class="fas  fa-arrow-alt-circle-down"></i> </a></small>
                         @endif
-                        <p>Sin calificación</p>
 
-                    </div>
-
-                </div>
-
-            </a>
-            <a href="" class="card-link">
-                <div class="card-homework card-success shadow-car-success">
-
-                    <div class="title-homework">
-                        <p>Conexion PHP- Mysql</p>
-                    </div>
-                    <div class="date-homework">
-                        <p>Fecha limite</p>
-                        <p>10/06/2020</p>
-                    </div>
-                    <div class="option-homework">
+                        @endif
+                        </td>
+                    <td>{{ $item->state}}</td>
+                    <td class=""><small>
+                        @if (Auth::user()->type_user == "Teacher")
+                        <a href="{{ route('detail.homework', $item->id) }}" class="btn btn-sm text-white btn-block" style="background: #075a72; font-size: 1em; font-weight: 600">
+                            Detalles</a>
+                        @endif
                         @if (Auth::user()->type_user == "Student")
+
+
+
+
+                            <a href="{{ route('homework-student', $item->id) }}" class="btn btn-sm text-white btn-block" style="background: #075a72; font-size: 1em; font-weight: 600">
+                                Detalles</a>
+
+
+
                         @endif
-                        <p>100</p>
 
-                    </div>
 
-                </div>
+                    </small></td>
+                    </tr>
 
-            </a>
+                    @endforeach
+
+
+
+                </tbody>
+            </table>
         </div>
+
+
     </div>
 </div>
 
 @endsection
+

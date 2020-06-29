@@ -16,12 +16,12 @@ class CreateJobsTable extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('academic_assignment_id');
-            $table->foreign('academic_assignment_id')->references('id')->on('academic_assignments');
+            $table->foreign('academic_assignment_id')->references('id')->on('academic_assignments')->onDelete('cascade')->onUpdate('cascade');
             $table->string('title');
             $table->text('description');
             $table->date('deliver_date');
             $table->string('resource', 300)->nullable();
-            $table->string('state')->default('enabled');
+            $table->string('state')->default('Disponible');
             $table->timestamps();
         });
     }

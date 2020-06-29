@@ -55,7 +55,7 @@
                            </table>
                 </div>
                 <div class="card-footer">
-                    <a href="{{ route('asignaciones.index') }}" class="btn btn-primary btn-block">Volver</a>
+                    <a href="{{ route('asignaciones.index') }}" class="btn btn-main btn-block">Volver</a>
                 </div>
             </div>
         </div>

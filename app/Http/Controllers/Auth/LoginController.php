@@ -54,17 +54,17 @@ class LoginController extends Controller
                     if ($type_user[0]->type_user == "Admin") {
 
                         return redirect()->route('Admin');
-                        
+
                     } else {
 
                         if ($type_user[0]->type_user == "Teacher") {
 
-                            return redirect()->route('Profesor');
+                            return redirect()->route('Miscursos');
                         }
 
                         if ($type_user[0]->type_user == "Student") {
 
-                            return redirect()->route('Estudiante');
+                            return redirect()->route('Mismaterias');
 
                         }
                     }

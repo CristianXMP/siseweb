@@ -28,13 +28,27 @@ class DatabaseSeeder extends Seeder
         User::create([
 
             'nombre' => 'cristian',
-            'apellidos' => 'perez',
-            'cargo' => 'rector',
+            'apellidos' => 'moreno',
+            'cargo' => 'Programador',
             'teacher_id' => null,
             'student_id' => null,
             'cedula'    => '1193574481',
             'cedula_verified_at' => now(),
             'password' => bcrypt('12345678'),
+            'type_user' => 'Admin',
+            'remember_token' => Str::random(10)
+
+        ]);
+          User::create([
+
+            'nombre' => 'Luis Fernando',
+            'apellidos' => 'Navarro Medina',
+            'cargo' => 'Ingeniero',
+            'teacher_id' => null,
+            'student_id' => null,
+            'cedula'    => '1140854751',
+            'cedula_verified_at' => now(),
+            'password' => bcrypt('1140854751'),
             'type_user' => 'Admin',
             'remember_token' => Str::random(10)
 

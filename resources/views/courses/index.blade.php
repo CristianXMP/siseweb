@@ -5,36 +5,28 @@
 @endsection
 
 @section('content')
-        @if (session()->get('success'))
-        <div class="alert alert-success">
-            {{ session()->get('success') }}
-        </div>
+    <div class="clearfix mb-2">
+        <div class="float-left "><h1 class="font-weight-bold text-uppercase" style="font-size: 26px;
+            color: #075a72 !important;
+           ">
+            <i class="far fa-file-alt"></i>
+            Lista de Cursos
+        </h1></div>
+        <div class="float-right text-capitalize  ">  <a class=" btn btn-main btn-block btn-sm" href="{{ route('cursos.create') }}">
+            <i class="fa fa-plus mr-1"></i>
+            Nuevo
+        </a></div>
+      </div>
+      <hr class="my-0 ">
 
-        @endif
-    <div class="header-container">
-        <div class="title">
-            <h1>
-                <i class="far fa-file-alt"></i>
-                Lista de Cursos
-            </h1>
-        </div>
-        <div>
-            <a class=" btn btn-main" href="{{ route('cursos.create') }}">
-                <i class="fa fa-plus mr-1"></i>
-                Nuevo
-            </a>
-        </div>
-    </div>
-
-
-    <div class="table-responsive">
+    <div class="table-responsive mt-3">
         <table class="table text-center table-sm" style="width:100%" id="tablaCursos">
             <thead>
                 <tr>
                     <th width="10px">ID</th>
                     <th width="10px" >Curso</th>
                     <th width="10px">Jornada</th>
-                    <th width="10px">Director de grupo</th>
+                    <th width="10px">D.grupo</th>
                     <th width="5px">Acciones</th>
 
                 </tr>
@@ -46,7 +38,7 @@
                 <td>{{$item->course}} - °{{$item->variation}}</td>
                 <td>{{$item->working_day}}</td>
                 @if ($item->teacher == "")
-                    <td>No tiene director de grupo</td>
+                    <td>N/A</td>
                 @else
                 <td>{{$item->teacher->first_name}} {{$item->teacher->last_name}}</td>
                 @endif

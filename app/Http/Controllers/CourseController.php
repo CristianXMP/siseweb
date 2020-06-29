@@ -49,7 +49,7 @@ class CourseController extends Controller
         //
         $validator = Validator::make($request->all(), [
 
-            'curso' => 'numeric|required|min:1|max:11|unique:courses,course',
+            'curso' => 'numeric|required|min:1|max:11',
             'abreviatura' => 'required|min:1|max:3',
             'jornada' => 'required',
             'director_de_grupo' => ''
@@ -69,10 +69,10 @@ class CourseController extends Controller
 
         ]);
 
-        if (Course::where('course', $request->get('curso'))->exists() and Course::where('variation', $request->get('abreviatura'))->exists()) {
+        if (count(Course::where('course', $request->get('curso'))->where('variation', $request->get('abreviatura'))->get()) > 0 ) {
 
 
-            return back()->withToastError('El curso ' . $request->get('curso') . ' °' . $request->get('abreviatura') . ' Ya Esta En Los Registros!');
+            return back()->withToastError('El curso ' . $request->get('curso') . ' - '.' °' . $request->get('abreviatura') . ' Ya Esta En Los Registros!');
         } else {
             $CourseStore->save();
 
@@ -133,7 +133,7 @@ class CourseController extends Controller
             'curso' => 'numeric|required|min:1|max:11',
             'abreviatura' => 'required|min:1|max:3',
             'jornada' => 'required',
-          
+
 
         ]);
 

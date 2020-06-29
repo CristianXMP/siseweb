@@ -22,7 +22,7 @@
             <form action="{{Route('login')}}" method="POST">
                 @csrf
                     <div class="form-group">
-                        <input id="cedula" class="style-input" type="text" placeholder="Numero De Documento"  name="cedula" value="{{ old('cedula') }}" autocomplete="cedula" >
+                        <input id="cedula" class="style-input" type="text" placeholder="Usuario"  name="cedula" value="{{ old('cedula') }}" autocomplete="cedula" >
 
 
                     </div>
@@ -40,7 +40,7 @@
                     </div>
 
                 </form>
-                    <a href="" class="recover-pass">¿Has olvidado tu contrañesa?</a>
+                    <a href="" class="recover-pass">¿Has olvidado tu contraseña?</a>
             </div>
 
         </div>

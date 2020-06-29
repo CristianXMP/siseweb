@@ -15,7 +15,7 @@
     <title>Aula virtual</title>
 
 </head>
-<body>
+<body class="bg-white">
     @include('sweetalert::alert')
     <header class="shadow-sm">
         <div class="container">
@@ -30,10 +30,16 @@
 
                       <div class="collapse navbar-collapse" id="navbarSupportedContent">
                           <ul class="navbar-nav ml-auto">
-                              <li class="nav-item"><a href="#">Mis cursos</a></li>
+                              @if (Auth::user()->type_user == "Teacher")
+                          <li class="nav-item"><a href="{{ route('Miscursos')}}">Mis cursos</a></li>
+                              @endif
+                              @if (Auth::user()->type_user == "Student")
+                              <li class="nav-item"><a href="{{ route('Mismaterias')}}">Mis materias</a></li>
+                              @endif
+
                               <li class="nav-item">
                                   <a href="#" class="message">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px" 
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"
                                     preserveAspectRatio="x200Y200 meet"
                                     ><path d="M0 0h24v24H0z" fill="none"/><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/></svg>
                                     <span class="sec counter counter-lg">+9</span>
@@ -50,7 +56,7 @@
                                 <a class="btn-logout" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                               document.getElementById('logout-form').submit();">
-                               
+
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
                                 Salir
 
@@ -97,14 +103,16 @@
         </div>
     </main>
 
- <footer class="fixed-bottom shadow p-2 bg-white mt-2">
+    <footer class=" bg-light border border-top-1 h-50  " style="margin-top: 327px; height: 2rem;">
         <div class="container">
             <div class="clearfix">
-                <p class="mt-2 float-left">Todos los derechos reservados @ OpenSoft</p>
-            </div>
+                <p class="mt-3 float-left">Todos los derechos reservados &COPY; <a href="https://www.opensoftcolombia.co/" class="link">opensoft colombia s.a.s</a> </p>
 
+            </div>
         </div>
-    </footer>
+
+
+       </footer>
 
 
 
@@ -112,7 +120,10 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
+    <script src="{{ asset('datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('datatables/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
     @yield('scripts')
     <script>
         $(function () {

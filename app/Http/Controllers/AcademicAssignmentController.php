@@ -45,7 +45,7 @@ class AcademicAssignmentController extends Controller
         $period = Period::all();
         $course = Course::all();
         $subject = Subject::all();
-        return view('academic_assignments.create', compact('teacher','period','course','subject'));
+        return view('academic_assignments.create', compact('teacher', 'period', 'course', 'subject'));
     }
 
     /**
@@ -62,20 +62,19 @@ class AcademicAssignmentController extends Controller
             'curso' => 'required',
             'profesor' => 'required',
             'periodo' => 'required',
-            'materia' => 'required'//|unique:academic_assignments,subject_id'
+            'materia' => 'required' //|unique:academic_assignments,subject_id'
         ]);
         if ($validator->fails()) {
             return back()->withToastError($validator->messages()->all()[0])->withInput();
         }
 
-        $verify = Academic_assignment::where('course_id',$request->get('curso'))
-        ->where( 'subject_id' , $request->get('materia'))->get();
+        $verify = Academic_assignment::where('course_id', $request->get('curso'))
+            ->where('subject_id', $request->get('materia'))->get();
 
         if (count($verify)  > 0) {
 
-            return redirect('/asignaciones')->withToastError('Lo siento pero un profesor no pude tener la misma carga academica en un curso!');
-
-        }else{
+            return redirect('/asignaciones')->withToastError('El profesor no puede tener dos cargas académicas en un curso!');
+        } else {
 
             $academicAssignment = new Academic_assignment([
 
@@ -86,12 +85,9 @@ class AcademicAssignmentController extends Controller
             ]);
 
 
-                $academicAssignment->save();
-                return redirect('/asignaciones')->withToastSuccess('Asignacion Academica  Exitosa!');
-
+            $academicAssignment->save();
+            return redirect('/asignaciones')->withToastSuccess('Asignación Académica  Exitosa!');
         }
-
-
     }
 
     /**
@@ -103,16 +99,12 @@ class AcademicAssignmentController extends Controller
     public function show($id)
     {
         //
-         $academicCourses = Academic_assignment::where('teacher_id', $id)->get();
+        $academicCourses = Academic_assignment::where('teacher_id', $id)->get();
         $teacher = Teacher::findorfail($id);
 
 
 
-        return view('academic_assignments.show', compact('academicCourses','teacher'));
-
-
-
-
+        return view('academic_assignments.show', compact('academicCourses', 'teacher'));
     }
 
     /**
@@ -128,7 +120,7 @@ class AcademicAssignmentController extends Controller
         $period = Period::all();
         $course = Course::all();
         $subject = Subject::all();
-        return view('academic_assignments.edit', compact('asignacion','teacher','period','course','subject'));
+        return view('academic_assignments.edit', compact('asignacion', 'teacher', 'period', 'course', 'subject'));
     }
 
     /**
@@ -142,6 +134,7 @@ class AcademicAssignmentController extends Controller
     {
         //
 
+
         $validator = Validator::make($request->all(), [
             'curso' => 'required',
             'profesor' => 'required',
@@ -152,17 +145,23 @@ class AcademicAssignmentController extends Controller
             return back()->withToastError($validator->messages()->all()[0])->withInput();
         }
 
-        $AsignacionUpdate = Academic_assignment::find($id);
+        $verify = Academic_assignment::where('course_id', $request->get('curso'))
+            ->where('subject_id', $request->get('materia'))->get();
 
-        $AsignacionUpdate->course_id = $request->get('curso');
-        $AsignacionUpdate->teacher_id = $request->get('profesor');
-        $AsignacionUpdate->period_id = $request->get('periodo');
-        $AsignacionUpdate->subject_id = $request->get('materia');
+        if (count($verify)  > 0) {
 
-        $AsignacionUpdate->save();
+            return redirect('/asignaciones')->withToastError('El profesor no puede tener dos cargas académicas en un curso!');
+        } else {
+            $AsignacionUpdate = Academic_assignment::find($id);
+            $AsignacionUpdate->course_id = $request->get('curso');
+            $AsignacionUpdate->teacher_id = $request->get('profesor');
+            $AsignacionUpdate->period_id = $request->get('periodo');
+            $AsignacionUpdate->subject_id = $request->get('materia');
 
-        return redirect('/asignaciones')->withToastSuccess('Asignacion Actualizada Correcatamente!');
+            $AsignacionUpdate->save();
 
+            return redirect('/asignaciones')->withToastSuccess('Asignacion Actualizada Correcatamente!');
+        }
     }
 
     /**
@@ -180,11 +179,11 @@ class AcademicAssignmentController extends Controller
 
         if (count($foros) > 0) {
             return redirect('/asignaciones')->withToastError('No se completo la accion ya que la carga academica tiene foros publicados.');
-        }else{
+        } else {
             $asignacion = Academic_assignment::find($id);
             $asignacion->delete();
 
-        return redirect('/asignaciones')->withToastSuccess('Asignacion Eliminada Correcatamente!');
+            return redirect('/asignaciones')->withToastSuccess('Asignacion Eliminada Correcatamente!');
         }
         /**/
     }

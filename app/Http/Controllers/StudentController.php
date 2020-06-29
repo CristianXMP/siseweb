@@ -86,7 +86,9 @@ class StudentController extends Controller
 
 
         if ($student->save()) {
+
             $studentDateUser = Student::all()->last();
+            
             if (User::where('student_id', $studentDateUser->id)->exists()) {
 
                 return back()->withToastError('Este usuario ya existe');
@@ -187,7 +189,7 @@ class StudentController extends Controller
         $studentUpdate->save();
 
         if ($request->get('Estado') == "Activo") {
-            
+
             User::create([
 
                 'nombre' => $request->get('primer_nombre'),
@@ -228,12 +230,5 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-        $student = Student::find($id);
-        $student->delete();
 
-        return redirect('/estudiantes')->withToastSuccess('Registro Eliminado Correcatamente!');
-    }
 }

@@ -4,7 +4,9 @@ use App\Academic_assignment;
 use App\Advertisement;
 use App\Course;
 use App\FinalScore;
+use App\Forum;
 use App\ForumParticipant;
+use App\HomeworkParticipant;
 use App\Job;
 use App\Student;
 use App\Subject;
@@ -33,8 +35,22 @@ Route::view('/qualify', 'homework.qualify');
 
 Auth::routes();
 
+Route::get('test', function(){
+
+   $student = Student::findorfail(2);
+   $notas =  Finalscore::where('student_id', $student->id)->get();
+
+
+
+
+   return view('test', compact('notas','student'));
+});
+
+
 
 route::get('/prueba', function(){
+
+  $participants = HomeworkParticipant::where('job_id', 1)->get();
 
 
     //saber que taras pertenencen a la carga academica con id 1
@@ -61,11 +77,11 @@ route::get('/prueba', function(){
 Route::middleware(['auth','role:Teacher'])->group(function(){
 
 
-    Route::get('/Profesor', 'HomeController@educacion')->name('Profesor');
+    Route::get('/Miscursos', 'HomeController@educacion')->name('Miscursos');
     //curso y anumcios
     Route::get('/cursoProfesor/{id}', 'HomeController@curso')->name('cursoProfesor');
     Route::get('/anunciosProfesor', 'HomeController@anuncio')->name('anuncios.index');
-    Route::post('/PublicarAnuncio', 'AdvertisementsController@publicar')->name('publicar');
+    Route::post('/PublicarAnuncio/{id}', 'AdvertisementsController@publicar')->name('publicar');
     Route::get('/likes/{like}', 'AdvertisementsController@likes')->name('likes');
 
 
@@ -80,6 +96,7 @@ Route::middleware(['auth','role:Teacher'])->group(function(){
     Route::get('/likecoment/{id}', 'ForumsController@like_coment')->name('forum.like');
     Route::get('/participants/{id}', 'ForumsController@participants')->name('forum.participant');
     Route::post('/qualification/{id}','ForumsController@sendqualification')->name('forum.qualification');
+    Route::post('modified-qualify-forum/{id}', 'ForumsController@modified_qualify')->name('modified.qualify.forum');
 
 
     /**
@@ -92,8 +109,20 @@ Route::middleware(['auth','role:Teacher'])->group(function(){
     })->name('new.homework');
 
     Route::post('PublicHomework/{id}','HomeWork@PublicHomework')->name('PublicHomework');
+    Route::get('detail-homework/{id}', 'HomeWork@detail_homework')->name('detail.homework');
+    Route::get('download-file/{id}', 'HomeWork@download_resource')->name('download.file');
+    Route::get('qualify-homework/{id}', 'HomeWork@qualify_homework')->name('qualify.homework');
+    Route::get('download-student/{id}', 'HomeWork@download_student')
+    ->name('download.student');
+    Route::post('send-qualify/{id}', 'HomeWork@SendQualify')
+    ->name('send.qualify');
 
-
+    Route::post('modified-qualify/{id}', 'HomeWork@modified_qualify')
+    ->name('modified.qualify');
+    Route::get('homework-edit/{id}','HomeWork@edit')
+    ->name('homework.edit');
+    Route::post('homework-update/{id}', 'HomeWork@update')
+    ->name('homework.update');
 });
 
 
@@ -101,7 +130,7 @@ Route::middleware(['auth','role:Teacher'])->group(function(){
 Route::middleware(['auth','role:Student'])->group(function(){
 
 
-    Route::get('/Estudiante', 'HomeController@educacion')->name('Estudiante');
+    Route::get('/Mismaterias', 'HomeController@educacion')->name('Mismaterias');
     Route::get('/cursoEstudiante/{id}', 'HomeController@curso')->name('cursoEstudiante');
     Route::get('/likes/{like}', 'AdvertisementsController@likes')->name('likes');
 
@@ -112,6 +141,18 @@ Route::middleware(['auth','role:Student'])->group(function(){
      Route::get('/comentstudent/{id}', 'ForumsController@coments_likes')->name('forum.comentstudent');
      Route::post('/PublicComentstudent/{id}', 'ForumsController@public_coment')->name('public.comentstudent');
      Route::get('/likecomentstudent/{id}', 'ForumsController@like_coment')->name('forum.likestudent');
+
+     //tareas
+
+     Route::get('homework-list','HomeWork@index')
+     ->name('homework-list');
+     Route::get('homework-student/{id}', 'HomeWork@detail_homework')
+     ->name('homework-student');
+     Route::get('download-homework/{id}', 'HomeWork@download_resource')
+     ->name('download.homework');
+     Route::post('upload-homework/{id}', 'HomeWork@upload_homework')
+     ->name('upload.homework');
+
 
 
 });
@@ -145,7 +186,7 @@ Route::middleware(['auth','role:Admin'])->group(function(){
     Route::resource('/materias', 'SubjectController');
 
 
-    Route::get('/register', 'Auth\RegisterController@index')->name('register');
+    Route::get('/users', 'Auth\RegisterController@index')->name('users');
     Route::get('/create', 'Auth\RegisterController@create')->name('create');
     Route::post('/register', 'Auth\RegisterController@store')->name('register');
     Route::get('/restauracion/{id}', 'Auth\RegisterController@restore')->name('restore.user');

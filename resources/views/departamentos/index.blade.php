@@ -5,42 +5,28 @@
 @endsection
 
 @section('content')
-    <div class="header-container">
-        @if (session()->get('success'))
-        <script>
-            swal('Exito','El registro se agrego', 'success');
-        </script>
-
-
-
-      @endif
-      @if (session()->get('danger'))
-      <div class="alert alert-success">
-          {{ session()->get('danger') }}
+    <div class="clearfix mb-2">
+        <div class="float-left "><h1 class="font-weight-bold text-uppercase" style="font-size: 26px;
+            color: #075a72 !important;
+           ">
+            <i class="far fa-file-alt"></i>
+            Lista de Departamentos
+        </h1></div>
+        <div class="float-right text-capitalize  "> <a class=" btn btn-main btn-block btn-sm" href="{{ route('departamentos.create') }}">
+            <i class="fa fa-plus mr-1"></i>
+            Nuevo
+        </a></div>
       </div>
-      @endif
-        <div class="title">
-            <h1>
-                <i class="far fa-file-alt"></i>
-                Lista de Departamentos
-            </h1>
-        </div>
-        <div>
-            <a class=" btn btn-main" href="{{ route('departamentos.create') }}">
-                <i class="fa fa-plus mr-1"></i>
-                Nuevo
-            </a>
-        </div>
-    </div>
+      <hr class="my-0 ">
 
-    <div class="table-responsive">
+    <div class="table-responsive mt-3">
         <table class="table  table-sm" id="tablaDepartamento">
             <thead>
                 <tr>
                     <th width="10px">ID</th>
                     <th width="10px" >Nombre</th>
                     <th width="10px">Abreviatura</th>
-                    <th width="10px">Pais</th>
+                    <th width="10px">País</th>
                     <th width="5px">Acciones</th>
 
                 </tr>

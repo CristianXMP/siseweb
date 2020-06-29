@@ -5,22 +5,22 @@
 @endsection
 
 @section('content')
-    <div class="header-container">
-        <div class="title">
-            <h1>
-                <i class="far fa-file-alt"></i>
-                Lista de usuarios
-            </h1>
-        </div>
-        <div>
-            <a class=" btn btn-main" href="{{ route('create') }}">
-                <i class="fa fa-plus mr-1"></i>
-                Administrar usuarios
-            </a>
-        </div>
-    </div>
 
-    <div class="table-responsive">
+    <div class="clearfix mb-2">
+        <div class="float-left "><h1 class="font-weight-bold text-uppercase" style="font-size: 26px;
+            color: #075a72 !important;
+           ">
+            <i class="far fa-file-alt"></i>
+            Lista de Usuarios
+        </h1></div>
+        <div class="float-right text-capitalize  ">  <a class=" btn btn-main btn-sm btn-block" href="{{ route('create') }}">
+            <i class="fa fa-plus mr-1"></i>
+            Administrar usuarios
+        </a></div>
+      </div>
+      <hr class="my-0 ">
+
+    <div class="table-responsive mt-3">
         <table class="table table-stripe table-sm" id="tablaEstudiante">
             <thead class="text-left">
                 <tr>
@@ -28,7 +28,7 @@
                     <th>nombre</th>
                     <th>Apellidos</th>
                     <th>Cargo</th>
-                    <th>Cedula</th>
+                    <th>Cédula</th>
                     <th>Acciones</th>
                 </tr>
             </thead>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -16,28 +16,29 @@
     @yield('style')
 </head>
 
-<body>
+<body class="bg-white">
 
     @include('sweetalert::alert')
     <div class="container-fluid h-100">
         <div class="row">
-            <header class="col-12 headLogin">
+            <header class="col-12 headLogin ">
                 <div class="d-none d-md-block">
-                    <div class="row" id="logo-principal">
+                    <div class="row" id="logo-principal" style="height: 80px;">
                         <div class="col-12 col-md-4">
-                            <div class="navbar-brand">
+                            <div class="navbar-brand my-auto">
                                 <img src="{{ asset('img/siseweb.png') }}" alt="">
                             </div>
                         </div>
                         <div class="col-12 col-md-8 info-user">
-                            @if (Auth::user()->type_user == "Admin")
-                            Administrador:
-                            @endif
-                            <h2 class="title text-uppercase"> {{ Auth::user()->nombre }} {{ Auth::user()->apellidos }}
 
+                            <h2 class="title text-uppercase text-left"> {{ Auth::user()->nombre }} {{ Auth::user()->apellidos }}
+                                <br>
+
+                                <small class="text-muted">administrador</small>
                             </h2>
 
-                            <a class="btn btn-logout" href="{{ route('logout') }}" onclick="event.preventDefault();
+
+                            <a class="btn btn-logout" style="margin-bottom: 20px;" href="{{ route('logout') }}" onclick="event.preventDefault();
                                           document.getElementById('logout-form').submit();">
                                 Salir
                                 <i class="fas fa-sign-out-alt"></i>
@@ -70,11 +71,14 @@
 
                                         <div class="col-sm-12 d-flex">
                                             <div class="mr-auto p-2">
-                                                @if (Auth::user()->type_user == "Admin")
-                                                Administrador:
-                                                @endif
+
                                                 <h5 class="title text-uppercase">{{ Auth::user()->nombre }}
-                                                    {{ Auth::user()->apellidos }}</h5>
+                                                    {{ Auth::user()->apellidos }}
+                                                    @if (Auth::user()->type_user == "Admin")
+                                                   <small class="text-muted">Administrador</small>
+                                                    @endif
+                                                </h5>
+
 
                                             </div>
                                             <div class="p-2">
@@ -117,7 +121,7 @@
             </div>
 
                 <div class=" col-md-8 col-12 col-lg-9">
-                    <div class="shadow p-3 mb-5 bg-white rounded contentBody">
+                    <div class="p-3 mb-5 bg-white rounded contentBody">
 
                         {{-- Aqui va el contenido  --}}
                         @yield('content')
@@ -133,17 +137,16 @@
 
 
 
-    <footer class=" shadow bg-white container-fluit ">
+    <footer class=" bg-light border border-top-1 h-50  " style="margin-top: 250px; height: 2rem;">
+        <div class="container">
+            <div class="clearfix">
+                <p class="my-1 float-left">Todos los derechos reservados &COPY; <a href="https://www.opensoftcolombia.co/" class="link">opensoft colombia s.a.s</a> </p>
 
-      {{--  <div class="clearfix ">
-            <p class="mt-2 float-left">Todos los derechos reservados @ OpenSoft</p>
-
-        </div>--}}
-
-        <div class="clearfix">
-            <div class="col-md-8">esto es el footer</div>
+            </div>
         </div>
-    </footer>
+
+
+       </footer>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">

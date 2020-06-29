@@ -5,46 +5,39 @@
 @endsection
 
 @section('content')
-    <div class="header-container">
 
-        <div class="title">
-            <h1>
+        <div class="clearfix mb-2">
+            <div class="float-left "><h1 class="font-weight-bold text-uppercase" style="font-size: 26px;
+                color: #075a72 !important;
+               ">
                 <i class="far fa-file-alt"></i>
                 Lista de Periodos
-            </h1>
-        </div>
-        <div>
+            </h1></div>
+            <div class="float-right text-capitalize">   @if (count($periodos) == 0 )
 
+                <a class=" btn btn-main" href="{{ route('periodos.create') }}">
+                    <i class="fa fa-plus mr-1"></i>
+                    Nuevo
+                </a>
 
-            @if (count($periodos) == 0 )
+                @else
 
-            <a class=" btn btn-main" href="{{ route('periodos.create') }}">
-                <i class="fa fa-plus mr-1"></i>
-                Nuevo
-            </a>
+                @if ($periodos[0]['fecha_final'] == "")
 
-            @else
+                @else
 
-            @if ($periodos[0]['fecha_final'] == "")
+                <a class=" btn btn-main btn-block btn-sm" href="{{ route('periodos.create') }}">
+                    <i class="fa fa-plus mr-1"></i>
+                    Nuevo
+                </a>
 
-            @else
+                @endif
 
-            <a class=" btn btn-main" href="{{ route('periodos.create') }}">
-                <i class="fa fa-plus mr-1"></i>
-                Nuevo
-            </a>
+                @endif</div>
+          </div>
+          <hr class="my-0 ">
 
-            @endif
-
-
-
-
-            @endif
-
-        </div>
-    </div>
-
-    <div class="table-responsive">
+    <div class="table-responsive mt-3">
         <table class="table text-center table-sm"  id="tablaPeriodo">
             <thead>
                 <tr>

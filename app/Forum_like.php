@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Forum_like extends Model
 {
-    protected $fillable=[
+    protected $fillable = [
         'forum_id',
         'student_id',
         'teacher_id',

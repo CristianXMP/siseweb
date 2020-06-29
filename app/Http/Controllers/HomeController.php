@@ -3,18 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Academic_assignment;
-use App\Advertisement;
-use App\Advertisements;
 use App\Course;
-use App\Forum;
-use App\likeadvertisement;
 use App\Student;
 use App\Subject;
 use App\Teacher;
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Mockery\Matcher\Subset;
+
 
 class HomeController extends Controller
 {
@@ -37,20 +32,8 @@ class HomeController extends Controller
     {
 
 
-        $countteacher = Teacher::all()->count();
-        $countstudent =  Student::all()->count();
-        $countsubject = Subject::all()->count();
-        $countacademicassignment = Academic_assignment::all()->count();
-        $countcourses = Course::all()->count();
-        $countuser = User::all()->count();
-        return view('home', compact(
-            'countteacher',
-            'countstudent',
-            'countsubject',
-            'countacademicassignment',
-            'countcourses',
-            'countuser'
-        ));
+
+        return view('home');
     }
 
     /* public function Teacher(){
@@ -98,7 +81,7 @@ class HomeController extends Controller
             // recolecion de datos carga academica
             $CargaAcademica = Academic_assignment::findorfail($id);
             // recolecion de los datos de anuncios
-            $anuncios = Subject::findOrfail($CargaAcademica->subject_id)
+            $anuncios = Academic_assignment::findOrfail($id)
                 ->Advertisements()
                 ->orderBy('created_at', 'desc')->paginate(5);
 
@@ -117,7 +100,7 @@ class HomeController extends Controller
             $AsignacionAcademica = Academic_assignment::findorfail($id);
             $course = Course::find($AsignacionAcademica->course_id);
 
-            $anuncios = Subject::findOrfail($AsignacionAcademica->subject_id)
+            $anuncios = Academic_assignment::findOrfail($id)
                 ->Advertisements()
                 ->orderBy('created_at', 'desc')->paginate(5);
 

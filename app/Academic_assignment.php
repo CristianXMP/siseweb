@@ -11,45 +11,45 @@ class Academic_assignment extends Model
         'course_id', 'period_id', 'subject_id', 'teacher_id'
     ];
 
-    //relacion es entre asignacion academica peridos materias y profesor
+    //perdiodo
 
     public function period()
     {
-       return $this->belongsTo(Period::class);
+        return $this->belongsTo(Period::class);
     }
-
+    //profesor
     public function teacher()
     {
-       return $this->belongsTo(Teacher::class);
+        return $this->belongsTo(Teacher::class);
     }
-
+    //materia
     public function subject()
     {
-       return $this->belongsTo(Subject::class);
+        return $this->belongsTo(Subject::class);
     }
-
-    public function course(){
+    //curso
+    public function course()
+    {
         return $this->belongsTo(Course::class);
     }
-
+    //anuncios
     public function Advertisements()
     {
 
         return $this->hasMany(Advertisement::class);
     }
 
-    //relacion de carga academica y foro
+    //foros
 
     public function Forums()
     {
         $this->hasMany(Forum::class);
     }
 
-    //homeworks
+    //tareas
 
     public function Homeworks()
     {
-       return $this->hasMany(Job::class);
+        return $this->hasMany(Job::class);
     }
-
 }

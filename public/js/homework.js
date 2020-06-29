@@ -1,8 +1,4 @@
-$('#tablaCursos').DataTable({
-
-    "paging":   false,
-    "info":     false,
-    "searching": false,
+$('#homework-list').DataTable({
 
     "language" : {
         "sEmptyTable": "No hay datos en la tabla",
@@ -26,9 +22,11 @@ $('#tablaCursos').DataTable({
             "sSortAscending": ": permite ordenar la columna en orden ascendente",
             "sSortDescending": ": permite ordenar la columna en orden descendente"
         }
-    }
+    },
+    "aLengthMenu": [[5, 10, 20, -1], [5, 10, 20, "Todo"]],
+    "iDisplayLength": 5,
+    "order": [[ 1, 'asc' ]]
 
-    
 });
 
 // console.log('executed...')
